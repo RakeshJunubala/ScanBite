@@ -1,0 +1,14 @@
+{
+  "name": "labelapp-mobile",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.ts",
+  "scripts": {
+    "setup": "bash ./setup.sh",
+    "start": "expo start",
+    "android": "expo start --android",
+    "typecheck": "tsc --noEmit",
+    "test:logic": "tsx --test src/profile/alerts.test.ts src/api/client.demo.test.ts src/api/client.api.test.ts",
+    "doctor": "npx expo-doctor"
+  }
+}

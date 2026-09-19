@@ -1,0 +1,180 @@
+"""Open Food Facts: fallback product data.
+
+Licence: the database is ODbL (share-alike). We keep OFF records marked
+`community` and separate from our own verified records. Heavy use should
+switch to their daily export instead of the live API (they rate-limit reads).
+"""
+
+from __future__ import annotations
+
+from typing import Any, Optional, Protocol
+
+import httpx
+
+from ..models import DataStatus, Nutriments, Product
+
+FIELDS = ",".join(
+    [
+        "code",
+        "product_name",
+        "product_name_en",
+        "brands",
+        "quantity",
+        "categories_tags",
+        "nutriments",
+        "ingredients_text",
+        "ingredients_text_en",
+        "additives_tags",
+        "allergens_tags",
+        "traces_tags",
+        "labels_tags",
+        "image_front_url",
+        "serving_quantity",
+    ]
+)
+
+# OFF allergen tags -> the words the app uses in profiles and alerts.
+_ALLERGEN_NAMES = {
+    "gluten": "gluten",
+    "milk": "milk",
+    "soybeans": "soy",
+    "eggs": "egg",
+    "peanuts": "peanut",
+    "nuts": "tree nuts",
+    "sesame-seeds": "sesame",
+    "fish": "fish",
+    "crustaceans": "crustaceans",
+    "molluscs": "molluscs",
+    "mustard": "mustard",
+    "celery": "celery",
+    "lupin": "lupin",
+    "sulphur-dioxide-and-sulphites": "sulphites",
+}
+
+_DRINK_TAGS = {"en:beverages"}
+# Milk and dairy drinks are scored as foods, as the original Nutri-Score did.
+_NOT_DRINK_TAGS = {"en:dairies", "en:milks", "en:dairy-drinks", "en:fermented-milk-products"}
+
+_CATEGORY_PRIORITY = [
+    ("en:biscuits", "biscuits"),
+    ("en:cookies", "biscuits"),
+    ("en:instant-noodles", "instant-noodles"),
+    ("en:breakfast-cereals", "breakfast-cereals"),
+    ("en:chips-and-fries", "snacks"),
+    ("en:salty-snacks", "snacks"),
+    ("en:snacks", "snacks"),
+    ("en:chocolates", "chocolates"),
+    ("en:sauces", "sauces"),
+    ("en:soft-drinks", "soft-drinks"),
+    ("en:fruit-juices", "juices"),
+    ("en:dairies", "dairy"),
+    ("en:beverages", "drinks"),
+]
+
+
+def _strip(tag: str) -> str:
+    return tag.split(":", 1)[1] if ":" in tag else tag
+
+
+def _num(nutriments: dict[str, Any], key: str) -> Optional[float]:
+    value = nutriments.get(key)
+    if value is None or value == "":
+        return None
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def _category(tags: list[str]) -> Optional[str]:
+    tagset = set(tags)
+    for tag, name in _CATEGORY_PRIORITY:
+        if tag in tagset:
+            return name
+    return _strip(tags[-1]) if tags else None
+
+
+def map_off_product(barcode: str, raw: dict[str, Any]) -> Product:
+    """Convert an OFF v2 `product` object into our Product model."""
+    nutr = raw.get("nutriments") or {}
+    energy = _num(nutr, "energy-kcal_100g")
+    if energy is None:
+        kj = _num(nutr, "energy_100g")  # OFF stores energy_100g in kJ
+        energy = round(kj / 4.184, 1) if kj is not None else None
+    sodium_g = _num(nutr, "sodium_100g")  # grams
+    if sodium_g is None:
+        salt_g = _num(nutr, "salt_100g")
+        sodium_g = salt_g / 2.5 if salt_g is not None else None
+
+    tags = raw.get("categories_tags") or []
+    tagset = set(tags)
+    is_drink = bool(tagset & _DRINK_TAGS) and not (tagset & _NOT_DRINK_TAGS)
+
+    name = raw.get("product_name_en") or raw.get("product_name") or "Unnamed product"
+    brand = (raw.get("brands") or "").split(",")[0].strip() or None
+    serving = raw.get("serving_quantity")
+    try:
+        serving_g = float(serving) if serving not in (None, "") else None
+    except (TypeError, ValueError):
+        serving_g = None
+
+    def names(key: str) -> list[str]:
+        out = []
+        for tag in raw.get(key) or []:
+            word = _ALLERGEN_NAMES.get(_strip(tag), _strip(tag).replace("-", " "))
+            if word not in out:
+                out.append(word)
+        return out
+
+    return Product(
+        barcode=barcode,
+        name=name.strip(),
+        brand=brand,
+        quantity=raw.get("quantity") or None,
+        category=_category(tags),
+        is_drink=is_drink,
+        nutriments=Nutriments(
+            energy_kcal=energy,
+            fat_g=_num(nutr, "fat_100g"),
+            saturated_fat_g=_num(nutr, "saturated-fat_100g"),
+            trans_fat_g=_num(nutr, "trans-fat_100g"),
+            sugars_g=_num(nutr, "sugars_100g"),
+            sodium_mg=round(sodium_g * 1000, 1) if sodium_g is not None else None,
+            fibre_g=_num(nutr, "fiber_100g"),
+            protein_g=_num(nutr, "proteins_100g"),
+            fruit_veg_nuts_pct=_num(nutr, "fruits-vegetables-nuts-estimate-from-ingredients_100g"),
+        ),
+        serving_size_g=serving_g,
+        ingredients_text=raw.get("ingredients_text_en") or raw.get("ingredients_text") or None,
+        additives=list(raw.get("additives_tags") or []),
+        allergens=names("allergens_tags"),
+        traces=names("traces_tags"),
+        labels=[_strip(t) for t in raw.get("labels_tags") or []],
+        image_url=raw.get("image_front_url") or None,
+        status=DataStatus.community,
+    )
+
+
+class ProductSource(Protocol):
+    def fetch(self, barcode: str) -> Optional[Product]: ...
+
+
+class OpenFoodFactsClient:
+    def __init__(self, base_url: str, user_agent: str, timeout_s: float = 4.0, client: Optional[httpx.Client] = None):
+        self._base = base_url.rstrip("/")
+        self._client = client or httpx.Client(timeout=timeout_s, headers={"User-Agent": user_agent})
+
+    def fetch(self, barcode: str) -> Optional[Product]:
+        """Returns None when OFF doesn't know the product or can't be reached."""
+        try:
+            response = self._client.get(f"{self._base}/api/v2/product/{barcode}", params={"fields": FIELDS})
+        except httpx.HTTPError:
+            return None
+        if response.status_code == 404:
+            return None
+        if response.status_code != 200:
+            return None
+        body = response.json()
+        if body.get("status") != 1 or not body.get("product"):
+            return None
+        return map_off_product(barcode, body["product"])

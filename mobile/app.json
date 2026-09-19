@@ -1,0 +1,27 @@
+{
+  "expo": {
+    "name": "LabelBol",
+    "slug": "labelbol",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "platforms": ["android"],
+    "backgroundColor": "#F7F4EC",
+    "android": {
+      "package": "com.labelbol.app",
+      "versionCode": 1,
+      "permissions": ["android.permission.CAMERA"],
+      "blockedPermissions": ["android.permission.RECORD_AUDIO"]
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to use the camera to scan barcodes on food packs.",
+          "recordAudioAndroid": false
+        }
+      ],
+      "expo-secure-store"
+    ]
+  }
+}

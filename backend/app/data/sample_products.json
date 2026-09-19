@@ -1,0 +1,227 @@
+{
+  "_note": "Fictional demo products. Barcodes use GS1 prefix 200 (restricted circulation), so they never match a real retail product.",
+  "products": [
+    {
+      "barcode": "2000000000015",
+      "name": "Multigrain Digestive Biscuits",
+      "brand": "Sample Foods",
+      "quantity": "250 g",
+      "category": "biscuits",
+      "nutriments": {
+        "energy_kcal": 486,
+        "fat_g": 21,
+        "saturated_fat_g": 9.8,
+        "sugars_g": 24,
+        "sodium_mg": 380,
+        "fibre_g": 3.1,
+        "protein_g": 7.2
+      },
+      "serving_size_g": 30,
+      "ingredients_text": "Refined wheat flour (maida) (62%), sugar, edible vegetable oil (palm), whole wheat flour (5%), oat flour (2%), ragi flour (2%), invert sugar syrup, milk solids, raising agents [INS 503(ii), INS 500(ii)], emulsifier [INS 322 (soy)], iodised salt, colour [INS 150d]",
+      "allergens": [
+        "wheat",
+        "milk",
+        "soy"
+      ],
+      "traces": [
+        "nuts"
+      ],
+      "labels": [
+        "vegetarian"
+      ],
+      "is_drink": false,
+      "status": "sample",
+      "additives": []
+    },
+    {
+      "barcode": "2000000000022",
+      "name": "Jowar & Millet Thins",
+      "brand": "Sample Foods",
+      "quantity": "150 g",
+      "category": "biscuits",
+      "nutriments": {
+        "energy_kcal": 420,
+        "fat_g": 14,
+        "saturated_fat_g": 1.2,
+        "sugars_g": 3,
+        "sodium_mg": 300,
+        "fibre_g": 9,
+        "protein_g": 11
+      },
+      "serving_size_g": 25,
+      "ingredients_text": "Jowar flour (45%), ragi flour (20%), bajra flour (15%), rice bran oil, sesame seeds, salt, cumin, black pepper",
+      "allergens": [
+        "sesame"
+      ],
+      "traces": [],
+      "labels": [
+        "vegetarian"
+      ],
+      "is_drink": false,
+      "status": "sample",
+      "additives": []
+    },
+    {
+      "barcode": "2000000000039",
+      "name": "Ragi Oat Cookies",
+      "brand": "Sample Foods",
+      "quantity": "200 g",
+      "category": "biscuits",
+      "nutriments": {
+        "energy_kcal": 450,
+        "fat_g": 18,
+        "saturated_fat_g": 4,
+        "sugars_g": 14,
+        "sodium_mg": 250,
+        "fibre_g": 6,
+        "protein_g": 8
+      },
+      "serving_size_g": 30,
+      "ingredients_text": "Ragi flour (35%), rolled oats (25%), jaggery, butter, whole wheat flour, milk solids, raising agent [500(ii)], salt",
+      "allergens": [
+        "wheat",
+        "oats",
+        "milk"
+      ],
+      "traces": [],
+      "labels": [
+        "vegetarian"
+      ],
+      "is_drink": false,
+      "status": "sample",
+      "additives": []
+    },
+    {
+      "barcode": "2000000000046",
+      "name": "Roasted Makhana, Peri Peri",
+      "brand": "Sample Foods",
+      "quantity": "60 g",
+      "category": "snacks",
+      "nutriments": {
+        "energy_kcal": 380,
+        "fat_g": 9,
+        "saturated_fat_g": 1.5,
+        "sugars_g": 2,
+        "sodium_mg": 520,
+        "fibre_g": 10,
+        "protein_g": 9
+      },
+      "serving_size_g": 30,
+      "ingredients_text": "Fox nuts (makhana) (85%), rice bran oil, peri peri seasoning (salt, red chilli, onion powder, garlic powder, sugar, acidity regulator [330], spices)",
+      "allergens": [],
+      "traces": [],
+      "labels": [
+        "vegetarian"
+      ],
+      "is_drink": false,
+      "status": "sample",
+      "additives": []
+    },
+    {
+      "barcode": "2000000000053",
+      "name": "Instant Masala Noodles",
+      "brand": "Sample Foods",
+      "quantity": "70 g",
+      "category": "instant-noodles",
+      "nutriments": {
+        "energy_kcal": 440,
+        "fat_g": 17,
+        "saturated_fat_g": 8.5,
+        "sugars_g": 3,
+        "sodium_mg": 1250,
+        "fibre_g": 2,
+        "protein_g": 8
+      },
+      "serving_size_g": 70,
+      "ingredients_text": "Refined wheat flour (maida), palm oil, salt, wheat gluten, thickener [412], acidity regulators [501(i), 500(i)], masala tastemaker (spices, onion, garlic, sugar, flavour enhancers [627, 631], colour [150d], antioxidant [319])",
+      "allergens": [
+        "wheat"
+      ],
+      "traces": [],
+      "labels": [
+        "vegetarian"
+      ],
+      "is_drink": false,
+      "status": "sample",
+      "additives": []
+    },
+    {
+      "barcode": "2000000000060",
+      "name": "Cola",
+      "brand": "Sample Drinks",
+      "quantity": "300 ml",
+      "category": "soft-drinks",
+      "is_drink": true,
+      "nutriments": {
+        "energy_kcal": 42,
+        "fat_g": 0,
+        "saturated_fat_g": 0,
+        "sugars_g": 10.6,
+        "sodium_mg": 10
+      },
+      "serving_size_g": 300,
+      "ingredients_text": "Carbonated water, sugar, acidity regulator [338], colour [150d], caffeine, natural flavours",
+      "allergens": [],
+      "traces": [],
+      "labels": [
+        "vegetarian"
+      ],
+      "status": "sample",
+      "additives": []
+    },
+    {
+      "barcode": "2000000000077",
+      "name": "Zero Sugar Cola",
+      "brand": "Sample Drinks",
+      "quantity": "300 ml",
+      "category": "soft-drinks",
+      "is_drink": true,
+      "nutriments": {
+        "energy_kcal": 0.4,
+        "fat_g": 0,
+        "saturated_fat_g": 0,
+        "sugars_g": 0,
+        "sodium_mg": 12
+      },
+      "serving_size_g": 300,
+      "ingredients_text": "Carbonated water, acidity regulators [338, 331], colour [150d], sweeteners [951, 950], caffeine, natural flavours. Contains phenylalanine",
+      "allergens": [],
+      "traces": [],
+      "labels": [
+        "vegetarian"
+      ],
+      "status": "sample",
+      "additives": []
+    },
+    {
+      "barcode": "2000000000084",
+      "name": "Rolled Oats",
+      "brand": "Sample Foods",
+      "quantity": "500 g",
+      "category": "breakfast-cereals",
+      "nutriments": {
+        "energy_kcal": 380,
+        "fat_g": 7,
+        "saturated_fat_g": 1.3,
+        "sugars_g": 1,
+        "sodium_mg": 5,
+        "fibre_g": 10,
+        "protein_g": 13
+      },
+      "serving_size_g": 40,
+      "ingredients_text": "Rolled oats (100%)",
+      "allergens": [
+        "oats"
+      ],
+      "traces": [
+        "wheat"
+      ],
+      "labels": [
+        "vegetarian"
+      ],
+      "is_drink": false,
+      "status": "sample",
+      "additives": []
+    }
+  ]
+}

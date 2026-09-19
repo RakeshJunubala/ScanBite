@@ -1,0 +1,30 @@
+{
+  "code": "8900000000002",
+  "status": 1,
+  "status_verbose": "product found",
+  "product": {
+    "code": "8900000000002",
+    "product_name": "Test Cream Biscuits",
+    "brands": "Test Brand, Test Parent Co",
+    "quantity": "120 g",
+    "categories_tags": ["en:snacks", "en:sweet-snacks", "en:biscuits-and-cakes", "en:biscuits"],
+    "nutriments": {
+      "energy-kcal_100g": 495,
+      "energy_100g": 2071,
+      "fat_100g": 21.5,
+      "saturated-fat_100g": 10.2,
+      "sugars_100g": 31,
+      "sodium_100g": 0.24,
+      "salt_100g": 0.6,
+      "fiber_100g": 1.4,
+      "proteins_100g": 5.8
+    },
+    "ingredients_text": "Refined wheat flour (maida), sugar, edible vegetable oil (palm), invert syrup, milk solids, raising agents (503(ii), 500(ii)), emulsifier (322), artificial flavour (vanilla)",
+    "additives_tags": ["en:e322", "en:e500ii", "en:e503ii"],
+    "allergens_tags": ["en:gluten", "en:milk", "en:soybeans"],
+    "traces_tags": ["en:nuts", "en:peanuts"],
+    "labels_tags": ["en:vegetarian", "en:green-dot"],
+    "image_front_url": "https://images.openfoodfacts.org/images/products/890/000/000/0002/front_en.3.400.jpg",
+    "serving_quantity": "25"
+  }
+}

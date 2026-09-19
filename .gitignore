@@ -1,0 +1,24 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+backend/data/*.db
+backend/.env
+
+# Node / Expo
+node_modules/
+.expo/
+dist/
+web-build/
+mobile/.env
+*.log
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
+
+# Scaffold archives (contents are checked in as real files)
+*.zip
