@@ -38,7 +38,7 @@ def test_product_found(client):
 
 
 def test_product_not_found(client):
-    r = client.get("/v1/products/8900000000019")
+    r = client.get("/v1/products/8900000000012")
     assert r.status_code == 404
     assert r.json()["detail"] == "not_found"
 
