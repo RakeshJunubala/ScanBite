@@ -1,6 +1,6 @@
 // Set these in mobile/.env (see .env.example). Expo inlines EXPO_PUBLIC_* at build time.
 
-export const APP_NAME = process.env.EXPO_PUBLIC_APP_NAME || 'LabelBol';
+export const APP_NAME = process.env.EXPO_PUBLIC_APP_NAME || 'ScanBite';
 
 /** Base URL of the backend, e.g. http://192.168.1.20:8000 when testing on your phone. */
 export const API_URL = (process.env.EXPO_PUBLIC_API_URL || '').replace(/\/$/, '');

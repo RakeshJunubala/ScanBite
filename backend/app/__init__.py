@@ -1,1 +1,1 @@
-"""Food label scanner backend (working name: LabelBol)."""
+"""Food label scanner backend (working name: ScanBite)."""

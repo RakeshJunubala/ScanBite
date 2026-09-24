@@ -15,14 +15,14 @@ def _bool(name: str, default: bool) -> bool:
 
 @dataclass(frozen=True)
 class Settings:
-    app_name: str = field(default_factory=lambda: os.getenv("APP_NAME", "LabelBol"))
+    app_name: str = field(default_factory=lambda: os.getenv("APP_NAME", "ScanBite"))
     database_path: str = field(default_factory=lambda: os.getenv("DATABASE_PATH", "data/products.db"))
     seed_samples: bool = field(default_factory=lambda: _bool("SEED_SAMPLES", True))
     off_enabled: bool = field(default_factory=lambda: _bool("OFF_ENABLED", True))
     off_base_url: str = field(default_factory=lambda: os.getenv("OFF_BASE_URL", "https://world.openfoodfacts.org"))
     # Open Food Facts asks every app to identify itself: "AppName/Version (contact)".
     off_user_agent: str = field(
-        default_factory=lambda: os.getenv("OFF_USER_AGENT", "LabelBol/0.1 (set OFF_USER_AGENT to your contact email)")
+        default_factory=lambda: os.getenv("OFF_USER_AGENT", "ScanBite/0.1 (set OFF_USER_AGENT to your contact email)")
     )
     off_timeout_s: float = field(default_factory=lambda: float(os.getenv("OFF_TIMEOUT_S", "4")))
     cors_origins: tuple[str, ...] = field(

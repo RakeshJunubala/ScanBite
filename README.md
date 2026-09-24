@@ -1,11 +1,11 @@
-# LabelBol (working name) — food label scanner for India
+# ScanBite — food label scanner for India
 
 Scan a packed food's barcode and get a straight answer: a 0–100 score, one verdict word
 (Great · Good · Limit · Avoid), alerts for your own health profile, and better choices.
 Android first. This is **sprint 1** of the MVP build plan: scan → product → score → result.
 
 ```
-labelapp/
+scanbite/
 ├── backend/            Python API (FastAPI): product lookup + scoring engine
 │   ├── app/scoring/    the scoring engine, thresholds and the INS additive table
 │   ├── app/sources/    Open Food Facts fallback client
@@ -51,7 +51,7 @@ cd backend
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements-dev.txt
 pytest -q                                    # 73 tests
-export OFF_USER_AGENT="LabelBol/0.1 (your-email@example.com)"
+export OFF_USER_AGENT="ScanBite/0.1 (your-email@example.com)"
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
@@ -63,8 +63,8 @@ is thin, so many products will show "Not in our database yet" until the week-3 p
 With Docker instead:
 
 ```bash
-docker build -t labelapp-api backend
-docker run -p 8000:8000 -e OFF_USER_AGENT="LabelBol/0.1 (you@example.com)" -v labelapp-data:/data labelapp-api
+docker build -t scanbite-api backend
+docker run -p 8000:8000 -e OFF_USER_AGENT="ScanBite/0.1 (you@example.com)" -v scanbite-data:/data scanbite-api
 ```
 
 ### API

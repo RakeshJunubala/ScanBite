@@ -1,17 +1,23 @@
 {
   "expo": {
-    "name": "LabelBol",
-    "slug": "labelbol",
+    "name": "ScanBite",
+    "slug": "scanbite",
     "version": "0.1.0",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
-    "platforms": ["android"],
+    "platforms": [
+      "android"
+    ],
     "backgroundColor": "#F7F4EC",
     "android": {
-      "package": "com.labelbol.app",
+      "package": "com.scanbite.app",
       "versionCode": 1,
-      "permissions": ["android.permission.CAMERA"],
-      "blockedPermissions": ["android.permission.RECORD_AUDIO"]
+      "permissions": [
+        "android.permission.CAMERA"
+      ],
+      "blockedPermissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "plugins": [
       [
@@ -21,7 +27,8 @@
           "recordAudioAndroid": false
         }
       ],
-      "expo-secure-store"
+      "expo-secure-store",
+      "expo-status-bar"
     ]
   }
 }

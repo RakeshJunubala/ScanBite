@@ -1,5 +1,5 @@
 [project]
-name = "labelapp-backend"
+name = "scanbite-backend"
 version = "0.1.0"
 description = "Food label scanner API: product lookup and health scoring"
 requires-python = ">=3.11"

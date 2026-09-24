@@ -1,4 +1,4 @@
-CLAUDE.md — LabelBol (working name)
+CLAUDE.md — ScanBite
 
 A food label scanner for India. Scan a packed food's barcode and get a 0–100 score, a verdict word (Great · Good · Limit · Avoid), personal alerts for the user's health profile, and better choices. Android first; iOS comes later. Owner: Rakesh (solo founder, cloud/SRE background).
 
@@ -42,7 +42,7 @@ Information, not medical advice. App copy says "watch your sugar", never "manage
 Honest data labels. Every product shows its status: verified, community (Open Food Facts), provisional (user photos) or demo. Never present community or provisional data as verified.
 Demo products stay fictional. They use barcode prefix 200 (GS1 in-store range), brand "Sample Foods/Drinks". Never add real brand names or real products to demo data.
 Open Food Facts is ODbL (share-alike). Keep its records marked community and separate from our verified catalogue. Send a real OFF_USER_AGENT.
-Android package ID com.labelbol.app is permanent after the first Play upload. Rename (app.json name/slug/package, EXPO_PUBLIC_APP_NAME, API APP_NAME) only before week 4.
+Android package ID com.scanbite.app is permanent after the first Play upload. Rename (app.json name/slug/package, EXPO_PUBLIC_APP_NAME, API APP_NAME) only before week 4.
 Conventions
 Keep mobile/src/api/types.ts in sync with backend/app/models.py whenever a model changes.
 Every behaviour change comes with a test: pytest for backend, node:test for app logic. Keep alerts.ts and client.ts free of React Native imports so they stay testable in Node.
