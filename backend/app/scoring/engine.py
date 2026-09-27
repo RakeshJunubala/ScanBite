@@ -21,9 +21,18 @@ from . import additives as additive_db
 from . import thresholds as T
 from .ingredients import IngredientSignals, analyse
 
-METHOD_VERSION = "0.1-draft"
+METHOD_VERSION = "0.2-draft"
 
 CORE_NUTRIENTS = ("energy_kcal", "sugars_g", "saturated_fat_g", "sodium_mg")
+
+# How many core nutrients may be missing before we refuse to put a number on it.
+#
+# FSSAI requires energy, fat, saturated fat, sugars and sodium on a packaged
+# food, so a gap here means our source data is poor, not that the pack is bare.
+# Two or more gaps leave too little to rank a product on, and a confident-looking
+# 0-100 built on half a table is worse than saying we don't know. One gap still
+# scores, flagged by `incomplete` for the app to show prominently.
+MAX_MISSING_BEFORE_NO_SCORE = 2
 
 _LABELS = {
     "energy_kcal": "Energy",
@@ -246,10 +255,21 @@ def _reason(
         parts.append("Contains sweeteners.")
     risky = [a for a in additive_facts if a.risk in ("moderate", "high")]
     if "high_risk_additive" in caps:
-        parts.append("Has an additive we rate high risk.")
+        # State the regulator's action, not our opinion of the additive. The
+        # specific citation is on the additive row itself.
+        parts.append("Contains an additive a food regulator has prohibited.")
     elif risky:
         parts.append(f"{len(risky)} additive{'s' if len(risky) > 1 else ''} to watch.")
     return " ".join(parts[:2])  # two short sentences fit the verdict card
+
+
+def _missing_reason(missing: list[str]) -> str:
+    """Say which values were absent, so "no score" reads as a fact, not a failure."""
+    if len(missing) == len(CORE_NUTRIENTS):
+        return "The nutrition table is missing. Add a photo of it to get a score."
+    names = [_LABELS.get(k, k).lower() for k in missing]
+    listed = names[0] if len(names) == 1 else f"{', '.join(names[:-1])} and {names[-1]}"
+    return f"This label is missing {listed}, so there is too little to score reliably."
 
 
 def score_product(product: Product) -> ScoreResult:
@@ -263,11 +283,11 @@ def score_product(product: Product) -> ScoreResult:
     flags = _processing(signals)
     facts = _nutrient_facts(product, kind)
 
-    if len(missing) == len(CORE_NUTRIENTS):
+    if len(missing) >= MAX_MISSING_BEFORE_NO_SCORE:
         return ScoreResult(
             score=None,
             verdict=Verdict.unknown,
-            reason="The nutrition table is missing. Add a photo of it to get a score.",
+            reason=_missing_reason(missing),
             nutrients=facts,
             additives=additive_facts,
             processing=flags,

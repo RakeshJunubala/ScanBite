@@ -182,16 +182,24 @@ function conditionAlert(id: Condition, product: Product, score: ScoreResult): Al
       return { id, title: 'Cholesterol — low saturated fat', status: 'ok', detail };
     }
     case 'pregnancy': {
-      const risky = score.additives.filter((a) => a.risk === 'high');
-      if (risky.length) {
-        return { id, title: 'Pregnancy — additive to avoid', status: 'warn', detail: `Contains ${risky.map((a) => a.name).join(', ')}, which we rate high risk.` };
+      // Pregnancy is where a wrong or overconfident line does the most harm, so
+      // these state what the label says and refer the decision onward. They never
+      // tell someone to avoid a food, and never claim a judgement as ours.
+      const restricted = score.additives.filter((a) => a.risk === 'high');
+      if (restricted.length) {
+        return {
+          id,
+          title: 'Pregnancy — additive to discuss',
+          status: 'warn',
+          detail: `Contains ${restricted.map((a) => a.name).join(', ')}. A food regulator has prohibited ${restricted.length > 1 ? 'these' : 'this'} elsewhere. Worth raising with your doctor or midwife.`,
+        };
       }
       if (!hasIngredients(product)) return unknown('Pregnancy');
       const caffeine = findWords(cleaned(product.ingredients_text!), CAFFEINE);
       if (caffeine.length) {
-        return { id, title: 'Pregnancy — contains caffeine', status: 'caution', detail: 'Check your daily caffeine limit with your doctor.' };
+        return { id, title: 'Pregnancy — contains caffeine', status: 'caution', detail: 'The ingredients list caffeine. Amounts are rarely printed, so check your daily limit with your doctor.' };
       }
-      return { id, title: 'Pregnancy — nothing flagged', status: 'ok', detail: 'No caffeine or high-risk additives listed.' };
+      return { id, title: 'Pregnancy — nothing flagged', status: 'ok', detail: 'No caffeine or restricted additives in the ingredients we can read.' };
     }
     case 'weight': {
       const energy = nutrient(score, 'energy_kcal');

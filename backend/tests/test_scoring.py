@@ -107,7 +107,26 @@ def test_high_risk_additive_caps_score():
     result = score_product(candy)
     assert result.score == 49
     assert result.breakdown.caps_applied == ["high_risk_additive"]
-    assert result.reason.endswith("Has an additive we rate high risk.")
+    # States the regulator's action, not our own opinion of the additive.
+    assert result.reason.endswith("Contains an additive a food regulator has prohibited.")
+    assert "we rate" not in result.reason.lower()
+
+
+def test_only_a_regulator_prohibition_caps_the_score():
+    """A hazard classification alone must not cap. See additives.json _meta.tiering_rule.
+
+    171 is banned in the EU, so it caps. 320 (BHA) rests on an IARC group, which
+    describes the substance rather than the risk at label amounts -- it penalises
+    but must not cap, or we would be asserting harm a regulator has not.
+    """
+    nutriments = {"energy_kcal": 60, "sugars_g": 2, "saturated_fat_g": 0.5, "sodium_mg": 20}
+    prohibited = score_product(make(nutriments=nutriments, ingredients_text="Water, colour [171]"))
+    classified = score_product(make(nutriments=nutriments, ingredients_text="Water, antioxidant [320]"))
+
+    assert prohibited.breakdown.caps_applied == ["high_risk_additive"]
+    assert classified.breakdown.caps_applied == []
+    assert classified.score > prohibited.score  # penalised, not capped
+    assert classified.score is not None
 
 
 def test_missing_nutrition_table_gives_unknown():
@@ -118,11 +137,27 @@ def test_missing_nutrition_table_gives_unknown():
     assert "nutrition table" in result.reason
 
 
-def test_partial_nutrition_is_marked_incomplete():
-    result = score_product(make(nutriments={"energy_kcal": 120, "sugars_g": 2}))
+def test_one_missing_core_nutrient_still_scores_but_is_flagged():
+    result = score_product(make(nutriments={"energy_kcal": 120, "sugars_g": 2, "saturated_fat_g": 1}))
     assert result.score is not None
     assert result.incomplete
+    assert result.missing == ["sodium_mg"]
+
+
+def test_two_missing_core_nutrients_gives_no_number():
+    """A confident 0-100 built on half a nutrition table is worse than no number.
+
+    FSSAI requires these values on a packaged food, so a gap means our source
+    data is poor -- not that the pack was bare.
+    """
+    result = score_product(make(nutriments={"energy_kcal": 120, "sugars_g": 2}))
+    assert result.score is None
+    assert result.verdict == Verdict.unknown
+    assert result.incomplete
     assert set(result.missing) == {"saturated_fat_g", "sodium_mg"}
+    # The reason names what was absent, so "no score" reads as a fact.
+    assert "saturated fat" in result.reason
+    assert "sodium" in result.reason
 
 
 def test_protein_does_not_rescue_a_salty_fatty_product():

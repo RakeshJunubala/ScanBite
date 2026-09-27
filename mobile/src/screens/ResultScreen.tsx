@@ -252,7 +252,9 @@ function Details({
 
 function ProductHeader({ product }: { product: Product }) {
   const status = {
-    verified: { label: 'Verified data', color: colors.brand, bg: colors.brandSoft },
+    // "Label checked" states what we did -- confirmed these numbers against the
+    // pack. "Verified" would imply an authority we do not have.
+    verified: { label: 'Label checked', color: colors.brand, bg: colors.brandSoft },
     community: { label: 'Community data', color: colors.amberText, bg: colors.amberBg },
     provisional: { label: 'Provisional', color: colors.amberText, bg: colors.amberBg },
     sample: { label: 'Demo product', color: colors.ink3, bg: colors.lineSoft },
@@ -311,13 +313,14 @@ function Attribution({ barcode }: { barcode: string }) {
   );
 }
 
-// The backend's CORE_NUTRIENTS keys, in plain words. Indian labels print salt
-// rather than sodium, so that is what we call it.
+// The backend's CORE_NUTRIENTS keys, in plain words. These match the labels the
+// backend uses for its nutrient rows, so a missing value is named the same way
+// here as it would have appeared in the table.
 const MISSING_LABEL: Record<string, string> = {
   energy_kcal: 'energy',
   sugars_g: 'sugar',
   saturated_fat_g: 'saturated fat',
-  sodium_mg: 'salt',
+  sodium_mg: 'sodium',
 };
 
 /**
@@ -359,7 +362,9 @@ function Method({ result }: { result: ProductResult }) {
           • {p.label}
         </Text>
       ))}
-      {breakdown.caps_applied.includes('high_risk_additive') && <Text style={styles.small}>• Capped at 49: has a high-risk additive</Text>}
+      {breakdown.caps_applied.includes('high_risk_additive') && (
+        <Text style={styles.small}>• Capped at 49: contains an additive a food regulator has prohibited</Text>
+      )}
       {breakdown.caps_applied.includes('sweetened_drink') && <Text style={styles.small}>• Capped at 49: sweetened drink</Text>}
     </View>
   );
@@ -495,11 +500,14 @@ function Nutrition({ product, nutrients }: { product: Product; nutrients: Nutrie
   );
 }
 
+// "Restricted" rather than "High": the top tier means a named food regulator has
+// prohibited, withdrawn or revoked the additive, which is a fact about the
+// regulator. "High risk" would be us passing judgement on a brand's product.
 const RISK_LOOK: Record<Risk, { label: string; color: string; bg: string }> = {
   none: { label: 'None', color: colors.greenText, bg: colors.greenBg },
   low: { label: 'Low', color: colors.greenText, bg: colors.greenBg },
-  moderate: { label: 'Moderate', color: colors.amberText, bg: colors.amberBg },
-  high: { label: 'High', color: colors.redText, bg: colors.redBg },
+  moderate: { label: 'To watch', color: colors.amberText, bg: colors.amberBg },
+  high: { label: 'Restricted', color: colors.redText, bg: colors.redBg },
   unknown: { label: 'Unknown', color: colors.ink3, bg: colors.lineSoft },
 };
 const RISK_ORDER: Record<Risk, number> = { high: 0, moderate: 1, unknown: 2, low: 3, none: 4 };
@@ -534,7 +542,9 @@ function Additives({ additives }: { additives: AdditiveFact[] }) {
                 <Tag label={look.label} color={look.color} background={look.bg} />
                 <Icon name={expanded ? 'chevronDown' : 'chevronRight'} size={16} color="#7D8781" />
               </View>
-              {expanded ? (
+              {/* A restricted additive shows its citation without a tap: the claim is
+                  only fair if the regulator behind it is visible alongside it. */}
+              {expanded || a.risk === 'high' ? (
                 <Text style={[styles.small, { marginTop: 8 }]}>{a.note ?? 'No known concern at normal intake.'}</Text>
               ) : null}
             </Pressable>

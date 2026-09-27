@@ -24,7 +24,7 @@ Use these as the basis for the method, not AI opinion:
 | --- | --- |
 | Nutri-Score 2023 updated algorithm, Sante publique France | Main nutrient scoring backbone for energy, sugar, saturated fat, sodium, fibre, protein, fruit/vegetable/nuts/legumes, and drink sweeteners. |
 | FSSAI Labelling and Display Regulations, 2020 | Indian label context and daily reference values for display: 2000 kcal, total fat 67 g, saturated fat 22 g, trans fat 2 g, added sugar 50 g, sodium 2000 mg. |
-| FSSAI draft Indian Nutrition Rating / FOPNL material | India-specific front-of-pack concept using energy, total sugars, saturated fat, sodium, and positive nutrients per 100 g/ml. |
+| FSSAI front-of-pack labelling material | **Context only — do not cite as a basis.** The 2022 draft Indian Nutrition Rating (a ½–5 star system) drew over 14,000 public comments, reached no expert consensus, and was deferred. After a Supreme Court direction in February 2026, FSSAI instead proposed a red hexagonal "HIGH IN" warning label, with thresholds drawn from ICMR-NIN 2024 and a phased rollout beginning with products high in two or more nutrients of concern. India is moving from *rating* toward *warning*, which is a different model from a 0–100 score. ScanBite claims alignment with no draft regulation. |
 | WHO sugars guideline, 2015 | Guardrail for strong warnings on free/added sugar and sugar-sweetened beverages. |
 | ICMR-NIN Dietary Guidelines for Indians, 2024 | India-specific public-health context: limit foods high in sugar, salt, saturated fat, trans fat, and ultra-processed foods; prefer minimally processed foods. |
 | UK front-of-pack traffic-light guide, 2016 | User-facing "low / medium / high" display levels for sugar, saturated fat, salt, etc. |
@@ -65,7 +65,7 @@ Every result must have a confidence label:
 
 | Confidence | Meaning | App wording |
 | --- | --- | --- |
-| Verified | Checked against label photos or trusted internal review. | "Verified label data." |
+| Label checked | We confirmed these numbers against the pack. This is a claim about transcription accuracy, **not** an endorsement of the score. | "Label checked." |
 | Community | Imported from Open Food Facts or another public community source. | "Community data. Check the label if this matters." |
 | Provisional | User-submitted or AI-extracted, not reviewed. | "Provisional score. May change after review." |
 | Estimated | Category/photo guess, no full label. | "Estimated guidance, not a full score." |
@@ -106,9 +106,17 @@ Positive points:
 | Protein | Useful, but must not rescue products high in sugar/fat/salt. |
 | Fruit/vegetable/nuts/legumes/millets | Aligns with food-based dietary guidance. |
 
+**Assumption, not a standard:** Nutri-Score's fruit/vegetable/nuts/legumes
+component does **not** include millets. Counting them is a ScanBite adaptation for
+Indian dietary patterns. It changes the numbers, so we cannot describe our output
+as Nutri-Score-aligned without declaring this.
+
 Protein rule:
 
-Protein points count only when negative points are below the Nutri-Score-style threshold. This avoids giving a high score to high-sugar or high-salt products just because they contain protein.
+Protein points count only when negative points total under 11, following
+Nutri-Score 2023, with that algorithm's exceptions for cheese and for
+legumes/nuts. This stops a high-sugar or high-salt product being rescued by its
+protein content.
 
 ## 7. Convert To ScanBite 0-100
 
@@ -133,9 +141,13 @@ Caps are safety guardrails.
 | Trigger | Cap | Reason |
 | --- | --- | --- |
 | Sweetened drink with added sugar or non-sugar sweeteners | Max 49 | WHO sugar guidance and Nutri-Score beverage treatment; sugary drinks should not appear "Good". |
-| High-risk additive | Max 49 | Conservative label-warning approach. |
-| Missing any core nutrient | Show score as low confidence, or optionally no score if missing nutrient could materially change result. |
-| No nutrition table | No full score | Prevent fake precision. |
+| Additive a named regulator has prohibited | Max 49 | The regulator's action is the justification; see §10. A hazard classification alone does not cap. |
+| **Two or more** of the four core nutrients missing | **No numeric score.** Verdict "Not scored", with the reason naming the absent values. | FSSAI requires these on a packaged food, so a gap means our source data is poor, not that the pack was bare. Two gaps leave too little to rank on, and a confident 0–100 built on half a table is worse than admitting we don't know. |
+| **Exactly one** core nutrient missing | Score shown, flagged low-confidence and naming the missing value | Enough to rank on, not enough to be quiet about. |
+| No nutrition table | No score | Prevent fake precision. |
+
+**Assumption, not a standard:** 49 is the number that keeps a capped product out
+of "Good". No cited source publishes it.
 
 ## 9. Processing And Ingredient Signals
 
@@ -145,7 +157,7 @@ Use ingredients as secondary modifiers, not the main score engine.
 | --- | --- |
 | Refined flour/maida first ingredient | Small penalty and visible note. |
 | Added sugar in first three ingredients | Small penalty and visible note. |
-| Palm oil | Small penalty and visible note. |
+| Palm oil | Visible note only. **Assumption flagged:** saturated fat already accounts for palm oil, so a separate penalty counts the same thing twice, and a standalone palm-oil penalty is partly an environmental position rather than a nutrition one. Nutri-Score does not penalise it separately. |
 | Hydrogenated fat/vanaspati | Larger penalty and visible warning. |
 | Non-sugar sweeteners | Penalty for drinks; visible note for all foods. |
 | Trans fat listed above trace level | Strong warning. |
@@ -158,14 +170,31 @@ Ingredient lists help explain food quality, but nutrition values should remain t
 
 Additives should be handled conservatively:
 
-| Additive risk | Score effect | User display |
-| --- | --- | --- |
-| None/low | No penalty | "No known concern at normal intake." |
-| Moderate | Small penalty | "Additive to watch." |
-| High | Larger penalty and cap | "We rate this additive high risk." |
-| Unknown | No penalty | "Not in our additive table yet." |
+The tier decides the score effect, so each tier has a precise meaning. A hazard
+classification such as an IARC group describes a *substance*; it is not a risk
+assessment at the amounts a label permits. It never places an additive in the
+capping tier on its own.
 
-Do not say an additive is harmful unless the table cites a public regulatory/scientific reason.
+| Additive tier | Meaning | Score effect | User display |
+| --- | --- | --- | --- |
+| None/low | Permitted, no meaningful concern at normal intake | No penalty | "None" / "Low" |
+| Moderate | Permitted, but carries a warning requirement somewhere, a documented sensitivity, or a hazard classification | Small penalty | **"To watch"** plus the cited reason |
+| High | **A named food regulator has prohibited, withdrawn or revoked it** | Larger penalty and cap | **"Restricted"** plus the regulator's action, shown without tapping |
+| Unknown | Not in our table | No penalty | "Not in our additive table yet." |
+
+Never state or imply that an additive permitted by FSSAI is unsafe, and never
+present a tier as ScanBite's own verdict. Give the fact and the source, and let
+the reader judge: "Banned as a food additive in the EU since 2022" is checkable.
+"We rate this high risk" is an opinion about an identifiable brand's product.
+
+Currently in the capping tier: 127 erythrosine (US FDA revoked, 2025), 171
+titanium dioxide (EU ban, 2022), 924a potassium bromate (not permitted in India
+since 2016). 250 sodium nitrite and 320 BHA sit in moderate: both rest on IARC
+classifications, and both remain permitted with an Acceptable Daily Intake.
+
+**Open question for review:** sodium nitrite is IARC Group 2A under nitrosating
+conditions, the strongest classification in our table. Treating it as moderate is
+a consistency choice, not a safety finding — a reviewer should confirm it.
 
 ## 11. Health Profile Alerts
 
@@ -277,7 +306,24 @@ Ask each reviewing model these exact questions:
 
 ## 17. Recommended MVP Method Version
 
-Name: ScanBite Public Standards Method v0.2-review
+Name: ScanBite Public Standards Method v0.2-draft (matches `METHOD_VERSION` in code)
+
+### Known limitations
+
+- **The scale compresses at the low end for Indian products.** Nutri-Score's point
+  scales are calibrated on European food composition, and Indian sodium and sugar
+  levels saturate the penalties. Measured on real barcodes: Britannia Bourbon 0,
+  Nutella 9, Maggi 11, Thums Up 13, Balaji wafers 17, Parle-G 19 — six unlike
+  products, all "Avoid", all inside a 0–19 band. A score that says Avoid to
+  everything gives a shopper no way to choose. **Within-category ranking is
+  required before public release**, and is tracked as the next scoring change.
+- Energy-as-negative penalises nuts, seeds and traditional fats that ICMR-NIN 2024
+  encourages. The raw-food path in §12 sidesteps this; a packaged pack of roasted
+  peanuts is still penalised.
+- Processing signals in §9 are ScanBite assumptions. NOVA is the standards-backed
+  classification if we want to operationalise ICMR-NIN's ultra-processing warning.
+- Scores are per 100 g/ml. Indian single-serve packs are often 15–30 g, so per-100
+  figures overstate what is actually eaten. Show per-serve alongside.
 
 Implementation stance:
 

@@ -117,8 +117,12 @@ PROCESSING_PENALTY = {
 }
 MAX_PROCESSING_PENALTY = 0.20
 
-# A product with a high-risk additive, or a drink with added sugar or
-# sweeteners, can score at most this (top of "Limit").
+# A product containing an additive a food regulator has prohibited (the `high`
+# tier in additives.json -- see its _meta.tiering_rule), or a drink with added
+# sugar or sweeteners, can score at most this (top of "Limit").
+#
+# 49 is a ScanBite choice, not a figure from any standard: it is the number that
+# keeps such a product out of "Good" rather than a threshold anyone published.
 CAP_SCORE = 49
 
 # --- Verdict bands ------------------------------------------------------------
