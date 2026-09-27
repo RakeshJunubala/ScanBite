@@ -12,9 +12,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from app.repository import ProductRepository  # noqa: E402
-from app.seed import seed  # noqa: E402
-from app.service import ProductService  # noqa: E402
+from app.repository import ProductRepository
+from app.seed import seed
+from app.service import ProductService
 
 OUT = Path(__file__).resolve().parents[2] / "mobile" / "src" / "demo" / "demoData.json"
 

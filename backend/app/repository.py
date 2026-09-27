@@ -29,6 +29,10 @@ CREATE TABLE IF NOT EXISTS products (
     -- the scoring rules splits the two apart silently -- the detail view says 52
     -- and the "better choices" list still ranks it as 49. See rescore_stale().
     score_method_version TEXT,
+    -- Where this record came from, e.g. "off-api-v2" or an export date. Lets a
+    -- reimport target only what an older pull produced. When it was written is
+    -- already in updated_at, so there is no separate imported_at.
+    source_version TEXT,
     data       TEXT NOT NULL,
     updated_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
@@ -79,6 +83,8 @@ class ProductRepository:
             if "score_method_version" not in columns:
                 # NULL on existing rows, which rescore_stale() treats as stale.
                 cur.execute("ALTER TABLE products ADD COLUMN score_method_version TEXT")
+            if "source_version" not in columns:
+                cur.execute("ALTER TABLE products ADD COLUMN source_version TEXT")
 
     @contextmanager
     def _tx(self) -> Iterator[sqlite3.Cursor]:
@@ -102,7 +108,7 @@ class ProductRepository:
             row = cur.execute("SELECT data FROM products WHERE barcode = ?", (barcode,)).fetchone()
         return Product.model_validate_json(row["data"]) if row else None
 
-    def upsert(self, product: Product) -> bool:
+    def upsert(self, product: Product, source_version: str | None = None) -> bool:
         """Save a product. Returns False if a more trusted record already exists."""
         existing = self.get(product.barcode)
         if existing and _TRUST[existing.status] > _TRUST[product.status]:
@@ -112,12 +118,14 @@ class ProductRepository:
             cur.execute(
                 """
                 INSERT INTO products
-                    (barcode, name, brand, category, status, score, score_method_version, data, updated_at)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, datetime('now'))
+                    (barcode, name, brand, category, status, score, score_method_version,
+                     source_version, data, updated_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'))
                 ON CONFLICT(barcode) DO UPDATE SET
                     name=excluded.name, brand=excluded.brand, category=excluded.category,
                     status=excluded.status, score=excluded.score,
-                    score_method_version=excluded.score_method_version, data=excluded.data,
+                    score_method_version=excluded.score_method_version,
+                    source_version=excluded.source_version, data=excluded.data,
                     updated_at=excluded.updated_at
                 """,
                 (
@@ -128,6 +136,7 @@ class ProductRepository:
                     product.status.value,
                     score,
                     METHOD_VERSION,
+                    source_version,
                     product.model_dump_json(),
                 ),
             )
