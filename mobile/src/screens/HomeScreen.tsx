@@ -1,6 +1,6 @@
 import { useFocusEffect } from '@react-navigation/native';
 import { useCallback, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Alert as RNAlert, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Icon } from '../components/Icon';
@@ -8,7 +8,7 @@ import { Logo } from '../components/Logo';
 import { ScorePill } from '../components/Score';
 import { Tag, TextButton } from '../components/ui';
 import { APP_NAME, DEMO_BARCODE, DEMO_MODE } from '../config';
-import { loadHistory, timeAgo, type HistoryItem } from '../history/storage';
+import { clearHistory, loadHistory, timeAgo, type HistoryItem } from '../history/storage';
 import type { ScreenProps } from '../navigation/types';
 import { useProfile } from '../profile/ProfileContext';
 import { profileLabels } from '../profile/types';
@@ -29,6 +29,20 @@ export default function HomeScreen({ navigation }: ScreenProps<'Home'>) {
   const submitSearch = () => {
     const q = query.trim();
     if (q.length >= 2) navigation.navigate('Search', { query: q });
+  };
+
+  const confirmClearHistory = () => {
+    RNAlert.alert('Clear your scan history?', 'This removes every scan from this phone. Your health choices stay.', [
+      { text: 'Cancel', style: 'cancel' },
+      {
+        text: 'Clear',
+        style: 'destructive',
+        onPress: async () => {
+          await clearHistory();
+          setHistory([]);
+        },
+      },
+    ]);
   };
 
   return (
@@ -100,9 +114,12 @@ export default function HomeScreen({ navigation }: ScreenProps<'Home'>) {
         </View>
 
         <View>
-          <Text style={styles.sectionTitle} accessibilityRole="header">
-            Recent scans
-          </Text>
+          <View style={styles.rowBetween}>
+            <Text style={styles.sectionTitle} accessibilityRole="header">
+              Recent scans
+            </Text>
+            {history.length > 0 ? <TextButton label="Clear" onPress={confirmClearHistory} color={colors.redText} /> : null}
+          </View>
           {history.length === 0 ? (
             <View style={styles.empty}>
               <Text style={styles.muted}>Nothing scanned yet.</Text>

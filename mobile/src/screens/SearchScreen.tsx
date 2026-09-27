@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { search } from '../api/client';
 import type { ProductResult } from '../api/types';
+import { PackImage } from '../components/PackImage';
 import { ScorePill } from '../components/Score';
 import { IconButton } from '../components/ui';
 import type { ScreenProps } from '../navigation/types';
@@ -53,7 +54,7 @@ export default function SearchScreen({ navigation, route }: ScreenProps<'Search'
               accessibilityRole="button"
               style={styles.row}
             >
-              <View style={styles.thumb} />
+              <PackImage uri={item.product.image_url} style={styles.thumb} />
               <View style={{ flex: 1, gap: 2 }}>
                 <Text style={styles.name} numberOfLines={1}>
                   {item.product.name}

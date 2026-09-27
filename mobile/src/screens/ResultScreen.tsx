@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { getAlternatives, getProduct, NotFoundError } from '../api/client';
 import type { AdditiveFact, NutrientFact, Product, ProductResult, Risk } from '../api/types';
 import { Icon, type IconName } from '../components/Icon';
+import { PackImage } from '../components/PackImage';
 import { ScorePill, ScoreRing, VerdictScale } from '../components/Score';
 import { Card, IconButton, PrimaryButton, SecondaryButton, SectionTitle, Tag, TextButton } from '../components/ui';
 import { API_URL, SUPPORT_EMAIL } from '../config';
@@ -122,9 +123,7 @@ function Details({
           </View>
         </View>
         {score.score !== null && <VerdictScale score={score.score} verdict={score.verdict} />}
-        {score.incomplete && score.score !== null ? (
-          <Text style={styles.note}>Some label values are missing, so this score may change.</Text>
-        ) : null}
+        {score.incomplete && score.score !== null ? <LowConfidence missing={score.missing} /> : null}
         <TextButton label={showMethod ? 'Hide how this is scored' : 'How is this scored?'} icon="info" onPress={() => setShowMethod(!showMethod)} />
         {showMethod ? <Method result={result} /> : null}
       </Card>
@@ -152,7 +151,7 @@ function Details({
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 12, paddingRight: 16 }}>
             {alternatives.map((alt) => (
               <Pressable key={alt.product.barcode} onPress={() => onOpen(alt.product.barcode)} accessibilityRole="button" style={styles.altCard}>
-                <View style={styles.altImage} />
+                <PackImage uri={alt.product.image_url} style={styles.altImage} />
                 <Text style={styles.altName} numberOfLines={2}>
                   {alt.product.name}
                 </Text>
@@ -223,6 +222,8 @@ function Details({
           {score.method_version}, under dietitian review.
         </Text>
       </View>
+
+      {product.status === 'community' ? <Attribution barcode={product.barcode} /> : null}
     </ScrollView>
   );
 }
@@ -237,9 +238,12 @@ function ProductHeader({ product }: { product: Product }) {
   const veg = product.labels.includes('vegetarian');
   return (
     <Card style={styles.productCard}>
-      <View style={styles.productImage}>
-        <Text style={styles.productImageText}>Pack{'\n'}photo</Text>
-      </View>
+      <PackImage
+        uri={product.image_url}
+        style={styles.productImage}
+        caption={`Pack\nphoto`}
+        accessibilityLabel={`Pack photo of ${product.name}`}
+      />
       <View style={{ flex: 1, gap: 6 }}>
         <Text style={styles.productName} accessibilityRole="header">
           {product.name}
@@ -258,6 +262,59 @@ function ProductHeader({ product }: { product: Product }) {
         </View>
       </View>
     </Card>
+  );
+}
+
+const OFF_PRODUCT_URL = 'https://world.openfoodfacts.org/product/';
+const ODBL_URL = 'https://opendatacommons.org/licenses/odbl/1-0/';
+
+/**
+ * Open Food Facts is ODbL (share-alike), which requires us to say where the
+ * data came from and under what licence. Shown only for `community` records,
+ * because our own verified and provisional records are not theirs.
+ */
+function Attribution({ barcode }: { barcode: string }) {
+  return (
+    <Text style={styles.attribution}>
+      Product data from{' '}
+      <Text style={styles.link} onPress={() => Linking.openURL(`${OFF_PRODUCT_URL}${encodeURIComponent(barcode)}`)}>
+        Open Food Facts
+      </Text>
+      , contributed by volunteers and used under the{' '}
+      <Text style={styles.link} onPress={() => Linking.openURL(ODBL_URL)}>
+        Open Database Licence (ODbL)
+      </Text>
+      . We have not checked it against the pack ourselves.
+    </Text>
+  );
+}
+
+// The backend's CORE_NUTRIENTS keys, in plain words. Indian labels print salt
+// rather than sodium, so that is what we call it.
+const MISSING_LABEL: Record<string, string> = {
+  energy_kcal: 'energy',
+  sugars_g: 'sugar',
+  saturated_fat_g: 'saturated fat',
+  sodium_mg: 'salt',
+};
+
+/**
+ * A score built on a partial nutrition table. This is deliberately loud: the
+ * ring above it looks equally confident whether we had four values or one, and
+ * for a health decision the person needs to know which it was.
+ */
+function LowConfidence({ missing }: { missing: string[] }) {
+  const names = missing.map((k) => MISSING_LABEL[k] ?? k.replace(/_g$|_mg$|_kcal$/, '').replace(/_/g, ' '));
+  const list =
+    names.length <= 1 ? names[0] : `${names.slice(0, -1).join(', ')} and ${names[names.length - 1]}`;
+  return (
+    <View style={styles.lowConf} accessibilityRole="alert">
+      <Icon name="alert" size={18} color={colors.amberText} />
+      <Text style={styles.lowConfText}>
+        <Text style={styles.bold}>Low confidence. </Text>
+        This label is missing {list}, so the score is based on incomplete data and may change.
+      </Text>
+    </View>
   );
 }
 
@@ -506,11 +563,19 @@ const styles = StyleSheet.create({
   caption: { fontSize: 12, lineHeight: 17, color: colors.caption },
   muted: { fontSize: 13, lineHeight: 19, color: colors.caption },
   bold: { fontWeight: '700', color: colors.ink2 },
-  note: { fontSize: 13, color: colors.amberText },
+  lowConf: {
+    flexDirection: 'row',
+    gap: 9,
+    padding: 12,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#E8CE8A',
+    backgroundColor: colors.amberBg,
+  },
+  lowConfText: { flex: 1, fontSize: 13, lineHeight: 19, color: colors.amberText },
   overline: { fontSize: 12, fontWeight: '700', letterSpacing: 0.7 },
   productCard: { flexDirection: 'row', gap: 14, padding: 16 },
   productImage: { width: 84, height: 84, borderRadius: 14, backgroundColor: colors.placeholder, alignItems: 'center', justifyContent: 'center' },
-  productImageText: { fontSize: 11, fontWeight: '600', color: colors.placeholderText, textAlign: 'center' },
   productName: { fontSize: 19, lineHeight: 23, fontWeight: '700', color: colors.ink },
   tags: { flexDirection: 'row', alignItems: 'center', gap: 10, flexWrap: 'wrap' },
   vegRow: { flexDirection: 'row', alignItems: 'center', gap: 5 },
@@ -554,6 +619,8 @@ const styles = StyleSheet.create({
   actions: { flexDirection: 'row', gap: 10, paddingTop: 4 },
   trust: { flexDirection: 'row', gap: 10, padding: 14, borderRadius: 16, backgroundColor: colors.brandSoft },
   trustText: { flex: 1, fontSize: 13, lineHeight: 19, color: colors.brand },
+  attribution: { fontSize: 12, lineHeight: 18, color: colors.caption, paddingHorizontal: 2 },
+  link: { color: colors.brand, fontWeight: '600', textDecorationLine: 'underline' },
   message: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 28, gap: 14 },
   messageIcon: { width: 64, height: 64, borderRadius: 32, backgroundColor: colors.amberBg, alignItems: 'center', justifyContent: 'center' },
   messageTitle: { fontSize: 22, fontWeight: '700', color: colors.ink, textAlign: 'center' },
