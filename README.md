@@ -72,10 +72,11 @@ docker run -p 8000:8000 -e OFF_USER_AGENT="ScanBite/0.1 (you@example.com)" -v sc
 | Method | Path | What it does |
 | --- | --- | --- |
 | GET | `/health` | Status, method version, product count |
-| GET | `/v1/products/{barcode}` | Product + score (our database, then Open Food Facts). 404 `not_found` |
+| GET | `/v1/products/{barcode}` | Product + score (our database, then Open Food Facts). 404 `not_found` if nobody has it, 503 `source_unavailable` if we couldn't ask Open Food Facts |
 | GET | `/v1/products/{barcode}/alternatives` | Same category, higher score |
 | GET | `/v1/search?q=` | Search by name or brand |
-| POST | `/v1/score` | Score any product JSON (used by the photo flow later) |
+| POST | `/v1/score` | Score any product JSON, saves nothing (used by the photo flow later) |
+| POST | `/v1/products` | Add a product read off a pack. Needs `X-Admin-Token`; always stored `provisional`; 409 on an existing barcode unless `?overwrite=true` |
 | GET | `/v1/additives/{code}` | INS additive details, e.g. `E150d` |
 
 ## 3. Tests

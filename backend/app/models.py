@@ -116,3 +116,22 @@ class ProductResult(BaseModel):
 
     product: Product
     score: ScoreResult
+
+
+class ProductSubmission(BaseModel):
+    """A product someone read off a pack and sent us.
+
+    Always stored as `provisional`, whatever `product.status` says: nothing that
+    arrives over the wire has been checked by us, and `verified` means our review
+    team compared it against label photos. Provenance is recorded separately from
+    the product and never returned by the API.
+    """
+
+    product: Product
+    submitted_by: Optional[str] = Field(default=None, max_length=200)
+    source: Optional[str] = Field(default=None, max_length=200, description="e.g. 'pack label', 'brand website'")
+    notes: Optional[str] = Field(default=None, max_length=2000)
+    label_photo_url: Optional[str] = Field(default=None, max_length=1000)
+
+    def to_product(self) -> Product:
+        return self.product.model_copy(update={"status": DataStatus.provisional})

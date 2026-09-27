@@ -28,6 +28,10 @@ class Settings:
     cors_origins: tuple[str, ...] = field(
         default_factory=lambda: tuple(o.strip() for o in os.getenv("CORS_ORIGINS", "*").split(",") if o.strip())
     )
+    # Shared secret for POST /v1/products. Empty (the default) disables
+    # submissions outright: an open write endpoint would let anyone replace real
+    # product data, and provisional records outrank the Open Food Facts ones.
+    admin_token: str = field(default_factory=lambda: os.getenv("ADMIN_TOKEN", ""))
 
 
 def get_settings() -> Settings:

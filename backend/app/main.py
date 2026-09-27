@@ -6,14 +6,15 @@ Interactive docs: http://localhost:8000/docs
 from __future__ import annotations
 
 import logging
+import secrets
 from contextlib import asynccontextmanager
 from typing import Optional
 
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, Header, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 
 from .config import Settings, get_settings
-from .models import AdditiveFact, Product, ProductResult, ScoreResult
+from .models import AdditiveFact, Product, ProductResult, ProductSubmission, ScoreResult
 from .repository import ProductRepository
 from .scoring import METHOD_VERSION, score_product
 from .scoring.additives import describe, normalize_code
@@ -99,6 +100,46 @@ def create_app(settings: Optional[Settings] = None, service: Optional[ProductSer
     @app.post("/v1/score", response_model=ScoreResult)
     def score(product: Product) -> ScoreResult:
         return score_product(product)
+
+    @app.post("/v1/products", response_model=ProductResult, status_code=201)
+    def submit_product(
+        submission: ProductSubmission,
+        overwrite: bool = Query(False, description="Replace an existing record for this barcode."),
+        x_admin_token: Optional[str] = Header(default=None),
+    ) -> ProductResult:
+        """Add a product read off a pack. Always stored as `provisional`.
+
+        Requires ADMIN_TOKEN. Refuses a barcode we already hold unless
+        ?overwrite=true, so replacing existing data is always deliberate --
+        provisional outranks community in the trust order, which means a careless
+        submission would otherwise silently displace good Open Food Facts data.
+        """
+        if not settings.admin_token:
+            raise HTTPException(status_code=503, detail="submissions_disabled")
+        # compare_digest keeps the check constant-time.
+        if not x_admin_token or not secrets.compare_digest(x_admin_token, settings.admin_token):
+            raise HTTPException(status_code=401, detail="invalid_token")
+
+        code = checked(submission.product.barcode)
+        product = submission.to_product().model_copy(update={"barcode": code})
+
+        existing = svc().repo.get(code)
+        if existing is not None and not overwrite:
+            raise HTTPException(status_code=409, detail="already_exists")
+
+        if not svc().repo.upsert(product):
+            # A verified record outranks provisional and is never displaced.
+            raise HTTPException(status_code=409, detail="more_trusted_record_exists")
+
+        svc().repo.record_submission(
+            code,
+            submitted_by=submission.submitted_by,
+            source=submission.source,
+            notes=submission.notes,
+            label_photo_url=submission.label_photo_url,
+        )
+        logger.info("Product %s submitted as provisional (overwrite=%s)", code, overwrite)
+        return ProductResult(product=product, score=score_product(product))
 
     @app.get("/v1/additives/{code}", response_model=AdditiveFact)
     def additive(code: str) -> AdditiveFact:

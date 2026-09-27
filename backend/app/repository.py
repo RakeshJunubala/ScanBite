@@ -29,6 +29,21 @@ CREATE TABLE IF NOT EXISTS products (
 );
 CREATE INDEX IF NOT EXISTS idx_products_category_score ON products (category, score);
 CREATE INDEX IF NOT EXISTS idx_products_name ON products (name);
+
+-- Who submitted what, append-only. Kept out of the products table, and out of
+-- every API response, because submitted_by can be a person's email address. The
+-- week-4 review tool reads this to decide whether a provisional record is
+-- trustworthy, so superseded rows are history, not clutter.
+CREATE TABLE IF NOT EXISTS submissions (
+    id              INTEGER PRIMARY KEY AUTOINCREMENT,
+    barcode         TEXT NOT NULL,
+    submitted_by    TEXT,
+    source          TEXT,
+    notes           TEXT,
+    label_photo_url TEXT,
+    created_at      TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE INDEX IF NOT EXISTS idx_submissions_barcode ON submissions (barcode);
 """
 
 # A verified record is never overwritten by a lower-trust source.
@@ -96,6 +111,32 @@ class ProductRepository:
                 ),
             )
         return True
+
+    def record_submission(
+        self,
+        barcode: str,
+        submitted_by: Optional[str] = None,
+        source: Optional[str] = None,
+        notes: Optional[str] = None,
+        label_photo_url: Optional[str] = None,
+    ) -> None:
+        """Log where a submitted product came from. Never returned by the API."""
+        with self._tx() as cur:
+            cur.execute(
+                """
+                INSERT INTO submissions (barcode, submitted_by, source, notes, label_photo_url)
+                VALUES (?, ?, ?, ?, ?)
+                """,
+                (barcode, submitted_by, source, notes, label_photo_url),
+            )
+
+    def submissions(self, barcode: str) -> list[dict]:
+        """Submission history for one barcode, newest first. For the review tool."""
+        with self._tx() as cur:
+            rows = cur.execute(
+                "SELECT * FROM submissions WHERE barcode = ? ORDER BY id DESC", (barcode,)
+            ).fetchall()
+        return [dict(r) for r in rows]
 
     def alternatives(self, category: str, better_than: int, exclude: str, limit: int = 3) -> list[Product]:
         with self._tx() as cur:
