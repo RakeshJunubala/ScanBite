@@ -14,7 +14,7 @@ from contextlib import contextmanager
 from pathlib import Path
 
 from .models import DataStatus, Product
-from .scoring import score_product
+from .scoring import METHOD_VERSION, score_product
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS products (
@@ -24,6 +24,11 @@ CREATE TABLE IF NOT EXISTS products (
     category   TEXT,
     status     TEXT NOT NULL,
     score      INTEGER,
+    -- Which method produced `score`. Search and alternatives rank on the stored
+    -- column while a lookup rescores from `data`, so without this a change to
+    -- the scoring rules splits the two apart silently -- the detail view says 52
+    -- and the "better choices" list still ranks it as 49. See rescore_stale().
+    score_method_version TEXT,
     data       TEXT NOT NULL,
     updated_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
@@ -61,6 +66,19 @@ class ProductRepository:
         self._conn.row_factory = sqlite3.Row
         with self._tx() as cur:
             cur.executescript(SCHEMA)
+        self._migrate()
+
+    def _migrate(self) -> None:
+        """Add columns to databases created before those columns existed.
+
+        CREATE TABLE IF NOT EXISTS is a no-op on an existing table, so a new
+        column never reaches a database that already has products in it.
+        """
+        with self._tx() as cur:
+            columns = {r["name"] for r in cur.execute("PRAGMA table_info(products)").fetchall()}
+            if "score_method_version" not in columns:
+                # NULL on existing rows, which rescore_stale() treats as stale.
+                cur.execute("ALTER TABLE products ADD COLUMN score_method_version TEXT")
 
     @contextmanager
     def _tx(self) -> Iterator[sqlite3.Cursor]:
@@ -93,11 +111,13 @@ class ProductRepository:
         with self._tx() as cur:
             cur.execute(
                 """
-                INSERT INTO products (barcode, name, brand, category, status, score, data, updated_at)
-                VALUES (?, ?, ?, ?, ?, ?, ?, datetime('now'))
+                INSERT INTO products
+                    (barcode, name, brand, category, status, score, score_method_version, data, updated_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, datetime('now'))
                 ON CONFLICT(barcode) DO UPDATE SET
                     name=excluded.name, brand=excluded.brand, category=excluded.category,
-                    status=excluded.status, score=excluded.score, data=excluded.data,
+                    status=excluded.status, score=excluded.score,
+                    score_method_version=excluded.score_method_version, data=excluded.data,
                     updated_at=excluded.updated_at
                 """,
                 (
@@ -107,10 +127,48 @@ class ProductRepository:
                     product.category,
                     product.status.value,
                     score,
+                    METHOD_VERSION,
                     product.model_dump_json(),
                 ),
             )
         return True
+
+    def stale_count(self, version: str = METHOD_VERSION) -> int:
+        """Rows whose stored score was produced by a different method version."""
+        with self._tx() as cur:
+            return cur.execute(
+                "SELECT COUNT(*) FROM products WHERE score_method_version IS NOT ?", (version,)
+            ).fetchone()[0]
+
+    def rescore_stale(self, version: str = METHOD_VERSION) -> int:
+        """Recompute every score not produced by the current method. Returns how many.
+
+        Run this whenever METHOD_VERSION changes. The product itself is stored as
+        JSON in `data`, so rescoring needs no network and no source lookup -- it
+        replays the current engine over what we already hold.
+
+        `IS NOT` rather than `!=` so that NULL (a row written before the column
+        existed) counts as stale instead of silently comparing unequal to
+        everything and nothing.
+        """
+        with self._tx() as cur:
+            rows = cur.execute(
+                "SELECT barcode, data FROM products WHERE score_method_version IS NOT ?", (version,)
+            ).fetchall()
+
+        if not rows:
+            return 0
+
+        updates = []
+        for row in rows:
+            product = Product.model_validate_json(row["data"])
+            updates.append((score_product(product).score, version, row["barcode"]))
+
+        with self._tx() as cur:
+            cur.executemany(
+                "UPDATE products SET score = ?, score_method_version = ? WHERE barcode = ?", updates
+            )
+        return len(updates)
 
     def record_submission(
         self,

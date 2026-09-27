@@ -28,6 +28,11 @@ def build_service(settings: Settings, source=None) -> ProductService:
     repo = ProductRepository(settings.database_path)
     if settings.seed_samples:
         seed(repo)
+    # Scores stored under an older method are what search and alternatives rank
+    # on, so bring them up to date before serving anything.
+    stale = repo.rescore_stale()
+    if stale:
+        logger.info("Rescored %d product(s) to method %s", stale, METHOD_VERSION)
     if source is None and settings.off_enabled:
         source = OpenFoodFactsClient(settings.off_base_url, settings.off_user_agent, settings.off_timeout_s)
     return ProductService(repo, source)
