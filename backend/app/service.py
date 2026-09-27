@@ -33,6 +33,12 @@ class ProductService:
         self.source = source
 
     def lookup(self, barcode: str) -> Optional[ProductResult]:
+        """Our database first, then the source. None means nobody has it.
+
+        Lets SourceUnavailable through on purpose, so the caller can say "we
+        couldn't check" rather than "it doesn't exist". Anything already cached
+        is answered from our own database and never depends on the source.
+        """
         product = self.repo.get(barcode)
         if product is None and self.source is not None:
             product = self.source.fetch(barcode)

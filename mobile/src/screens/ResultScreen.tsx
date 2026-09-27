@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, Linking, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { getAlternatives, getProduct, NotFoundError } from '../api/client';
+import { getAlternatives, getProduct, InvalidBarcodeError, NotFoundError, SourceUnavailableError } from '../api/client';
 import type { AdditiveFact, NutrientFact, Product, ProductResult, Risk } from '../api/types';
 import { Icon, type IconName } from '../components/Icon';
 import { PackImage } from '../components/PackImage';
@@ -19,6 +19,8 @@ type LoadState =
   | { kind: 'loading' }
   | { kind: 'ready'; result: ProductResult }
   | { kind: 'not_found' }
+  | { kind: 'source_down' }
+  | { kind: 'bad_barcode' }
   | { kind: 'error'; message: string };
 
 export default function ResultScreen({ navigation, route }: ScreenProps<'Result'>) {
@@ -36,6 +38,8 @@ export default function ResultScreen({ navigation, route }: ScreenProps<'Result'
       getAlternatives(barcode).then(setAlternatives).catch(() => setAlternatives([]));
     } catch (err) {
       if (err instanceof NotFoundError) setState({ kind: 'not_found' });
+      else if (err instanceof SourceUnavailableError) setState({ kind: 'source_down' });
+      else if (err instanceof InvalidBarcodeError) setState({ kind: 'bad_barcode' });
       else setState({ kind: 'error', message: err instanceof Error ? err.message : String(err) });
     }
   }, [barcode]);
@@ -63,6 +67,24 @@ export default function ResultScreen({ navigation, route }: ScreenProps<'Result'
           title="Not in our database yet"
           body={`We don't have barcode ${barcode} yet. Adding a product from label photos comes in the next update.`}
           primary={{ label: 'Scan another', onPress: () => navigation.replace('Scanner') }}
+          secondary={{ label: 'Home', onPress: () => navigation.popToTop() }}
+        />
+      )}
+      {state.kind === 'source_down' && (
+        <Message
+          icon="alert"
+          title="Couldn't check Open Food Facts"
+          body={`We don't have barcode ${barcode} ourselves, and the product database we check didn't answer just now. This doesn't mean the product is missing — try again in a moment.`}
+          primary={{ label: 'Try again', onPress: load }}
+          secondary={{ label: 'Home', onPress: () => navigation.popToTop() }}
+        />
+      )}
+      {state.kind === 'bad_barcode' && (
+        <Message
+          icon="alert"
+          title="That barcode doesn't look right"
+          body={`${barcode} isn't a valid product barcode. If you typed it, check the digits under the barcode on the pack and try again.`}
+          primary={{ label: 'Scan again', onPress: () => navigation.replace('Scanner') }}
           secondary={{ label: 'Home', onPress: () => navigation.popToTop() }}
         />
       )}

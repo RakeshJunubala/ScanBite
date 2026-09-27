@@ -11,6 +11,7 @@ from app.main import create_app  # noqa: E402
 from app.repository import ProductRepository  # noqa: E402
 from app.seed import seed  # noqa: E402
 from app.service import ProductService  # noqa: E402
+from app.sources.off import SourceUnavailable  # noqa: E402
 
 
 @pytest.fixture()
@@ -45,6 +46,24 @@ def test_product_not_found(client):
 
 def test_invalid_barcode(client):
     assert client.get("/v1/products/12345").status_code == 400
+
+
+def test_unreachable_source_is_503_not_404():
+    """"We couldn't check" must not reach the app as "we don't have it"."""
+
+    class Broken:
+        def fetch(self, barcode):
+            raise SourceUnavailable("HTTP 429")
+
+    repo = ProductRepository(":memory:")
+    seed(repo)
+    app = create_app(Settings(), ProductService(repo, source=Broken()))
+    with TestClient(app) as c:
+        r = c.get("/v1/products/8900000000012")
+        assert r.status_code == 503
+        assert r.json()["detail"] == "source_unavailable"
+        # A product we already hold is unaffected -- it never asks the source.
+        assert c.get("/v1/products/2000000000015").status_code == 200
 
 
 def test_alternatives(client):

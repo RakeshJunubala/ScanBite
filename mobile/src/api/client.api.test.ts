@@ -46,3 +46,29 @@ test('API mode: calls the server, maps 404 to NotFoundError, falls back to demo 
   await client.search('dal & rice');
   assert.deepEqual(calls, ['http://api.test/v1/search?q=dal%20%26%20rice']);
 });
+
+test('a 503 is not a missing product, and a 400 is not a network failure', async () => {
+  const client = await import('./client');
+
+  // Our server is up but could not reach Open Food Facts. We do not know
+  // whether the product exists, so this must not read as "not in our database".
+  mockFetch(async () => json({ detail: 'source_unavailable' }, 503));
+  await assert.rejects(client.getProduct('8901719134845'), client.SourceUnavailableError);
+
+  mockFetch(async () => json({ detail: 'source_unavailable' }, 503));
+  await assert.rejects(client.getProduct('8901719134845'), (err: unknown) => {
+    assert.ok(!(err instanceof client.NotFoundError), '503 must not become NotFoundError');
+    assert.ok(!(err instanceof client.OfflineError), '503 must not become OfflineError');
+    return true;
+  });
+
+  // A rejected barcode is bad input, not a connection problem.
+  mockFetch(async () => json({ detail: 'invalid_barcode' }, 400));
+  await assert.rejects(client.getProduct('12345'), client.InvalidBarcodeError);
+
+  mockFetch(async () => json({ detail: 'invalid_barcode' }, 400));
+  await assert.rejects(client.getProduct('12345'), (err: unknown) => {
+    assert.ok(!(err instanceof client.OfflineError), '400 must not become OfflineError');
+    return true;
+  });
+});

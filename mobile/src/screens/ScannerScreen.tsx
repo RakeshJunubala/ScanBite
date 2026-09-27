@@ -10,7 +10,22 @@ import { DEMO_BARCODE, DEMO_MODE } from '../config';
 import type { ScreenProps } from '../navigation/types';
 import { colors } from '../theme';
 
-const BARCODE_TYPES = ['ean13', 'ean8', 'upc_a', 'upc_e'] as const;
+const BARCODE_TYPES = ['ean13', 'ean8', 'upc_a'] as const;
+
+/**
+ * The lengths the backend will accept: EAN-8, UPC-A (12) and EAN-13.
+ *
+ * UPC-E is deliberately absent from BARCODE_TYPES. Its 8 digits carry a check
+ * digit computed from the expanded UPC-A form, not an EAN-8 checksum, so the
+ * backend would reject genuine UPC-E packs as malformed. Indian retail is
+ * effectively all EAN-13 (prefix 890), so nothing is lost by leaving it off
+ * until we expand UPC-E to UPC-A properly.
+ */
+const VALID_LENGTHS = [8, 12, 13];
+
+function isScannableBarcode(digits: string): boolean {
+  return /^\d+$/.test(digits) && VALID_LENGTHS.includes(digits.length);
+}
 
 export default function ScannerScreen({ navigation }: ScreenProps<'Scanner'>) {
   const [permission, requestPermission] = useCameraPermissions();
@@ -39,14 +54,14 @@ export default function ScannerScreen({ navigation }: ScreenProps<'Scanner'>) {
   };
 
   const onScanned = ({ data }: BarcodeScanningResult) => {
-    if (handled.current || !/^\d{8,14}$/.test(data)) return;
+    if (handled.current || !isScannableBarcode(data)) return;
     Vibration.vibrate(40);
     open(data);
   };
 
   const submitManual = () => {
     const digits = code.replace(/\D/g, '');
-    if (digits.length >= 8) open(digits);
+    if (isScannableBarcode(digits)) open(digits);
   };
 
   const topBar = (
@@ -146,7 +161,8 @@ function ManualEntry({
   onSubmit: () => void;
   onClose: () => void;
 }) {
-  const valid = code.replace(/\D/g, '').length >= 8;
+  const digits = code.replace(/\D/g, '');
+  const valid = isScannableBarcode(digits);
   return (
     <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={styles.sheetWrap}>
       <View style={styles.sheet}>
@@ -157,12 +173,17 @@ function ManualEntry({
           onSubmitEditing={onSubmit}
           keyboardType="number-pad"
           autoFocus
-          maxLength={14}
+          maxLength={13}
           placeholder="e.g. 8901234567890"
           placeholderTextColor="#8A938D"
           accessibilityLabel="Barcode number"
           style={styles.input}
         />
+        <Text style={styles.sheetHint}>
+          {digits.length > 0 && !valid
+            ? `${digits.length} digit${digits.length === 1 ? '' : 's'} so far — a barcode is 8, 12 or 13 digits.`
+            : 'Most Indian packs have 13 digits printed under the barcode.'}
+        </Text>
         <View style={styles.sheetButtons}>
           <Pressable onPress={onClose} accessibilityRole="button" style={styles.sheetCancel}>
             <Text style={styles.sheetCancelText}>Cancel</Text>
@@ -212,6 +233,7 @@ const styles = StyleSheet.create({
   sheetWrap: { position: 'absolute', left: 0, right: 0, bottom: 0 },
   sheet: { backgroundColor: colors.surface, borderTopLeftRadius: 24, borderTopRightRadius: 24, padding: 20, paddingBottom: 32, gap: 14 },
   sheetTitle: { fontSize: 17, fontWeight: '700', color: colors.ink },
+  sheetHint: { fontSize: 12, lineHeight: 17, color: colors.caption },
   input: {
     height: 52,
     borderWidth: 1.5,

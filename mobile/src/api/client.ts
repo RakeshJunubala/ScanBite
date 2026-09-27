@@ -2,8 +2,18 @@ import { API_URL, DEMO_MODE } from '../config';
 import { demoAlternatives, demoProduct, demoSearch } from '../demo/demo';
 import type { ProductResult } from './types';
 
+/** Nobody has this product: not us, and not Open Food Facts. */
 export class NotFoundError extends Error {}
+/** We couldn't reach our own server. */
 export class OfflineError extends Error {}
+/** The server rejected the barcode as malformed (400). Not a network problem. */
+export class InvalidBarcodeError extends Error {}
+/**
+ * Our server is up but couldn't reach Open Food Facts (503), so whether this
+ * product exists is unknown. Deliberately not NotFoundError: telling someone we
+ * don't have a product when we never managed to look is a different claim.
+ */
+export class SourceUnavailableError extends Error {}
 
 const TIMEOUT_MS = 8000;
 
@@ -22,6 +32,8 @@ async function getJson<T>(path: string): Promise<T> {
     clearTimeout(timer);
   }
   if (response.status === 404) throw new NotFoundError(path);
+  if (response.status === 400) throw new InvalidBarcodeError(path);
+  if (response.status === 503) throw new SourceUnavailableError(path);
   if (!response.ok) throw new OfflineError(`Server error ${response.status}`);
   return (await response.json()) as T;
 }

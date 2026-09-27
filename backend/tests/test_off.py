@@ -2,9 +2,10 @@ import json
 from pathlib import Path
 
 import httpx
+import pytest
 
 from app.models import DataStatus
-from app.sources.off import OpenFoodFactsClient, map_off_product
+from app.sources.off import OpenFoodFactsClient, SourceUnavailable, map_off_product
 
 FIXTURE = json.loads((Path(__file__).parent / "fixtures" / "off_product.json").read_text())
 
@@ -56,12 +57,28 @@ def test_client_returns_product_and_sends_fields():
     assert "fields=" in seen["url"]
 
 
-def test_client_returns_none_when_not_found_or_down():
+def test_client_returns_none_only_when_off_genuinely_has_no_record():
+    # The two ways OFF reports a real miss.
     assert _client(lambda r: httpx.Response(200, json={"status": 0})).fetch("1") is None
     assert _client(lambda r: httpx.Response(404)).fetch("1") is None
-    assert _client(lambda r: httpx.Response(503)).fetch("1") is None
+
+
+def test_client_raises_when_it_could_not_ask():
+    """A failure to reach OFF must never look like "OFF doesn't have it"."""
 
     def boom(request):
         raise httpx.ConnectError("offline")
 
-    assert _client(boom).fetch("1") is None
+    def timeout(request):
+        raise httpx.ReadTimeout("too slow")
+
+    for handler in (
+        lambda r: httpx.Response(503),  # OFF down
+        lambda r: httpx.Response(429),  # rate limited
+        lambda r: httpx.Response(500),
+        lambda r: httpx.Response(200, text="<html>not json</html>"),
+        boom,
+        timeout,
+    ):
+        with pytest.raises(SourceUnavailable):
+            _client(handler).fetch("1")

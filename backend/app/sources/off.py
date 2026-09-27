@@ -155,8 +155,24 @@ def map_off_product(barcode: str, raw: dict[str, Any]) -> Product:
     )
 
 
+class SourceUnavailable(Exception):
+    """We could not ask the source, so we do not know whether it has the product.
+
+    Kept separate from a lookup that succeeded and found nothing. Collapsing the
+    two is how "Open Food Facts timed out" reaches a person as "we don't have
+    this product" -- a claim we have no grounds to make, and one that hides a
+    broken pipeline behind an ordinary-looking empty result.
+    """
+
+
 class ProductSource(Protocol):
-    def fetch(self, barcode: str) -> Optional[Product]: ...
+    def fetch(self, barcode: str) -> Optional[Product]:
+        """The product, or None when the source genuinely has no record of it.
+
+        Raises SourceUnavailable when the source could not be reached or its
+        answer could not be used.
+        """
+        ...
 
 
 class OpenFoodFactsClient:
@@ -165,16 +181,24 @@ class OpenFoodFactsClient:
         self._client = client or httpx.Client(timeout=timeout_s, headers={"User-Agent": user_agent})
 
     def fetch(self, barcode: str) -> Optional[Product]:
-        """Returns None when OFF doesn't know the product or can't be reached."""
+        """The product, or None when OFF genuinely has no record of this barcode.
+
+        Raises SourceUnavailable for anything that means we failed to ask:
+        timeout, transport error, rate limit, server error, unusable body.
+        """
         try:
             response = self._client.get(f"{self._base}/api/v2/product/{barcode}", params={"fields": FIELDS})
-        except httpx.HTTPError:
-            return None
+        except httpx.HTTPError as err:
+            raise SourceUnavailable(f"{type(err).__name__}: {err}") from err
+        # OFF answers a genuine miss two ways: 404, or 200 with status 0.
         if response.status_code == 404:
             return None
         if response.status_code != 200:
-            return None
-        body = response.json()
+            raise SourceUnavailable(f"HTTP {response.status_code}")
+        try:
+            body = response.json()
+        except ValueError as err:
+            raise SourceUnavailable("response body was not JSON") from err
         if body.get("status") != 1 or not body.get("product"):
             return None
         return map_off_product(barcode, body["product"])
