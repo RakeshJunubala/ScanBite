@@ -9,9 +9,9 @@ from __future__ import annotations
 
 import sqlite3
 import threading
+from collections.abc import Iterator
 from contextlib import contextmanager
 from pathlib import Path
-from typing import Iterator, Optional
 
 from .models import DataStatus, Product
 from .scoring import score_product
@@ -79,7 +79,7 @@ class ProductRepository:
         with self._tx() as cur:
             return cur.execute("SELECT COUNT(*) FROM products").fetchone()[0]
 
-    def get(self, barcode: str) -> Optional[Product]:
+    def get(self, barcode: str) -> Product | None:
         with self._tx() as cur:
             row = cur.execute("SELECT data FROM products WHERE barcode = ?", (barcode,)).fetchone()
         return Product.model_validate_json(row["data"]) if row else None
@@ -115,10 +115,10 @@ class ProductRepository:
     def record_submission(
         self,
         barcode: str,
-        submitted_by: Optional[str] = None,
-        source: Optional[str] = None,
-        notes: Optional[str] = None,
-        label_photo_url: Optional[str] = None,
+        submitted_by: str | None = None,
+        source: str | None = None,
+        notes: str | None = None,
+        label_photo_url: str | None = None,
     ) -> None:
         """Log where a submitted product came from. Never returned by the API."""
         with self._tx() as cur:

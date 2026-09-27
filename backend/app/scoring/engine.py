@@ -7,8 +7,6 @@ See docs/scoring-method.md.
 
 from __future__ import annotations
 
-from typing import Optional
-
 from ..models import (
     AdditiveFact,
     Level,
@@ -58,7 +56,7 @@ def _kind(product: Product) -> str:
     return "drink" if product.is_drink else "food"
 
 
-def verdict_for(score: Optional[int]) -> Verdict:
+def verdict_for(score: int | None) -> Verdict:
     if score is None:
         return Verdict.unknown
     for floor, name in T.VERDICT_BANDS:
@@ -67,7 +65,7 @@ def verdict_for(score: Optional[int]) -> Verdict:
     return Verdict.avoid
 
 
-def _level_negative(key: str, value: float, kind: str) -> Optional[Level]:
+def _level_negative(key: str, value: float, kind: str) -> Level | None:
     lights = T.TRAFFIC_LIGHTS[kind]
     if key == "sodium_mg":
         low, high = lights["salt_g"]
@@ -83,7 +81,7 @@ def _level_negative(key: str, value: float, kind: str) -> Optional[Level]:
     return "medium"
 
 
-def _level_positive(key: str, value: float, energy_kcal: Optional[float]) -> Level:
+def _level_positive(key: str, value: float, energy_kcal: float | None) -> Level:
     if key == "fibre_g":
         if value >= T.FIBRE_HIGH_G:
             return "high"
@@ -98,7 +96,7 @@ def _level_positive(key: str, value: float, energy_kcal: Optional[float]) -> Lev
     return "low"
 
 
-def _per_serving(value: float, serving_g: Optional[float]) -> Optional[float]:
+def _per_serving(value: float, serving_g: float | None) -> float | None:
     if not serving_g:
         return None
     return round(value * serving_g / 100, 1)
@@ -112,7 +110,7 @@ def _nutrient_facts(product: Product, kind: str) -> list[NutrientFact]:
         if value is None or (key == "trans_fat_g" and value <= 0):
             continue
         daily = T.DAILY_REFERENCE.get(key)
-        level: Optional[Level] = _level_negative(key, value, kind)
+        level: Level | None = _level_negative(key, value, kind)
         if key == "trans_fat_g":
             level = "high" if value > 0.2 else "medium"
         facts.append(
@@ -292,7 +290,7 @@ def score_product(product: Product) -> ScoreResult:
         total = T.CAP_SCORE
         caps.append("sweetened_drink")
 
-    score = int(round(min(max(total, 0.0), 100.0)))
+    score = round(min(max(total, 0.0), 100.0))  # round() on a float already returns int
     return ScoreResult(
         score=score,
         verdict=verdict_for(score),

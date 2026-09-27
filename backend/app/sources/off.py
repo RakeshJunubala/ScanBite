@@ -7,13 +7,15 @@ switch to their daily export instead of the live API (they rate-limit reads).
 
 from __future__ import annotations
 
-from typing import Any, Optional, Protocol
+from typing import Any, Protocol
 
 import httpx
 
 from ..models import DataStatus, Nutriments, Product
 
-FIELDS = ",".join(
+# FLY002 is suppressed below on purpose: ruff would have this be one long string
+# literal, but a field per line keeps additions and diffs readable.
+FIELDS = ",".join(  # noqa: FLY002
     [
         "code",
         "product_name",
@@ -76,7 +78,7 @@ def _strip(tag: str) -> str:
     return tag.split(":", 1)[1] if ":" in tag else tag
 
 
-def _num(nutriments: dict[str, Any], key: str) -> Optional[float]:
+def _num(nutriments: dict[str, Any], key: str) -> float | None:
     value = nutriments.get(key)
     if value is None or value == "":
         return None
@@ -86,7 +88,7 @@ def _num(nutriments: dict[str, Any], key: str) -> Optional[float]:
         return None
 
 
-def _category(tags: list[str]) -> Optional[str]:
+def _category(tags: list[str]) -> str | None:
     tagset = set(tags)
     for tag, name in _CATEGORY_PRIORITY:
         if tag in tagset:
@@ -166,7 +168,7 @@ class SourceUnavailable(Exception):
 
 
 class ProductSource(Protocol):
-    def fetch(self, barcode: str) -> Optional[Product]:
+    def fetch(self, barcode: str) -> Product | None:
         """The product, or None when the source genuinely has no record of it.
 
         Raises SourceUnavailable when the source could not be reached or its
@@ -176,11 +178,11 @@ class ProductSource(Protocol):
 
 
 class OpenFoodFactsClient:
-    def __init__(self, base_url: str, user_agent: str, timeout_s: float = 4.0, client: Optional[httpx.Client] = None):
+    def __init__(self, base_url: str, user_agent: str, timeout_s: float = 4.0, client: httpx.Client | None = None):
         self._base = base_url.rstrip("/")
         self._client = client or httpx.Client(timeout=timeout_s, headers={"User-Agent": user_agent})
 
-    def fetch(self, barcode: str) -> Optional[Product]:
+    def fetch(self, barcode: str) -> Product | None:
         """The product, or None when OFF genuinely has no record of this barcode.
 
         Raises SourceUnavailable for anything that means we failed to ask:

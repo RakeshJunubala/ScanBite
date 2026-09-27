@@ -29,6 +29,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - run: npx --yes tsx --test src/profile/alerts.test.ts src/api/client.demo.test.ts src/api/client.api.test.ts
-      # After you run setup.sh once and commit package-lock.json, add:
-      # - run: npm ci && npm run typecheck
+          cache: npm
+          cache-dependency-path: mobile/package-lock.json
+      # Installs from the committed lockfile, so CI runs the versions we run.
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run test:logic

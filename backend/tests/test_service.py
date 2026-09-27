@@ -1,4 +1,3 @@
-from typing import Optional
 
 from app.models import DataStatus, Nutriments, Product
 from app.repository import ProductRepository
@@ -15,7 +14,7 @@ class FakeSource:
         self.products = products
         self.calls: list[str] = []
 
-    def fetch(self, barcode: str) -> Optional[Product]:
+    def fetch(self, barcode: str) -> Product | None:
         self.calls.append(barcode)
         return self.products.get(barcode)
 

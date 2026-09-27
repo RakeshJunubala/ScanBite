@@ -1,3 +1,6 @@
 -r requirements.txt
-pytest>=8
-ruff>=0.5
+# Pinned exactly: an unpinned linter silently changes the rules under CI. This
+# repo's first red build was ruff>=0.5 resolving to 0.16.8, which added rules
+# the code predates. Bump deliberately, not by accident.
+pytest==9.1.1
+ruff==0.16.8

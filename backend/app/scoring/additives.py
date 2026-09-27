@@ -6,7 +6,6 @@ import json
 import re
 from functools import lru_cache
 from pathlib import Path
-from typing import Optional
 
 from ..models import AdditiveFact
 
@@ -28,7 +27,7 @@ _BARE_RE = re.compile(
 )
 
 
-def normalize_code(raw: str) -> Optional[str]:
+def normalize_code(raw: str) -> str | None:
     """Turn "E150d", "en:e503ii", "INS 322(i)" or "503 (ii)" into "150d", "503(ii)", "322(i)".
 
     Returns None when the text is not an additive code.
@@ -61,7 +60,7 @@ def _table() -> dict[str, dict]:
     return {row["code"]: row for row in data["additives"]}
 
 
-def lookup(code: str) -> Optional[dict]:
+def lookup(code: str) -> dict | None:
     table = _table()
     return table.get(code) or table.get(base_code(code))
 
@@ -93,7 +92,7 @@ def animal_origin(code: str) -> str:
     return row.get("animal", "no") if row else "no"
 
 
-def extract_codes(ingredients_text: Optional[str]) -> list[str]:
+def extract_codes(ingredients_text: str | None) -> list[str]:
     """Find additive codes in an ingredient list.
 
     Prefixed codes (INS 322, E150d) are always taken. Bare numbers are taken
@@ -103,7 +102,7 @@ def extract_codes(ingredients_text: Optional[str]) -> list[str]:
         return []
     found: list[str] = []
 
-    def add(code: Optional[str]) -> None:
+    def add(code: str | None) -> None:
         if code and code not in found:
             found.append(code)
 

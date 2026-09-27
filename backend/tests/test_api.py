@@ -4,15 +4,15 @@ import pytest
 
 pytest.importorskip("fastapi")
 
-from fastapi.testclient import TestClient  # noqa: E402
+from fastapi.testclient import TestClient
 
-from app.config import Settings  # noqa: E402
-from app.main import create_app  # noqa: E402
-from app.models import DataStatus, Product  # noqa: E402
-from app.repository import ProductRepository  # noqa: E402
-from app.seed import seed  # noqa: E402
-from app.service import ProductService  # noqa: E402
-from app.sources.off import SourceUnavailable  # noqa: E402
+from app.config import Settings
+from app.main import create_app
+from app.models import DataStatus, Product
+from app.repository import ProductRepository
+from app.seed import seed
+from app.service import ProductService
+from app.sources.off import SourceUnavailable
 
 
 @pytest.fixture()

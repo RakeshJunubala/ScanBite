@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
-
 from .models import ProductResult
 from .repository import ProductRepository
 from .scoring import score_product
@@ -28,11 +26,11 @@ def is_valid_barcode(code: str) -> bool:
 
 
 class ProductService:
-    def __init__(self, repo: ProductRepository, source: Optional[ProductSource] = None):
+    def __init__(self, repo: ProductRepository, source: ProductSource | None = None):
         self.repo = repo
         self.source = source
 
-    def lookup(self, barcode: str) -> Optional[ProductResult]:
+    def lookup(self, barcode: str) -> ProductResult | None:
         """Our database first, then the source. None means nobody has it.
 
         Lets SourceUnavailable through on purpose, so the caller can say "we

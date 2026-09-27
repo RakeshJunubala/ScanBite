@@ -8,7 +8,6 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass, field
-from typing import Optional
 
 REFINED_FLOUR = ("maida", "refined wheat flour", "refined flour")
 ADDED_SUGARS = (
@@ -42,7 +41,7 @@ SWEETENER_WORDS = (
 SWEETENER_CODES = {"950", "951", "952", "954", "955", "960", "961", "962", "965", "966", "967", "968", "969"}
 
 
-def split_ingredients(text: Optional[str]) -> list[str]:
+def split_ingredients(text: str | None) -> list[str]:
     """Split on commas that are not inside (), [] or {} and lower-case each item."""
     if not text:
         return []
@@ -106,7 +105,7 @@ class IngredientSignals:
     sweeteners: bool = False
 
 
-def analyse(ingredients_text: Optional[str], additive_codes: list[str]) -> IngredientSignals:
+def analyse(ingredients_text: str | None, additive_codes: list[str]) -> IngredientSignals:
     items = split_ingredients(ingredients_text)
     signals = IngredientSignals(items=items)
     if items:

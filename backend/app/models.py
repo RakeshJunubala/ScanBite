@@ -7,7 +7,7 @@ Indian packs print them under FSSAI labelling rules.
 from __future__ import annotations
 
 from enum import Enum
-from typing import Literal, Optional
+from typing import Literal
 
 from pydantic import BaseModel, Field
 
@@ -22,33 +22,33 @@ class DataStatus(str, Enum):
 
 
 class Nutriments(BaseModel):
-    energy_kcal: Optional[float] = None
-    fat_g: Optional[float] = None
-    saturated_fat_g: Optional[float] = None
-    trans_fat_g: Optional[float] = None
-    sugars_g: Optional[float] = None
-    added_sugars_g: Optional[float] = None
-    sodium_mg: Optional[float] = None
-    fibre_g: Optional[float] = None
-    protein_g: Optional[float] = None
-    fruit_veg_nuts_pct: Optional[float] = None
+    energy_kcal: float | None = None
+    fat_g: float | None = None
+    saturated_fat_g: float | None = None
+    trans_fat_g: float | None = None
+    sugars_g: float | None = None
+    added_sugars_g: float | None = None
+    sodium_mg: float | None = None
+    fibre_g: float | None = None
+    protein_g: float | None = None
+    fruit_veg_nuts_pct: float | None = None
 
 
 class Product(BaseModel):
     barcode: str
     name: str
-    brand: Optional[str] = None
-    quantity: Optional[str] = None
-    category: Optional[str] = None
+    brand: str | None = None
+    quantity: str | None = None
+    category: str | None = None
     is_drink: bool = False
     nutriments: Nutriments = Field(default_factory=Nutriments)
-    serving_size_g: Optional[float] = None
-    ingredients_text: Optional[str] = None
+    serving_size_g: float | None = None
+    ingredients_text: str | None = None
     additives: list[str] = Field(default_factory=list)  # INS codes, e.g. "150d", "503(ii)"
     allergens: list[str] = Field(default_factory=list)  # e.g. "wheat", "milk"
     traces: list[str] = Field(default_factory=list)  # "may contain" list
     labels: list[str] = Field(default_factory=list)  # e.g. "vegetarian"
-    image_url: Optional[str] = None
+    image_url: str | None = None
     status: DataStatus = DataStatus.community
 
 
@@ -70,9 +70,9 @@ class NutrientFact(BaseModel):
     value: float
     unit: str
     kind: Literal["negative", "positive", "neutral"]
-    level: Optional[Level] = None
-    percent_daily: Optional[int] = None
-    per_serving: Optional[float] = None
+    level: Level | None = None
+    percent_daily: int | None = None
+    per_serving: float | None = None
 
 
 class AdditiveFact(BaseModel):
@@ -80,7 +80,7 @@ class AdditiveFact(BaseModel):
     name: str
     function: str
     risk: Risk
-    note: Optional[str] = None
+    note: str | None = None
     known: bool = True
     animal: Literal["yes", "maybe", "no"] = "no"  # for vegetarian, vegan and Jain checks
 
@@ -92,14 +92,14 @@ class ProcessingFlag(BaseModel):
 
 
 class ScoreBreakdown(BaseModel):
-    nutrition: Optional[float] = None  # 0-100 before penalties
+    nutrition: float | None = None  # 0-100 before penalties
     additive_penalty: float = 0
     processing_penalty: float = 0
     caps_applied: list[str] = Field(default_factory=list)
 
 
 class ScoreResult(BaseModel):
-    score: Optional[int]
+    score: int | None
     verdict: Verdict
     reason: str
     nutrients: list[NutrientFact] = Field(default_factory=list)
@@ -128,10 +128,10 @@ class ProductSubmission(BaseModel):
     """
 
     product: Product
-    submitted_by: Optional[str] = Field(default=None, max_length=200)
-    source: Optional[str] = Field(default=None, max_length=200, description="e.g. 'pack label', 'brand website'")
-    notes: Optional[str] = Field(default=None, max_length=2000)
-    label_photo_url: Optional[str] = Field(default=None, max_length=1000)
+    submitted_by: str | None = Field(default=None, max_length=200)
+    source: str | None = Field(default=None, max_length=200, description="e.g. 'pack label', 'brand website'")
+    notes: str | None = Field(default=None, max_length=2000)
+    label_photo_url: str | None = Field(default=None, max_length=1000)
 
     def to_product(self) -> Product:
         return self.product.model_copy(update={"status": DataStatus.provisional})

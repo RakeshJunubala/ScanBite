@@ -8,7 +8,6 @@ from __future__ import annotations
 import logging
 import secrets
 from contextlib import asynccontextmanager
-from typing import Optional
 
 from fastapi import FastAPI, Header, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
@@ -34,7 +33,7 @@ def build_service(settings: Settings, source=None) -> ProductService:
     return ProductService(repo, source)
 
 
-def create_app(settings: Optional[Settings] = None, service: Optional[ProductService] = None) -> FastAPI:
+def create_app(settings: Settings | None = None, service: ProductService | None = None) -> FastAPI:
     settings = settings or get_settings()
 
     @asynccontextmanager
@@ -63,7 +62,7 @@ def create_app(settings: Optional[Settings] = None, service: Optional[ProductSer
             raise HTTPException(status_code=400, detail="invalid_barcode")
         return code
 
-    def looked_up(code: str) -> Optional[ProductResult]:
+    def looked_up(code: str) -> ProductResult | None:
         """lookup(), turning an unreachable source into 503 rather than 404.
 
         The reason is logged here and not returned: the person only needs to
@@ -105,7 +104,7 @@ def create_app(settings: Optional[Settings] = None, service: Optional[ProductSer
     def submit_product(
         submission: ProductSubmission,
         overwrite: bool = Query(False, description="Replace an existing record for this barcode."),
-        x_admin_token: Optional[str] = Header(default=None),
+        x_admin_token: str | None = Header(default=None),
     ) -> ProductResult:
         """Add a product read off a pack. Always stored as `provisional`.
 
