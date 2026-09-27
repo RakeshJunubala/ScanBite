@@ -7,6 +7,7 @@ methods; nothing else in the app talks to the database directly.
 
 from __future__ import annotations
 
+import logging
 import sqlite3
 import threading
 from collections.abc import Iterator
@@ -14,7 +15,10 @@ from contextlib import contextmanager
 from pathlib import Path
 
 from .models import DataStatus, Product
+from .plausibility import sanitise
 from .scoring import METHOD_VERSION, score_product
+
+logger = logging.getLogger(__name__)
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS products (
@@ -109,10 +113,22 @@ class ProductRepository:
         return Product.model_validate_json(row["data"]) if row else None
 
     def upsert(self, product: Product, source_version: str | None = None) -> bool:
-        """Save a product. Returns False if a more trusted record already exists."""
+        """Save a product. Returns False if a more trusted record already exists.
+
+        Impossible nutrient values are dropped on the way in. This is the one
+        chokepoint every source passes through -- the seed, Open Food Facts and
+        user submissions all land here -- so a value that cannot be true never
+        reaches storage, whoever sent it.
+        """
         existing = self.get(product.barcode)
         if existing and _TRUST[existing.status] > _TRUST[product.status]:
             return False
+
+        clean, checked = sanitise(product.nutriments, is_drink=product.is_drink)
+        if not checked.ok:
+            logger.warning("Dropped implausible values for %s: %s", product.barcode, checked.summary())
+            product = product.model_copy(update={"nutriments": clean})
+
         score = score_product(product).score
         with self._tx() as cur:
             cur.execute(
