@@ -133,6 +133,11 @@ def main() -> int:
     parser.add_argument("--dry-run", action="store_true", help="fetch and map, write nothing")
     args = parser.parse_args()
 
+    # Redirected to a file, stdout is block-buffered, so progress appears only
+    # when the run ends -- useless for watching a half-hour import. Warnings go
+    # to stderr and were never affected, which is what made this confusing.
+    sys.stdout.reconfigure(line_buffering=True)
+
     settings = get_settings()
     db_path = args.db or settings.database_path
     if settings.off_user_agent.startswith("ScanBite/0.1 (set "):
