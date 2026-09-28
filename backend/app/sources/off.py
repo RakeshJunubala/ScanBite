@@ -57,21 +57,97 @@ _DRINK_TAGS = {"en:beverages"}
 # Milk and dairy drinks are scored as foods, as the original Nutri-Score did.
 _NOT_DRINK_TAGS = {"en:dairies", "en:milks", "en:dairy-drinks", "en:fermented-milk-products"}
 
-_CATEGORY_PRIORITY = [
-    ("en:biscuits", "biscuits"),
-    ("en:cookies", "biscuits"),
-    ("en:instant-noodles", "instant-noodles"),
-    ("en:breakfast-cereals", "breakfast-cereals"),
-    ("en:chips-and-fries", "snacks"),
-    ("en:salty-snacks", "snacks"),
-    ("en:snacks", "snacks"),
-    ("en:chocolates", "chocolates"),
-    ("en:sauces", "sauces"),
-    ("en:soft-drinks", "soft-drinks"),
-    ("en:fruit-juices", "juices"),
-    ("en:dairies", "dairy"),
-    ("en:beverages", "drinks"),
+# Open Food Facts tag -> our category, most specific first.
+#
+# A product carries many tags at once ("snacks", "sweet-snacks", "biscuits"), so
+# the order decides which one wins: biscuits before snacks, or every biscuit
+# lands in the generic bucket.
+#
+# Tags are matched without their language prefix, so "en:biscuits" and
+# "fr:biscuits" both hit the same row.
+#
+# The list exists to make categories *comparable*. A category holding two
+# products cannot tell anyone whether a third is better or worse than its peers,
+# so there is no value in inventing one per tag -- an unrecognised tag gives no
+# category at all. Entries below earn their place from real Indian data.
+_CATEGORY_PRIORITY: list[tuple[str, str]] = [
+    # Biscuits and bakery
+    ("biscuits", "biscuits"),
+    ("cookies", "biscuits"),
+    ("rusks", "bakery"),
+    ("toasts", "bakery"),
+    ("white-breads", "bakery"),
+    ("breads", "bakery"),
+    ("cakes", "bakery"),
+    # Noodles and pasta
+    ("instant-noodles", "instant-noodles"),
+    ("instant-pasta", "instant-noodles"),
+    ("noodles", "instant-noodles"),
+    ("pastas", "pasta"),
+    # Cereals
+    ("breakfast-cereals", "breakfast-cereals"),
+    ("oats", "breakfast-cereals"),
+    ("mueslis", "breakfast-cereals"),
+    # Savoury snacks
+    ("chips-and-fries", "snacks"),
+    ("salty-snacks", "snacks"),
+    ("crisps", "snacks"),
+    ("snacks", "snacks"),
+    # Sweets
+    ("chocolates", "chocolates"),
+    ("ice-creams", "ice-cream"),
+    ("ice-cream-in-a-box", "ice-cream"),
+    # Spreads and nut butters
+    ("crunchy-peanut-butters", "nut-butters"),
+    ("peanut-butters", "nut-butters"),
+    ("nut-butters", "nut-butters"),
+    ("mixed-fruit-jams", "spreads"),
+    ("jams", "spreads"),
+    ("honeys", "sweeteners"),
+    ("sugars", "sweeteners"),
+    ("jaggery", "sweeteners"),
+    # Cooking
+    ("coconut-oils", "edible-oils"),
+    ("sunflower-oils", "edible-oils"),
+    ("soybean-oils", "edible-oils"),
+    ("mustard-oils", "edible-oils"),
+    ("olive-oils", "edible-oils"),
+    ("vegetable-oils", "edible-oils"),
+    ("ghees", "edible-oils"),
+    ("masalas", "spices"),
+    ("spices", "spices"),
+    ("salts", "salt"),
+    # Condiments
+    ("plant-based-pickles", "pickles"),
+    ("pickles", "pickles"),
+    ("sauces", "sauces"),
+    ("soups", "soups"),
+    # Nuts and dried fruit
+    ("dates", "dried-fruits"),
+    ("raisins", "dried-fruits"),
+    ("dried-fruits", "dried-fruits"),
+    ("peanuts", "nuts"),
+    ("almonds", "nuts"),
+    ("cashew-nuts", "nuts"),
+    ("nuts", "nuts"),
+    # Drinks
+    ("soft-drinks", "soft-drinks"),
+    ("sodas", "soft-drinks"),
+    ("energy-drinks", "soft-drinks"),
+    ("fruit-juices", "juices"),
+    ("juices", "juices"),
+    ("instant-coffees", "coffee-and-tea"),
+    ("coffees", "coffee-and-tea"),
+    ("teas", "coffee-and-tea"),
+    ("waters", "water"),
+    ("dairies", "dairy"),
+    ("milks", "dairy"),
+    ("beverages", "drinks"),
 ]
+
+# Same table keyed by tag, for normalising a category already stored.
+_CATEGORY_BY_TAG = dict(_CATEGORY_PRIORITY)
+CANONICAL_CATEGORIES = frozenset(_CATEGORY_BY_TAG.values())
 
 
 def _strip(tag: str) -> str:
@@ -88,12 +164,35 @@ def _num(nutriments: dict[str, Any], key: str) -> float | None:
         return None
 
 
+def normalise_category(value: str | None) -> str | None:
+    """A category we can compare products within, or None.
+
+    Accepts either one of our own category names or a raw Open Food Facts tag,
+    so it works on freshly mapped products and on rows already stored.
+    """
+    if not value:
+        return None
+    name = _strip(value).strip().lower()
+    if name in CANONICAL_CATEGORIES:
+        return name
+    return _CATEGORY_BY_TAG.get(name)
+
+
 def _category(tags: list[str]) -> str | None:
-    tagset = set(tags)
-    for tag, name in _CATEGORY_PRIORITY:
-        if tag in tagset:
-            return name
-    return _strip(tags[-1]) if tags else None
+    """The most specific category we recognise, or None.
+
+    Returning None matters. This used to fall back to the last tag Open Food
+    Facts happened to list, which produced categories like "Groceries", "Food"
+    and the misspelling "Nuttela" -- 136 different values across 215 products,
+    most holding one or two items. "Better choices" ranks within a category, and
+    a category of one can say nothing about anything. No category beats a
+    category that only looks like one.
+    """
+    names = {_strip(tag).strip().lower() for tag in tags}
+    for tag, canonical in _CATEGORY_PRIORITY:
+        if tag in names:
+            return canonical
+    return None
 
 
 def map_off_product(barcode: str, raw: dict[str, Any]) -> Product:

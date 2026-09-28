@@ -33,6 +33,11 @@ def build_service(settings: Settings, source=None) -> ProductService:
     stale = repo.rescore_stale()
     if stale:
         logger.info("Rescored %d product(s) to method %s", stale, METHOD_VERSION)
+    # Likewise for categories: alternatives groups by them, so a change to the
+    # mapping has to reach rows already stored.
+    recategorised = repo.renormalise_categories()
+    if recategorised:
+        logger.info("Renormalised the category on %d product(s)", recategorised)
     if source is None and settings.off_enabled:
         source = OpenFoodFactsClient(settings.off_base_url, settings.off_user_agent, settings.off_timeout_s)
     return ProductService(repo, source)

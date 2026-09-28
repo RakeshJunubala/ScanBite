@@ -17,6 +17,7 @@ from pathlib import Path
 from .models import DataStatus, Product
 from .plausibility import sanitise
 from .scoring import METHOD_VERSION, score_product
+from .sources.off import normalise_category
 
 logger = logging.getLogger(__name__)
 
@@ -157,6 +158,34 @@ class ProductRepository:
                 ),
             )
         return True
+
+    def renormalise_categories(self) -> int:
+        """Bring stored categories in line with the current mapping. Returns how many changed.
+
+        Rows written before the tags[-1] fallback was removed hold values like
+        "Groceries" and "peanut-butters". The original Open Food Facts tags are
+        not kept, so this works from the stored value, which is itself a tag --
+        enough to map the ones worth keeping and clear the rest.
+
+        The category lives in two places, the column that `alternatives` filters
+        on and the JSON the app displays. Both move together or a product is
+        ranked in one category and shown in another.
+        """
+        with self._tx() as cur:
+            rows = cur.execute("SELECT barcode, category, data FROM products WHERE category IS NOT NULL").fetchall()
+
+        updates = []
+        for row in rows:
+            new = normalise_category(row["category"])
+            if new == row["category"]:
+                continue
+            product = Product.model_validate_json(row["data"]).model_copy(update={"category": new})
+            updates.append((new, product.model_dump_json(), row["barcode"]))
+
+        if updates:
+            with self._tx() as cur:
+                cur.executemany("UPDATE products SET category = ?, data = ? WHERE barcode = ?", updates)
+        return len(updates)
 
     def stale_count(self, version: str = METHOD_VERSION) -> int:
         """Rows whose stored score was produced by a different method version."""
