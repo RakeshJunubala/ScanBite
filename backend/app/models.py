@@ -40,6 +40,10 @@ class Product(BaseModel):
     brand: str | None = None
     quantity: str | None = None
     category: str | None = None
+    # The source's own category tags, kept so our mapping can be improved without
+    # re-fetching. Without them a product's category is frozen at whatever the
+    # mapping happened to say the day it was imported.
+    category_tags: list[str] = Field(default_factory=list)
     is_drink: bool = False
     nutriments: Nutriments = Field(default_factory=Nutriments)
     serving_size_g: float | None = None
@@ -111,11 +115,27 @@ class ScoreResult(BaseModel):
     method_version: str
 
 
+class CategoryRank(BaseModel):
+    """Where a product sits among the others we hold in its category.
+
+    Deliberately separate from the score. The score is a pure function of one
+    product's label and reproduces from the published method; this depends on
+    what else is in our database and changes as that grows. Keeping them apart
+    is what lets the score stay defensible while still answering the question a
+    person actually has in a shop, which is "of these two, which one?".
+    """
+
+    category: str
+    better_than_percent: int  # 0-100, against the other scored products here
+    total: int  # how many scored products the category holds, including this one
+
+
 class ProductResult(BaseModel):
     """What the app receives after a scan."""
 
     product: Product
     score: ScoreResult
+    rank: CategoryRank | None = None
 
 
 class ProductSubmission(BaseModel):

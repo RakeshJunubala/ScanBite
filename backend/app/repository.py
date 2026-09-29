@@ -17,7 +17,7 @@ from pathlib import Path
 from .models import DataStatus, Product
 from .plausibility import sanitise
 from .scoring import METHOD_VERSION, score_product
-from .sources.off import normalise_category
+from .sources.off import category_from_tags, normalise_category
 
 logger = logging.getLogger(__name__)
 
@@ -162,25 +162,30 @@ class ProductRepository:
     def renormalise_categories(self) -> int:
         """Bring stored categories in line with the current mapping. Returns how many changed.
 
-        Rows written before the tags[-1] fallback was removed hold values like
-        "Groceries" and "peanut-butters". The original Open Food Facts tags are
-        not kept, so this works from the stored value, which is itself a tag --
-        enough to map the ones worth keeping and clear the rest.
+        Products carrying their source's tags are re-derived from those, so an
+        improvement to the priority order reaches them -- a potato wafer filed
+        under biscuits because Open Food Facts' hierarchy cascades can be moved
+        once the ordering is fixed.
+
+        Rows imported before we kept the tags fall back to normalising the stored
+        value, which is itself a tag. That clears junk like "Groceries" and maps
+        "peanut-butters", but it cannot correct a value that is already one of
+        ours and simply wrong. Those need a re-import.
 
         The category lives in two places, the column that `alternatives` filters
         on and the JSON the app displays. Both move together or a product is
         ranked in one category and shown in another.
         """
         with self._tx() as cur:
-            rows = cur.execute("SELECT barcode, category, data FROM products WHERE category IS NOT NULL").fetchall()
+            rows = cur.execute("SELECT barcode, category, data FROM products").fetchall()
 
         updates = []
         for row in rows:
-            new = normalise_category(row["category"])
+            product = Product.model_validate_json(row["data"])
+            new = category_from_tags(product.category_tags) if product.category_tags else normalise_category(row["category"])
             if new == row["category"]:
                 continue
-            product = Product.model_validate_json(row["data"]).model_copy(update={"category": new})
-            updates.append((new, product.model_dump_json(), row["barcode"]))
+            updates.append((new, product.model_copy(update={"category": new}).model_dump_json(), row["barcode"]))
 
         if updates:
             with self._tx() as cur:
@@ -249,6 +254,25 @@ class ProductRepository:
                 "SELECT * FROM submissions WHERE barcode = ? ORDER BY id DESC", (barcode,)
             ).fetchall()
         return [dict(r) for r in rows]
+
+    def category_standing(self, category: str, score: int) -> tuple[int, int]:
+        """How many scored products in this category score lower, and how many there are.
+
+        Counts strictly below, so products tied on a score do not claim to beat
+        each other. The total includes the product being asked about.
+        """
+        with self._tx() as cur:
+            row = cur.execute(
+                """
+                SELECT
+                    (SELECT COUNT(*) FROM products
+                      WHERE category = ? AND score IS NOT NULL AND score < ?) AS below,
+                    (SELECT COUNT(*) FROM products
+                      WHERE category = ? AND score IS NOT NULL) AS total
+                """,
+                (category, score, category),
+            ).fetchone()
+        return row["below"], row["total"]
 
     def alternatives(self, category: str, better_than: int, exclude: str, limit: int = 3) -> list[Product]:
         with self._tx() as cur:

@@ -81,7 +81,18 @@ export interface ScoreResult {
   method_version: string;
 }
 
+/**
+ * Where a product sits among the others the server holds in its category.
+ * Absent when the category is too small to say anything, or has no category.
+ */
+export interface CategoryRank {
+  category: string;
+  better_than_percent: number;
+  total: number;
+}
+
 export interface ProductResult {
   product: Product;
   score: ScoreResult;
+  rank?: CategoryRank | null;
 }

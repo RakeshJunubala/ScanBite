@@ -32,6 +32,7 @@ const ICONS = {
   ],
   flag: [p('M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z'), p('M4 22v-7')],
   question: [c(12, 12, 9), p('M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3'), p('M12 17h.01')],
+  chart: [p('M5 20v-8'), p('M12 20V5'), p('M19 20v-5')],
 } satisfies Record<string, Shape[]>;
 
 export type IconName = keyof typeof ICONS;

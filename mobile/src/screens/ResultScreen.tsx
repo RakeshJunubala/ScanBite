@@ -3,7 +3,7 @@ import { ActivityIndicator, Linking, Pressable, ScrollView, StyleSheet, Text, Vi
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { getAlternatives, getProduct, InvalidBarcodeError, NotFoundError, SourceUnavailableError } from '../api/client';
-import type { AdditiveFact, NutrientFact, Product, ProductResult, Risk } from '../api/types';
+import type { AdditiveFact, CategoryRank, NutrientFact, Product, ProductResult, Risk } from '../api/types';
 import { Icon, type IconName } from '../components/Icon';
 import { PackImage } from '../components/PackImage';
 import { ScorePill, ScoreRing, VerdictScale } from '../components/Score';
@@ -128,7 +128,7 @@ function Details({
   onScanNext: () => void;
   onEditAlerts: () => void;
 }) {
-  const { product, score } = result;
+  const { product, score, rank } = result;
   const tint = verdictStyle[score.verdict];
   const [showMethod, setShowMethod] = useState(false);
 
@@ -145,6 +145,7 @@ function Details({
           </View>
         </View>
         {score.score !== null && <VerdictScale score={score.score} verdict={score.verdict} />}
+        {rank ? <Standing rank={rank} /> : null}
         {score.incomplete && score.score !== null ? <LowConfidence missing={score.missing} /> : null}
         <TextButton label={showMethod ? 'Hide how this is scored' : 'How is this scored?'} icon="info" onPress={() => setShowMethod(!showMethod)} />
         {showMethod ? <Method result={result} /> : null}
@@ -322,6 +323,30 @@ const MISSING_LABEL: Record<string, string> = {
   saturated_fat_g: 'saturated fat',
   sodium_mg: 'sodium',
 };
+
+/**
+ * Where this product stands among its own kind.
+ *
+ * The verdict answers "is this good?" and, for most Indian packaged food, keeps
+ * answering "no" -- two thirds of everything we hold scores Avoid. That is
+ * accurate and useless to someone holding two packets in a shop. This answers
+ * the question they actually have: of these two, which one?
+ *
+ * Says "we have scored" rather than implying every biscuit in India, because the
+ * comparison is only ever against our own database.
+ */
+function Standing({ rank }: { rank: CategoryRank }) {
+  const category = rank.category.replace(/-/g, ' ');
+  return (
+    <View style={styles.standing}>
+      <Icon name="chart" size={16} color={colors.ink2} />
+      <Text style={styles.standingText}>
+        Better than <Text style={styles.bold}>{rank.better_than_percent}%</Text> of the {rank.total} {category} we
+        have scored
+      </Text>
+    </View>
+  );
+}
 
 /**
  * A score built on a partial nutrition table. This is deliberately loud: the
@@ -605,6 +630,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.amberBg,
   },
   lowConfText: { flex: 1, fontSize: 13, lineHeight: 19, color: colors.amberText },
+  standing: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingVertical: 2 },
+  standingText: { flex: 1, fontSize: 13, lineHeight: 18, color: colors.ink2 },
   overline: { fontSize: 12, fontWeight: '700', letterSpacing: 0.7 },
   productCard: { flexDirection: 'row', gap: 14, padding: 16 },
   productImage: { width: 84, height: 84, borderRadius: 14, backgroundColor: colors.placeholder, alignItems: 'center', justifyContent: 'center' },

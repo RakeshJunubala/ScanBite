@@ -71,6 +71,14 @@ _NOT_DRINK_TAGS = {"en:dairies", "en:milks", "en:dairy-drinks", "en:fermented-mi
 # so there is no value in inventing one per tag -- an unrecognised tag gives no
 # category at all. Entries below earn their place from real Indian data.
 _CATEGORY_PRIORITY: list[tuple[str, str]] = [
+    # Savoury snacks come first. Open Food Facts' hierarchy cascades, so a potato
+    # wafer carries en:biscuits by way of "biscuits-and-crackers" -- Balaji
+    # Chataka Pataka arrives tagged snacks, salty-snacks, chips-and-fries,
+    # crisps, namkeen *and* biscuits. The distinctive tag has to win, or crisps
+    # get ranked against shortbread.
+    ("chips-and-fries", "snacks"),
+    ("crisps", "snacks"),
+    ("namkeen", "snacks"),
     # Biscuits and bakery
     ("biscuits", "biscuits"),
     ("cookies", "biscuits"),
@@ -88,10 +96,10 @@ _CATEGORY_PRIORITY: list[tuple[str, str]] = [
     ("breakfast-cereals", "breakfast-cereals"),
     ("oats", "breakfast-cereals"),
     ("mueslis", "breakfast-cereals"),
-    # Savoury snacks
-    ("chips-and-fries", "snacks"),
+    # Savoury snacks. The distinctive ones are ordered above biscuits; these are
+    # the generic fallbacks, which a savoury cracker may legitimately share with
+    # biscuits and should lose to it.
     ("salty-snacks", "snacks"),
-    ("crisps", "snacks"),
     ("snacks", "snacks"),
     # Sweets
     ("chocolates", "chocolates"),
@@ -178,7 +186,7 @@ def normalise_category(value: str | None) -> str | None:
     return _CATEGORY_BY_TAG.get(name)
 
 
-def _category(tags: list[str]) -> str | None:
+def category_from_tags(tags: list[str]) -> str | None:
     """The most specific category we recognise, or None.
 
     Returning None matters. This used to fall back to the last tag Open Food
@@ -232,7 +240,8 @@ def map_off_product(barcode: str, raw: dict[str, Any]) -> Product:
         name=name.strip(),
         brand=brand,
         quantity=raw.get("quantity") or None,
-        category=_category(tags),
+        category=category_from_tags(tags),
+        category_tags=list(tags),
         is_drink=is_drink,
         nutriments=Nutriments(
             energy_kcal=energy,

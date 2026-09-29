@@ -90,3 +90,46 @@ def test_renormalise_fixes_rows_written_before_the_fallback_was_removed():
     assert column == repo.get("8901063139329").category
 
     assert repo.renormalise_categories() == 0  # idempotent
+
+
+def test_a_cascading_tag_does_not_beat_the_distinctive_one():
+    """Balaji Chataka Pataka, a real record, arrives with all of these at once.
+
+    Open Food Facts' hierarchy cascades, so a potato wafer carries en:biscuits
+    by way of "biscuits-and-crackers". Ranked as a biscuit it was compared
+    against shortbread.
+    """
+    balaji = (
+        "en:snacks", "en:salty-snacks", "en:sweet-snacks", "en:appetizers",
+        "en:biscuits-and-cakes", "en:biscuits-and-crackers", "en:chips-and-fries",
+        "en:biscuits", "en:crisps", "en:crackers-appetizers", "en:namkeen",
+    )
+    assert category_for(*balaji) == "snacks"
+
+    # A savoury cracker sharing only the generic snack tag stays a biscuit:
+    # its composition is closer to shortbread than to a crisp.
+    assert category_for("en:snacks", "en:salty-snacks", "en:biscuits") == "biscuits"
+
+
+def test_stored_tags_let_a_wrong_category_be_corrected_later():
+    """Without the source's own tags, a category is frozen at import time."""
+    from app.models import DataStatus, Product
+    from app.repository import ProductRepository
+
+    repo = ProductRepository(":memory:")
+    # As an older mapping would have filed it: a potato wafer under biscuits.
+    repo.upsert(
+        Product(
+            barcode="8906010500764",
+            name="Balaji Wafers",
+            category="biscuits",
+            category_tags=["en:snacks", "en:chips-and-fries", "en:biscuits", "en:crisps"],
+            status=DataStatus.community,
+        )
+    )
+    # A row from before we kept tags cannot be corrected, only cleaned.
+    repo.upsert(Product(barcode="8901063139329", name="Old Row", category="biscuits", status=DataStatus.community))
+
+    assert repo.renormalise_categories() == 1
+    assert repo.get("8906010500764").category == "snacks"  # re-derived from tags
+    assert repo.get("8901063139329").category == "biscuits"  # no tags, left alone

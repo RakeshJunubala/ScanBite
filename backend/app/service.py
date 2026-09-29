@@ -2,10 +2,13 @@
 
 from __future__ import annotations
 
-from .models import ProductResult
+from .models import CategoryRank, Product, ProductResult, ScoreResult
 from .repository import ProductRepository
 from .scoring import score_product
 from .sources.off import ProductSource
+
+# Below this many scored products, a percentile is noise wearing a number.
+MIN_CATEGORY_FOR_RANK = 8
 
 
 def normalize_barcode(code: str) -> str:
@@ -44,7 +47,33 @@ class ProductService:
                 self.repo.upsert(product)  # cache so we don't ask OFF again
         if product is None:
             return None
-        return ProductResult(product=product, score=score_product(product))
+        score = score_product(product)
+        return ProductResult(product=product, score=score, rank=self.rank(product, score))
+
+    def rank(self, product: Product, score: ScoreResult) -> CategoryRank | None:
+        """Where this product stands among its category, or None if we cannot say.
+
+        Kept out of the scoring engine on purpose: score_product() is a pure
+        function of one label, while this depends on everything else we hold.
+        Mixing them would make a score irreproducible from the published method.
+
+        Silent below MIN_CATEGORY_FOR_RANK. A percentile drawn from four products
+        looks precise and means nothing, and the categories that small are mostly
+        ones our mapping has not learned yet.
+        """
+        if score.score is None or not product.category:
+            return None
+        below, total = self.repo.category_standing(product.category, score.score)
+        if total < MIN_CATEGORY_FOR_RANK:
+            return None
+        peers = total - 1  # everyone but this product
+        if peers <= 0:
+            return None
+        return CategoryRank(
+            category=product.category,
+            better_than_percent=round(below / peers * 100),
+            total=total,
+        )
 
     def alternatives(self, barcode: str, limit: int = 3) -> list[ProductResult]:
         current = self.lookup(barcode)
