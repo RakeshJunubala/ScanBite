@@ -1,0 +1,438 @@
+{
+  "batch_id": "maggi-online-pilot-20261021",
+  "source_licence": "Open Food Facts database: ODbL; photos: contributor images, CC BY-SA. Records remain community, not verified.",
+  "entries": [
+    {
+      "barcode": "8901058000269",
+      "expected_data_sha256": "59eb609e9bb7d9e1e8e689d56af34ca1a37695c169a9c14b603666d89215c154",
+      "changes": {
+        "name": "MAGGI 2-Minute Noodles - Masala",
+        "brand": "MAGGI",
+        "category": "instant-noodles",
+        "category_tags": [
+          "en:instant-noodles"
+        ],
+        "quantity": "280 g",
+        "serving_size_g": 70,
+        "ingredients_text": "Noodles: Refined wheat flour (Maida), Palm oil, Iodized salt, Wheat gluten, Thickeners (508 & 412), Acidity regulators (501(i) & 500(i)) and Humectant (451(i)). Masala TASTEMAKER: Mixed spices (25.6%) (Onion powder, Coriander powder, Turmeric powder, Red chilli powder, Garlic powder, Cumin powder, Aniseed powder, Ginger powder, Fenugreek powder, Black pepper powder, Clove powder, Green cardamom powder & Nutmeg powder), Refined wheat flour (Maida), Hydrolysed groundnut protein, Sugar, Palm oil, Starch, Iodized salt, Thickener (508), Flavour enhancer (635), Toasted onion flakes, Acidity regulator (330), Colour (150d), Mineral and Wheat gluten.",
+        "nutriments": {
+          "energy_kcal": 384,
+          "protein_g": 8.2,
+          "sugars_g": 1.8,
+          "fat_g": 12.5,
+          "saturated_fat_g": 8.2,
+          "trans_fat_g": 0.13,
+          "added_sugars_g": 1.3,
+          "sodium_mg": 1028.3
+        },
+        "allergens": [
+          "wheat",
+          "gluten",
+          "peanut"
+        ],
+        "traces": [
+          "milk",
+          "mustard",
+          "oats",
+          "soy"
+        ]
+      },
+      "variant": {
+        "family": "2-Minute Noodles",
+        "flavour": "Masala",
+        "ingredient_variant": "25.6% mixed spices in tastemaker"
+      },
+      "evidence": {
+        "source_url": "https://world.openfoodfacts.org/api/v2/product/8901058000269.json",
+        "retrieved_at": "2026-10-21T08:25:01.881Z",
+        "source_revision": 43,
+        "product_url": "https://world.openfoodfacts.org/product/8901058000269",
+        "photos": {
+          "front": "https://images.openfoodfacts.org/images/products/890/105/800/0269/front_en.39.full.jpg",
+          "ingredients": "https://images.openfoodfacts.org/images/products/890/105/800/0269/ingredients_en.11.full.jpg",
+          "nutrition": "https://images.openfoodfacts.org/images/products/890/105/800/0269/nutrition_en.41.full.jpg"
+        },
+        "notes": "Nutrition transcribed from per-100-g column of the barcode-linked pack photo. Complete ingredients transcribed from its ingredient photo. Existing derived estimates not used as replacements for declared nutrients."
+      }
+    },
+    {
+      "barcode": "8901058000290",
+      "expected_data_sha256": "cfd5d6c3252840f16273c31f1beaefc0e15d967aed75dbe5176ab28c2d5b1159",
+      "changes": {
+        "name": "MAGGI 2-Minute Noodles - Masala",
+        "brand": "MAGGI",
+        "category": "instant-noodles",
+        "category_tags": [
+          "en:instant-noodles"
+        ],
+        "quantity": "70 g",
+        "serving_size_g": 70,
+        "ingredients_text": "Noodles: Refined wheat flour (Maida), Palm oil, Iodized salt, Wheat gluten, Thickeners (508 & 412), Acidity regulators (501(i) & 500(i)) and Humectant (451(i)). Masala TASTEMAKER: Mixed spices (25.6%) (Onion powder, Coriander powder, Turmeric powder, Red chilli powder, Garlic powder, Cumin powder, Aniseed powder, Ginger powder, Fenugreek powder, Black pepper powder, Clove powder, Green cardamom powder & Nutmeg powder), Refined wheat flour (Maida), Hydrolysed groundnut protein, Sugar, Palm oil, Starch, Iodized salt, Thickener (508), Flavour enhancer (635), Toasted onion flakes, Acidity regulator (330), Colour (150d), Mineral and Wheat gluten.",
+        "nutriments": {
+          "energy_kcal": 384,
+          "protein_g": 8.2,
+          "sugars_g": 1.8,
+          "fat_g": 12.5,
+          "saturated_fat_g": 8.2,
+          "trans_fat_g": 0.13,
+          "added_sugars_g": 1.3,
+          "sodium_mg": 1028.3
+        },
+        "allergens": [
+          "wheat",
+          "gluten",
+          "peanut"
+        ],
+        "traces": [
+          "milk",
+          "mustard",
+          "oats",
+          "soy"
+        ]
+      },
+      "variant": {
+        "family": "2-Minute Noodles",
+        "flavour": "Masala",
+        "ingredient_variant": "25.6% mixed spices in tastemaker"
+      },
+      "evidence": {
+        "source_url": "https://world.openfoodfacts.org/api/v2/product/8901058000290.json",
+        "retrieved_at": "2026-10-21T08:25:04.400Z",
+        "source_revision": 37,
+        "product_url": "https://world.openfoodfacts.org/product/8901058000290",
+        "photos": {
+          "front": "https://images.openfoodfacts.org/images/products/890/105/800/0290/front_en.36.full.jpg",
+          "ingredients": "https://images.openfoodfacts.org/images/products/890/105/800/0290/ingredients_en.7.full.jpg",
+          "nutrition": "https://images.openfoodfacts.org/images/products/890/105/800/0290/nutrition_en.9.full.jpg"
+        },
+        "notes": "The online record has no structured core nutrients. Read the barcode-linked nutrition and ingredient images instead. Retailer data showing 306 kcal was excluded because it conflicts with this 384 kcal label."
+      }
+    },
+    {
+      "barcode": "8901058022193",
+      "expected_data_sha256": "7adb326c042f94b23d2623b97adea04f146ac316c05706c033114b9e548801c5",
+      "changes": {
+        "name": "MAGGI 2-Minute Noodles - Masala",
+        "brand": "MAGGI",
+        "category": "instant-noodles",
+        "category_tags": [
+          "en:instant-noodles"
+        ],
+        "quantity": "70 g",
+        "serving_size_g": 70,
+        "ingredients_text": "Noodles: Refined wheat flour (Maida), Palm oil, Iodized salt, Wheat gluten, Thickeners (508 & 412), Acidity regulators (501(i) & 500(i)) and Humectant (451(i)). Masala TASTEMAKER: Mixed spices (26.2%) (Onion powder, Coriander powder, Red chilli powder, Turmeric powder, Garlic powder, Cumin powder, Aniseed powder, Ginger powder, Fenugreek powder, Black pepper powder, Toasted onion powder, Clove powder, Green cardamom powder, Nutmeg powder), Hydrolysed groundnut protein, Refined wheat flour (Maida), Sugar, Starch, Palm oil, Iodized salt, Thickener (508), Acidity regulator (330), Flavour enhancer (635), Colour (150d), Mineral and Wheat gluten.",
+        "nutriments": {
+          "energy_kcal": 384,
+          "protein_g": 8.2,
+          "sugars_g": 1.8,
+          "fat_g": 12.5,
+          "saturated_fat_g": 8.2,
+          "trans_fat_g": 0.13,
+          "added_sugars_g": 1.1,
+          "sodium_mg": 1000
+        },
+        "allergens": [
+          "wheat",
+          "gluten",
+          "peanut"
+        ],
+        "traces": [
+          "milk",
+          "oats",
+          "soy"
+        ]
+      },
+      "variant": {
+        "family": "2-Minute Noodles",
+        "flavour": "Masala",
+        "ingredient_variant": "26.2% mixed spices in tastemaker"
+      },
+      "evidence": {
+        "source_url": "https://world.openfoodfacts.org/api/v2/product/8901058022193.json",
+        "retrieved_at": "2026-10-21T08:25:20.935Z",
+        "source_revision": 27,
+        "product_url": "https://world.openfoodfacts.org/product/8901058022193",
+        "photos": {
+          "front": "https://images.openfoodfacts.org/images/products/890/105/802/2193/front_en.9.full.jpg",
+          "ingredients": "https://images.openfoodfacts.org/images/products/890/105/802/2193/ingredients_en.19.full.jpg",
+          "nutrition": "https://images.openfoodfacts.org/images/products/890/105/802/2193/nutrition_en.13.full.jpg"
+        },
+        "notes": "Photo declares sodium 1000.0 mg/100 g. Structured source sodium_100g=1000 is in grams and would be 1000 times too large; rejected in favour of the printed label. Corrected acidity-regulator OCR using the label photo."
+      }
+    },
+    {
+      "barcode": "8901058000276",
+      "expected_data_sha256": "0138126d1c7137119815f8d2ab0404421527765ac73326ac325847295c2b5d7d",
+      "changes": {
+        "name": "MAGGI 2-Minute Noodles - Masala",
+        "brand": "MAGGI",
+        "category": "instant-noodles",
+        "category_tags": [
+          "en:instant-noodles"
+        ],
+        "quantity": "140 g",
+        "serving_size_g": 70,
+        "nutriments": {
+          "energy_kcal": 384,
+          "protein_g": 8.2,
+          "sugars_g": 1.8,
+          "fat_g": 12.5,
+          "saturated_fat_g": 8.2,
+          "trans_fat_g": 0.13,
+          "added_sugars_g": 1.1,
+          "sodium_mg": 1000
+        }
+      },
+      "variant": {
+        "family": "2-Minute Noodles",
+        "flavour": "Masala",
+        "ingredient_variant": "Unknown: ingredient list unavailable"
+      },
+      "evidence": {
+        "source_url": "https://world.openfoodfacts.org/api/v2/product/8901058000276.json",
+        "retrieved_at": "2026-10-21T08:25:03.135Z",
+        "source_revision": 9,
+        "product_url": "https://world.openfoodfacts.org/product/8901058000276",
+        "photos": {
+          "front": "https://images.openfoodfacts.org/images/products/890/105/800/0276/front_en.3.full.jpg"
+        },
+        "notes": "Nutrition from refreshed structured data for this exact barcode. Ingredient list and nutrition photo unavailable, so the calculated score cannot include ingredient-dependent penalties. NOT assumed equivalent to other Masala recipes. Pack size supported by exact-barcode Indian retailer https://mydukaan.io/ezygrocerypatna/products/maggi-2-pack-7cc1ef2d14 ."
+      }
+    },
+    {
+      "barcode": "8901058003000",
+      "expected_data_sha256": "b096f2ffff969a44bf5a6b0028428ac91009421743bf22d299e50cdf58a0cba2",
+      "changes": {
+        "name": "MAGGI Pazzta - Cheese Macaroni",
+        "brand": "MAGGI",
+        "category": "pasta",
+        "category_tags": [
+          "en:pastas"
+        ],
+        "quantity": "75 g",
+        "serving_size_g": 75,
+        "ingredients_text": "Macaroni (pasta): Semolina (Wheat) (100%). Cheese TASTEMAKER: Milk solids, Potato, Iodized salt, Starch, Sugar, Cheese (5.8%), Dehydrated Sweetcorn (5.5%), Maltodextrin, Palm oil, Black pepper powder, Flavour enhancer (635), Roasted garlic flakes, Thickener (508), Dehydrated spring onion (0.4%), Natural flavour, Oregano bits, Margarine and Turmeric.",
+        "nutriments": {
+          "energy_kcal": 321.3333333333333,
+          "fat_g": 3.0666666666666664,
+          "saturated_fat_g": 2.9333333333333336,
+          "sugars_g": 7.2,
+          "sodium_mg": 726.1333333333333
+        },
+        "allergens": [
+          "wheat",
+          "gluten",
+          "milk"
+        ],
+        "traces": [
+          "mustard",
+          "soy"
+        ]
+      },
+      "variant": {
+        "family": "Pazzta",
+        "flavour": "Cheese",
+        "shape": "Macaroni",
+        "ingredient_variant": "Semolina pasta; cheese 5.8% and sweetcorn 5.5% in tastemaker"
+      },
+      "evidence": {
+        "source_url": "https://world.openfoodfacts.org/api/v2/product/8901058003000.json",
+        "retrieved_at": "2026-10-21T08:25:06.972Z",
+        "source_revision": 31,
+        "product_url": "https://world.openfoodfacts.org/product/8901058003000",
+        "photos": {
+          "front": "https://images.openfoodfacts.org/images/products/890/105/800/3000/front_en.13.full.jpg",
+          "ingredients": "https://images.openfoodfacts.org/images/products/890/105/800/3000/ingredients_en.24.full.jpg",
+          "nutrition": "https://images.openfoodfacts.org/images/products/890/105/800/3000/nutrition_en.4.full.jpg"
+        },
+        "notes": "Front label explicitly gives energy 241 kcal, fat 2.3 g, saturated fat 2.2 g, total sugars 5.4 g, sodium 544.6 mg per 75 g serving. Converted each to per 100 g by multiplying by 100/75. Ingredients photo confirms semolina and cheese. No guessed sodium or zero-filled missing nutrients."
+      }
+    },
+    {
+      "barcode": "89080153",
+      "expected_data_sha256": "84e889a62390fbb8f5f1ac0a26705283e9ee1ce8d339de575e977722322cd89d",
+      "changes": {
+        "name": "MAGGI Masala-ae-Magic Seasoning (38.7% spice blend)",
+        "brand": "MAGGI",
+        "category": "spices",
+        "category_tags": [
+          "en:spices"
+        ],
+        "quantity": "6 g",
+        "ingredients_text": "Mixed spices (38.7%) (Red chilli powder (7%), Onion powder, Cumin powder (5.2%), Garlic powder, Coriander powder, Capsicum extract, Turmeric powder (3.5%), Aniseed (1.4%), Black pepper powder (0.9%), Fenugreek powder (0.7%), Ginger powder, Clove powder (0.3%), Green cardamom powder (0.3%), Nutmeg powder (0.3%), Coriander extract & Cumin extract), Salt, Sugar, Flavour enhancer (635), Palm oil, Edible starch, Acidity regulator (330), Minerals, Caramel salt mix (Salt, Colour (150d), Palm oil) and Vitamin A.",
+        "nutriments": {
+          "energy_kcal": 166,
+          "protein_g": 4.2,
+          "sugars_g": 13.5,
+          "added_sugars_g": 12.6,
+          "fibre_g": 9.1,
+          "fat_g": 2.9,
+          "saturated_fat_g": 1.4,
+          "trans_fat_g": 0.04,
+          "sodium_mg": 10916
+        },
+        "allergens": [
+          "wheat",
+          "gluten",
+          "nuts"
+        ],
+        "traces": [
+          "milk",
+          "soy"
+        ]
+      },
+      "variant": {
+        "family": "Masala-ae-Magic seasoning",
+        "flavour": "Mixed spices",
+        "ingredient_variant": "38.7% mixed spices"
+      },
+      "evidence": {
+        "source_url": "https://world.openfoodfacts.org/api/v2/product/89080153.json",
+        "retrieved_at": "2026-10-21T08:27:32.685Z",
+        "source_revision": 30,
+        "product_url": "https://world.openfoodfacts.org/product/89080153",
+        "photos": {
+          "front": "https://images.openfoodfacts.org/images/products/000/008/908/0153/front_en.8.full.jpg",
+          "ingredients": "https://images.openfoodfacts.org/images/products/000/008/908/0153/ingredients_en.5.full.jpg",
+          "nutrition": "https://images.openfoodfacts.org/images/products/000/008/908/0153/nutrition_en.16.full.jpg"
+        },
+        "notes": "Complete nutrition and ingredients transcribed from this barcode's photos. Mixed-spice percentage is an ingredient distinction, not a claimed marketed flavour. Label nutrition differs from current generic manufacturer page; no cross-formulation substitution."
+      }
+    },
+    {
+      "barcode": "89080672",
+      "expected_data_sha256": "bf8dfa10bd79d5e9e6cc5ddbd3cc8ec212c2cd92c10e9c902fd8d3649225bef3",
+      "changes": {
+        "name": "MAGGI Masala-ae-Magic Seasoning (35.3% spice blend)",
+        "brand": "MAGGI",
+        "category": "spices",
+        "category_tags": [
+          "en:spices"
+        ],
+        "quantity": "6 g",
+        "ingredients_text": "Mixed spices (35.3%) (Roasted spice powder (17.5%) (Cumin, Coriander, Turmeric, Aniseed, Black pepper, Fenugreek, Ginger, Clove, Green cardamom powder, Nutmeg), Red chilli powder, Dehydrated onion, Dried garlic, Capsicum extract, Coriander extract, Cumin extract), Iodized salt, Sugar, Starch, Flavour enhancer (635), Thickener (508), Palm oil, Acidity regulator (330), Natural flavouring substance, Mineral, Colour (150d) and Vitamin.",
+        "nutriments": {
+          "energy_kcal": 166,
+          "protein_g": 4.2,
+          "sugars_g": 13.5,
+          "added_sugars_g": 12.6,
+          "fibre_g": 9.1,
+          "fat_g": 2.9,
+          "saturated_fat_g": 1.4,
+          "trans_fat_g": 0.04,
+          "sodium_mg": 10916
+        },
+        "traces": [
+          "wheat",
+          "milk",
+          "mustard",
+          "soy"
+        ]
+      },
+      "variant": {
+        "family": "Masala-ae-Magic seasoning",
+        "flavour": "Mixed spices",
+        "ingredient_variant": "35.3% mixed spices, including 17.5% roasted spice powder"
+      },
+      "evidence": {
+        "source_url": "https://world.openfoodfacts.org/api/v2/product/89080672.json",
+        "retrieved_at": "2026-10-21T08:27:40.118Z",
+        "source_revision": 30,
+        "product_url": "https://world.openfoodfacts.org/product/89080672",
+        "photos": {
+          "front": "https://images.openfoodfacts.org/images/products/000/008/908/0672/front_en.16.full.jpg",
+          "ingredients": "https://images.openfoodfacts.org/images/products/000/008/908/0672/ingredients_en.14.full.jpg",
+          "nutrition": "https://images.openfoodfacts.org/images/products/000/008/908/0672/nutrition_en.18.full.jpg"
+        },
+        "notes": "Nutrition and ingredients read from exact-barcode label photos. Added sugars 12.6 g from photo replaces conflicting structured estimate of 10.71 g. This is a different printed spice formulation from barcode 89080153."
+      }
+    },
+    {
+      "barcode": "8901058000252",
+      "expected_data_sha256": "52c432921f023ccd73253b9dc0aae0d5ee3788537bdd2c985237b769ff0ed2be",
+      "changes": {
+        "name": "MAGGI 2-Minute Noodles - Masala",
+        "brand": "MAGGI",
+        "category": "instant-noodles",
+        "category_tags": [
+          "en:instant-noodles"
+        ],
+        "quantity": "420 g",
+        "ingredients_text": "Noodles: refined wheat flour (maida), palm oil, iodized salt, wheat gluten, thickeners (508 & 412), acidity regulators (501(i) & 500(i)) and humectant (451(i)). Masala TASTEMAKER: mixed spices (25.6%) (onion powder, coriander powder, turmeric powder, red chilli powder, garlic powder, cumin powder, aniseed powder, ginger powder, fenugreek powder, black pepper powder, clove powder, green cardamom powder & nutmeg powder), refined wheat flour (maida), hydrolysed groundnut protein, sugar, palm oil, starch, iodized salt, thickener (508), flavour enhancer (635), toasted onion flakes, acidity regulator (330), colour (150d), mineral and wheat gluten."
+      },
+      "variant": {
+        "family": "2-Minute Noodles",
+        "flavour": "Masala",
+        "ingredient_variant": "25.6% mixed spices in tastemaker"
+      },
+      "evidence": {
+        "source_url": "https://world.openfoodfacts.org/api/v2/product/8901058000252.json",
+        "retrieved_at": "2026-10-21T08:25:00.567Z",
+        "source_revision": 14,
+        "product_url": "https://world.openfoodfacts.org/product/8901058000252",
+        "photos": {
+          "front": "https://images.openfoodfacts.org/images/products/890/105/800/0252/front_en.4.full.jpg",
+          "ingredients": "https://images.openfoodfacts.org/images/products/890/105/800/0252/ingredients_en.9.full.jpg"
+        },
+        "notes": "Replaced barcode-only name with product identity visible on front photo, filled ingredient list from exact-barcode record and assigned noodles category. Existing nutrition retained."
+      }
+    },
+    {
+      "barcode": "8901058003017",
+      "expected_data_sha256": "04d6d26fa8922cca54e0d8a78cb4f162a915ec0ee5238be2dd484e6d8326b848",
+      "changes": {
+        "name": "MAGGI Pazzta - Masala Penne",
+        "brand": "MAGGI",
+        "category": "pasta",
+        "category_tags": [
+          "en:pastas"
+        ]
+      },
+      "variant": {
+        "family": "Pazzta",
+        "flavour": "Masala",
+        "shape": "Penne",
+        "ingredient_variant": "Semolina pasta; milk solids and mixed spices in tastemaker"
+      },
+      "evidence": {
+        "source_url": "https://world.openfoodfacts.org/api/v2/product/8901058003017.json",
+        "retrieved_at": "2026-10-21T08:25:08.250Z",
+        "source_revision": 29,
+        "product_url": "https://world.openfoodfacts.org/product/8901058003017",
+        "photos": {
+          "front": "https://images.openfoodfacts.org/images/products/890/105/800/3017/front_en.24.full.jpg"
+        },
+        "notes": "Front photo confirms pasta, not instant noodles. Existing nutrition and ingredients retained."
+      }
+    },
+    {
+      "barcode": "8901058003079",
+      "expected_data_sha256": "c860ea0e70b4a05d80e94aacf5f2ee9c5676705a678cce6a3eb4b36de45bd4da",
+      "changes": {
+        "name": "MAGGI Pazzta - Cheesy Tomato Twist",
+        "brand": "MAGGI",
+        "category": "pasta",
+        "category_tags": [
+          "en:pastas"
+        ],
+        "quantity": "68.5 g"
+      },
+      "variant": {
+        "family": "Pazzta",
+        "flavour": "Cheesy Tomato",
+        "shape": "Twist",
+        "ingredient_variant": "Semolina pasta; milk, tomato and cheese in tastemaker"
+      },
+      "evidence": {
+        "source_url": "https://world.openfoodfacts.org/api/v2/product/8901058003079.json",
+        "retrieved_at": "2026-10-21T08:25:09.535Z",
+        "source_revision": 35,
+        "product_url": "https://world.openfoodfacts.org/product/8901058003079",
+        "photos": {
+          "front": "https://images.openfoodfacts.org/images/products/890/105/800/3079/front_en.21.full.jpg"
+        },
+        "notes": "Front photo confirms Cheesy Tomato Twist pasta. Existing nutrition and ingredients retained."
+      }
+    }
+  ]
+}

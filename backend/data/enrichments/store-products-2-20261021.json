@@ -1,0 +1,1227 @@
+{
+  "batch_id": "non-off-store-expansion-2-20261021",
+  "entries": [
+    {
+      "product": {
+        "barcode": "8908006217038",
+        "name": "Slurrp Farm Choco Ragi Cookies",
+        "brand": "Slurrp Farm",
+        "quantity": "80 g",
+        "category": "biscuits",
+        "category_tags": [
+          "en:biscuits"
+        ],
+        "is_drink": false,
+        "ingredients_text": "Multigrain flour blend (48%) (whole wheat, jowar, ragi), rice bran oil (12%), jaggery (11%), unrefined sugar (11%), cocoa powder (3.5%), chocolate chips, skimmed milk powder, corn flour, nature-identical flavour, raising agent (baking soda), salt, natural emulsifier (sunflower lecithin), xanthan gum, antioxidant (natural rosemary).",
+        "nutriments": {
+          "energy_kcal": 385.0,
+          "protein_g": 7.2,
+          "sugars_g": 22.4,
+          "added_sugars_g": 21.0,
+          "fibre_g": 6.3,
+          "sodium_mg": 260.4,
+          "fat_g": 14.2,
+          "saturated_fat_g": 3.1,
+          "trans_fat_g": 0.0
+        },
+        "serving_size_g": 8,
+        "allergens": [
+          "wheat",
+          "milk"
+        ],
+        "traces": [
+          "tree nuts"
+        ],
+        "status": "provisional",
+        "image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/ChocoRagiListing_D2C_1500x1500_1copy_016beebb-f91f-410a-93df-0613742de9f6.jpg?v=1783410915"
+      },
+      "evidence": {
+        "declared_barcode": "8908006217038",
+        "retrieved_at": "2026-10-21T13:52:24.032720+00:00",
+        "sources": [
+          {
+            "url": "https://slurrpfarm.com/products/the-good-cookie-tasty-no-maida-no-refined-sugar-choco-ragi-cookie",
+            "kind": "manufacturer_label_images_and_public_product_json"
+          },
+          {
+            "url": "https://slurrpfarm.com/products/the-good-cookie-tasty-no-maida-no-refined-sugar-choco-ragi-cookie.js",
+            "kind": "barcode_source_url"
+          },
+          {
+            "url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/ChocoRagiListing_D2C_1500x1500_9copy_44e8442c-1845-4df0-8be6-e9d063f1f749.jpg?v=1783410964",
+            "kind": "nutrition_image_url"
+          },
+          {
+            "url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/ChocoRagiListing_D2C_1500x1500_10copy_45f57def-1342-43b7-9ce7-11f36a2d3c4b.jpg?v=1783410976",
+            "kind": "ingredients_image_url"
+          }
+        ],
+        "declared_nutrition_basis": "per 100 g",
+        "declared_nutrition": {
+          "energy_kcal": 385,
+          "protein_g": 7.2,
+          "sugars_g": 22.4,
+          "added_sugars_g": 21,
+          "fibre_g": 6.3,
+          "sodium_mg": 260.4,
+          "fat_g": 14.2,
+          "saturated_fat_g": 3.1,
+          "trans_fat_g": 0
+        },
+        "stored_nutrition_basis": "per_100g",
+        "conversion_factor": 1.0,
+        "review_notes": "Single-pack barcode from manufacturer variant JSON; label images visually transcribed. All four core nutrients are declared. No Open Food Facts data used. Uncaptured optional nutrients remain null; empty allergen/traces arrays are not an absence claim.",
+        "barcode_source_url": "https://slurrpfarm.com/products/the-good-cookie-tasty-no-maida-no-refined-sugar-choco-ragi-cookie.js",
+        "nutrition_image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/ChocoRagiListing_D2C_1500x1500_9copy_44e8442c-1845-4df0-8be6-e9d063f1f749.jpg?v=1783410964",
+        "ingredients_image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/ChocoRagiListing_D2C_1500x1500_10copy_45f57def-1342-43b7-9ce7-11f36a2d3c4b.jpg?v=1783410976"
+      }
+    },
+    {
+      "product": {
+        "barcode": "8908006217045",
+        "name": "Slurrp Farm Banana Oat Cookies",
+        "brand": "Slurrp Farm",
+        "quantity": "80 g",
+        "category": "biscuits",
+        "category_tags": [
+          "en:biscuits"
+        ],
+        "is_drink": false,
+        "ingredients_text": "Multigrain flour blend (49%) (whole wheat, jowar, oat), rice bran oil (12%), jaggery (11%), unrefined sugar (11%), instant oat (3%), banana fruit powder (2%), skimmed milk powder, corn flour, nature-identical flavours, raising agent (baking soda), natural emulsifier (sunflower lecithin), salt, xanthan gum, antioxidant (natural rosemary).",
+        "nutriments": {
+          "energy_kcal": 393.0,
+          "protein_g": 7.3,
+          "sugars_g": 21.8,
+          "added_sugars_g": 20.9,
+          "fibre_g": 5.2,
+          "sodium_mg": 223.3,
+          "fat_g": 14.3,
+          "saturated_fat_g": 2.7,
+          "trans_fat_g": 0.0
+        },
+        "serving_size_g": 8,
+        "allergens": [
+          "wheat",
+          "milk",
+          "oats"
+        ],
+        "traces": [
+          "tree nuts"
+        ],
+        "status": "provisional",
+        "image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/BananaOatCookieListing_D2C_1500x1500_1copy_f1d57100-c3cc-4350-9c42-15a3a4a4fd09.jpg?v=1783411177"
+      },
+      "evidence": {
+        "declared_barcode": "8908006217045",
+        "retrieved_at": "2026-10-21T13:52:24.032720+00:00",
+        "sources": [
+          {
+            "url": "https://slurrpfarm.com/products/the-good-cookie-yummy-no-maida-no-refined-sugar-banana-oat-cookies",
+            "kind": "manufacturer_label_images_and_public_product_json"
+          },
+          {
+            "url": "https://slurrpfarm.com/products/the-good-cookie-yummy-no-maida-no-refined-sugar-banana-oat-cookies.js",
+            "kind": "barcode_source_url"
+          },
+          {
+            "url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/BananaOatCookieListing_D2C_1500x1500_9copy_4c15511a-3349-4110-bb9f-d9b24eef0850.jpg?v=1783411235",
+            "kind": "nutrition_image_url"
+          },
+          {
+            "url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/BananaOatCookieListing_D2C_1500x1500_10copy_04091c93-4191-43c7-917e-77ab95430e5b.jpg?v=1783411243",
+            "kind": "ingredients_image_url"
+          }
+        ],
+        "declared_nutrition_basis": "per 100 g",
+        "declared_nutrition": {
+          "energy_kcal": 393,
+          "protein_g": 7.3,
+          "sugars_g": 21.8,
+          "added_sugars_g": 20.9,
+          "fibre_g": 5.2,
+          "sodium_mg": 223.3,
+          "fat_g": 14.3,
+          "saturated_fat_g": 2.7,
+          "trans_fat_g": 0
+        },
+        "stored_nutrition_basis": "per_100g",
+        "conversion_factor": 1.0,
+        "review_notes": "Single-pack manufacturer barcode and visually read label images. All four core nutrients are declared. No Open Food Facts data used. Uncaptured optional nutrients remain null; empty allergen/traces arrays are not an absence claim.",
+        "barcode_source_url": "https://slurrpfarm.com/products/the-good-cookie-yummy-no-maida-no-refined-sugar-banana-oat-cookies.js",
+        "nutrition_image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/BananaOatCookieListing_D2C_1500x1500_9copy_4c15511a-3349-4110-bb9f-d9b24eef0850.jpg?v=1783411235",
+        "ingredients_image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/BananaOatCookieListing_D2C_1500x1500_10copy_04091c93-4191-43c7-917e-77ab95430e5b.jpg?v=1783411243"
+      }
+    },
+    {
+      "product": {
+        "barcode": "8906131685029",
+        "name": "Slurrp Farm Milky Choco Chip Cookies",
+        "brand": "Slurrp Farm",
+        "quantity": "80 g",
+        "category": "biscuits",
+        "category_tags": [
+          "en:biscuits"
+        ],
+        "is_drink": false,
+        "ingredients_text": "Cookies: multigrain flour blend (43%) (whole wheat, jowar), rice bran oil (11%), jaggery (11%), sugar (11%), cocoa powder (3.5%), skimmed milk powder, corn flour, nature-identical flavours, raising agent (baking soda), salt, natural emulsifier (sunflower lecithin), xanthan gum, antioxidant (natural rosemary). White chocolate chips (8.6%): sugar, non-hydrogenated edible oil, whole milk powder, skimmed milk powder.",
+        "nutriments": {
+          "energy_kcal": 398.0,
+          "protein_g": 7.7,
+          "sugars_g": 24.7,
+          "added_sugars_g": 24.5,
+          "fibre_g": 5.7,
+          "sodium_mg": 236.0,
+          "fat_g": 15.1,
+          "saturated_fat_g": 2.6,
+          "trans_fat_g": 0.0
+        },
+        "serving_size_g": 8,
+        "allergens": [
+          "milk",
+          "wheat"
+        ],
+        "traces": [
+          "tree nuts"
+        ],
+        "status": "provisional",
+        "image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/MilkyChoco-chipCookieListing_D2C_1500x1500_1copy.jpg?v=1783411103"
+      },
+      "evidence": {
+        "declared_barcode": "8906131685029",
+        "retrieved_at": "2026-10-21T13:52:24.032720+00:00",
+        "sources": [
+          {
+            "url": "https://slurrpfarm.com/products/milky-choco-chip-cookies",
+            "kind": "manufacturer_label_images_and_public_product_json"
+          },
+          {
+            "url": "https://slurrpfarm.com/products/milky-choco-chip-cookies.js",
+            "kind": "barcode_source_url"
+          },
+          {
+            "url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/MilkyChoco-chipCookieListing_D2C_1500x1500_9copy.jpg?v=1783411145",
+            "kind": "nutrition_image_url"
+          },
+          {
+            "url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/MilkyChoco-chipCookieListing_D2C_1500x1500_10copy.jpg?v=1783411156",
+            "kind": "ingredients_image_url"
+          }
+        ],
+        "declared_nutrition_basis": "per 100 g",
+        "declared_nutrition": {
+          "energy_kcal": 398,
+          "protein_g": 7.7,
+          "sugars_g": 24.7,
+          "added_sugars_g": 24.5,
+          "fibre_g": 5.7,
+          "sodium_mg": 236,
+          "fat_g": 15.1,
+          "saturated_fat_g": 2.6,
+          "trans_fat_g": 0
+        },
+        "stored_nutrition_basis": "per_100g",
+        "conversion_factor": 1.0,
+        "review_notes": "Manufacturer single-pack barcode, ingredients and per-100-g nutrition panel. All four core nutrients are declared. No Open Food Facts data used. Uncaptured optional nutrients remain null; empty allergen/traces arrays are not an absence claim.",
+        "barcode_source_url": "https://slurrpfarm.com/products/milky-choco-chip-cookies.js",
+        "nutrition_image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/MilkyChoco-chipCookieListing_D2C_1500x1500_9copy.jpg?v=1783411145",
+        "ingredients_image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/MilkyChoco-chipCookieListing_D2C_1500x1500_10copy.jpg?v=1783411156"
+      }
+    },
+    {
+      "product": {
+        "barcode": "8906131680598",
+        "name": "Slurrp Farm Mild Masala Millet Hakka Noodles",
+        "brand": "Slurrp Farm",
+        "quantity": "192 g",
+        "category": "instant-noodles",
+        "category_tags": [
+          "en:instant-noodles"
+        ],
+        "is_drink": false,
+        "ingredients_text": "Noodles: supergrain blend (whole wheat flour, foxtail millet flour) (91%), cluster bean powder (natural gum), iodised salt, antioxidant (rosemary extract) (INS 392). Spice mix (6%): spices (coriander, onion, garlic, chilli, cumin, turmeric, black pepper), raw sugar, corn starch, iodised salt, yeast extract powder, natural and nature-identical flavouring substances, citric acid (acidity regulator) (INS 330).",
+        "nutriments": {
+          "energy_kcal": 358.1,
+          "protein_g": 10.6,
+          "sugars_g": 1.6,
+          "added_sugars_g": 1.1,
+          "fibre_g": 10.5,
+          "sodium_mg": 331.8,
+          "fat_g": 3.6,
+          "saturated_fat_g": 0.3,
+          "trans_fat_g": 0.0
+        },
+        "serving_size_g": 50,
+        "allergens": [
+          "wheat"
+        ],
+        "traces": [
+          "tree nuts"
+        ],
+        "status": "provisional",
+        "image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/689da946-e7b8-4a2b-ba99-6548e56ad658.png?v=1710830886"
+      },
+      "evidence": {
+        "declared_barcode": "8906131680598",
+        "retrieved_at": "2026-10-21T13:52:24.032720+00:00",
+        "sources": [
+          {
+            "url": "https://slurrpfarm.com/products/millet-noodles-mild-masala",
+            "kind": "manufacturer_label_images_and_public_product_json"
+          },
+          {
+            "url": "https://slurrpfarm.com/products/millet-noodles-mild-masala.js",
+            "kind": "barcode_source_url"
+          },
+          {
+            "url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/752e6db7-5c1b-495a-a97f-58e43c6017e2.png?v=1710830886",
+            "kind": "nutrition_image_url"
+          },
+          {
+            "url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/752e6db7-5c1b-495a-a97f-58e43c6017e2.png?v=1710830886",
+            "kind": "ingredients_image_url"
+          }
+        ],
+        "declared_nutrition_basis": "per 100 g",
+        "declared_nutrition": {
+          "energy_kcal": 358.1,
+          "protein_g": 10.6,
+          "sugars_g": 1.6,
+          "added_sugars_g": 1.1,
+          "fibre_g": 10.5,
+          "sodium_mg": 331.8,
+          "fat_g": 3.6,
+          "saturated_fat_g": 0.3,
+          "trans_fat_g": 0
+        },
+        "stored_nutrition_basis": "per_100g",
+        "conversion_factor": 1.0,
+        "review_notes": "Complete back-of-pack photo includes the exact barcode and ingredients/nutrition together. Values are for this 192-g label, not the separately listed 96-g recipe. Dry product including seasoning, before added oil or vegetables. All four core nutrients are declared. No Open Food Facts data used. Uncaptured optional nutrients remain null; empty allergen/traces arrays are not an absence claim.",
+        "barcode_source_url": "https://slurrpfarm.com/products/millet-noodles-mild-masala.js",
+        "nutrition_image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/752e6db7-5c1b-495a-a97f-58e43c6017e2.png?v=1710830886",
+        "ingredients_image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/752e6db7-5c1b-495a-a97f-58e43c6017e2.png?v=1710830886"
+      }
+    },
+    {
+      "product": {
+        "barcode": "8906131681717",
+        "name": "Slurrp Farm Curry Masala Millet Hakka Noodles",
+        "brand": "Slurrp Farm",
+        "quantity": "192 g",
+        "category": "instant-noodles",
+        "category_tags": [
+          "en:instant-noodles"
+        ],
+        "is_drink": false,
+        "ingredients_text": "Noodles: supergrain blend (whole wheat flour, foxtail millet flour) (91%), cluster bean powder (natural gum), iodised salt. Spice mix (6%): spices (garlic, onion, coriander, chilli, cumin), iodised salt, raw sugar, milk solids, corn starch, yeast extract powder, natural flavouring substances, citric acid (INS 330), antioxidant (rosemary extract) (INS 392).",
+        "nutriments": {
+          "energy_kcal": 354.6,
+          "protein_g": 10.7,
+          "sugars_g": 1.7,
+          "added_sugars_g": 0.8,
+          "fibre_g": 10.5,
+          "sodium_mg": 633.4,
+          "fat_g": 3.5,
+          "saturated_fat_g": 0.4,
+          "trans_fat_g": 0.0
+        },
+        "serving_size_g": 50,
+        "allergens": [
+          "wheat",
+          "milk"
+        ],
+        "traces": [
+          "tree nuts"
+        ],
+        "status": "provisional",
+        "image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/products/1_Noodles_Curry-Masala_Listing-for-Website_Front.png?v=1719224726"
+      },
+      "evidence": {
+        "declared_barcode": "8906131681717",
+        "retrieved_at": "2026-10-21T13:52:24.032720+00:00",
+        "sources": [
+          {
+            "url": "https://slurrpfarm.com/products/millet-noodles-curry-masala",
+            "kind": "manufacturer_label_images_and_public_product_json"
+          },
+          {
+            "url": "https://slurrpfarm.com/products/millet-noodles-curry-masala.js",
+            "kind": "barcode_source_url"
+          },
+          {
+            "url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/products/2_Noodles_Curry-Masala_Listing-for-Website_Back.png?v=1673119364",
+            "kind": "nutrition_image_url"
+          },
+          {
+            "url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/products/2_Noodles_Curry-Masala_Listing-for-Website_Back.png?v=1673119364",
+            "kind": "ingredients_image_url"
+          }
+        ],
+        "declared_nutrition_basis": "per 100 g",
+        "declared_nutrition": {
+          "energy_kcal": 354.6,
+          "protein_g": 10.7,
+          "sugars_g": 1.7,
+          "added_sugars_g": 0.8,
+          "fibre_g": 10.5,
+          "sodium_mg": 633.4,
+          "fat_g": 3.5,
+          "saturated_fat_g": 0.4,
+          "trans_fat_g": 0
+        },
+        "stored_nutrition_basis": "per_100g",
+        "conversion_factor": 1.0,
+        "review_notes": "Exact single-pack barcode and complete back label; 3-pack bundle excluded. Dry/as-sold noodle and seasoning panel. All four core nutrients are declared. No Open Food Facts data used. Uncaptured optional nutrients remain null; empty allergen/traces arrays are not an absence claim.",
+        "barcode_source_url": "https://slurrpfarm.com/products/millet-noodles-curry-masala.js",
+        "nutrition_image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/products/2_Noodles_Curry-Masala_Listing-for-Website_Back.png?v=1673119364",
+        "ingredients_image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/products/2_Noodles_Curry-Masala_Listing-for-Website_Back.png?v=1673119364"
+      }
+    },
+    {
+      "product": {
+        "barcode": "8906131681137",
+        "name": "Slurrp Farm Multigrain Macaroni Pasta",
+        "brand": "Slurrp Farm",
+        "quantity": "400 g",
+        "category": "pasta",
+        "category_tags": [
+          "en:pastas"
+        ],
+        "is_drink": false,
+        "ingredients_text": "Multigrain blend (86%) (corn, brown rice, white rice), tapioca starch (13%), guar gum.",
+        "nutriments": {
+          "energy_kcal": 359.0,
+          "protein_g": 5.7,
+          "sugars_g": 0.7,
+          "added_sugars_g": 0.0,
+          "fibre_g": 2.9,
+          "sodium_mg": 5.3,
+          "fat_g": 1.6,
+          "saturated_fat_g": 0.3,
+          "trans_fat_g": 0.0
+        },
+        "serving_size_g": null,
+        "allergens": [
+          "corn"
+        ],
+        "traces": [],
+        "status": "provisional",
+        "image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/2A_Macaroni-Pasta_Front_Website_1500x1500_e7fefa27-6b74-42dc-8bf3-69e37b99a126.jpg?v=1726341300"
+      },
+      "evidence": {
+        "declared_barcode": "8906131681137",
+        "retrieved_at": "2026-10-21T13:52:24.032720+00:00",
+        "sources": [
+          {
+            "url": "https://slurrpfarm.com/products/macaroni-pasta",
+            "kind": "manufacturer_label_images_and_public_product_json"
+          },
+          {
+            "url": "https://slurrpfarm.com/products/macaroni-pasta.js",
+            "kind": "barcode_source_url"
+          },
+          {
+            "url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/2E_Macaroni-Pasta_Nutri_Website_1500x1500_6170909d-f6a3-4bed-9e91-6eb2e564d9c7.jpg?v=1726341177",
+            "kind": "nutrition_image_url"
+          },
+          {
+            "url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/2D_Macaroni-Pasta_Ingre_Website_1500x1500_e7cb7147-7e8d-4a33-af40-a8d65a3ca5d9.jpg?v=1726341187",
+            "kind": "ingredients_image_url"
+          }
+        ],
+        "declared_nutrition_basis": "per 100 g",
+        "declared_nutrition": {
+          "energy_kcal": 359,
+          "protein_g": 5.7,
+          "sugars_g": 0.7,
+          "added_sugars_g": 0,
+          "fibre_g": 2.9,
+          "sodium_mg": 5.3,
+          "fat_g": 1.6,
+          "saturated_fat_g": 0.3,
+          "trans_fat_g": 0
+        },
+        "stored_nutrition_basis": "per_100g",
+        "conversion_factor": 1.0,
+        "review_notes": "Manufacturer front image states 400 g. Separate JSON barcode and label images checked for each shape. Identical ingredient/nutrient panels do not make macaroni and fusilli the same product. Dry pasta values; explicit sodium used despite rounded salt declaration. All four core nutrients are declared. No Open Food Facts data used. Uncaptured optional nutrients remain null; empty allergen/traces arrays are not an absence claim.",
+        "barcode_source_url": "https://slurrpfarm.com/products/macaroni-pasta.js",
+        "nutrition_image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/2E_Macaroni-Pasta_Nutri_Website_1500x1500_6170909d-f6a3-4bed-9e91-6eb2e564d9c7.jpg?v=1726341177",
+        "ingredients_image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/2D_Macaroni-Pasta_Ingre_Website_1500x1500_e7cb7147-7e8d-4a33-af40-a8d65a3ca5d9.jpg?v=1726341187"
+      }
+    },
+    {
+      "product": {
+        "barcode": "8906131681120",
+        "name": "Slurrp Farm Multigrain Fusilli Pasta",
+        "brand": "Slurrp Farm",
+        "quantity": "400 g",
+        "category": "pasta",
+        "category_tags": [
+          "en:pastas"
+        ],
+        "is_drink": false,
+        "ingredients_text": "Multigrain blend (86%) (corn, brown rice, white rice), tapioca starch (13%), guar gum.",
+        "nutriments": {
+          "energy_kcal": 359.0,
+          "protein_g": 5.7,
+          "sugars_g": 0.7,
+          "added_sugars_g": 0.0,
+          "fibre_g": 2.9,
+          "sodium_mg": 5.3,
+          "fat_g": 1.6,
+          "saturated_fat_g": 0.3,
+          "trans_fat_g": 0.0
+        },
+        "serving_size_g": null,
+        "allergens": [
+          "corn"
+        ],
+        "traces": [],
+        "status": "provisional",
+        "image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/1A_Fusilli-Pasta_Front_Website_1500x1500_74222992-8852-422a-91b1-ab1c21f44c4f.jpg?v=1726339303"
+      },
+      "evidence": {
+        "declared_barcode": "8906131681120",
+        "retrieved_at": "2026-10-21T13:52:24.032720+00:00",
+        "sources": [
+          {
+            "url": "https://slurrpfarm.com/products/fusilli-pasta",
+            "kind": "manufacturer_label_images_and_public_product_json"
+          },
+          {
+            "url": "https://slurrpfarm.com/products/fusilli-pasta.js",
+            "kind": "barcode_source_url"
+          },
+          {
+            "url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/1E_Fusilli-Pasta_Nutri_Website_1500x1500_ad90b19f-1876-4abe-bb8e-0700b8042d8c.jpg?v=1726339273",
+            "kind": "nutrition_image_url"
+          },
+          {
+            "url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/1D_Fusilli-Pasta_Ingre_Website_1500x1500_6087352c-e4af-4dec-8610-d06c756d37a7.jpg?v=1726339276",
+            "kind": "ingredients_image_url"
+          }
+        ],
+        "declared_nutrition_basis": "per 100 g",
+        "declared_nutrition": {
+          "energy_kcal": 359,
+          "protein_g": 5.7,
+          "sugars_g": 0.7,
+          "added_sugars_g": 0,
+          "fibre_g": 2.9,
+          "sodium_mg": 5.3,
+          "fat_g": 1.6,
+          "saturated_fat_g": 0.3,
+          "trans_fat_g": 0
+        },
+        "stored_nutrition_basis": "per_100g",
+        "conversion_factor": 1.0,
+        "review_notes": "Manufacturer front image states 400 g. Separate JSON barcode and label images checked for each shape. Identical ingredient/nutrient panels do not make macaroni and fusilli the same product. Dry pasta values; explicit sodium used despite rounded salt declaration. All four core nutrients are declared. No Open Food Facts data used. Uncaptured optional nutrients remain null; empty allergen/traces arrays are not an absence claim.",
+        "barcode_source_url": "https://slurrpfarm.com/products/fusilli-pasta.js",
+        "nutrition_image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/1E_Fusilli-Pasta_Nutri_Website_1500x1500_ad90b19f-1876-4abe-bb8e-0700b8042d8c.jpg?v=1726339273",
+        "ingredients_image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/1D_Fusilli-Pasta_Ingre_Website_1500x1500_6087352c-e4af-4dec-8610-d06c756d37a7.jpg?v=1726339276"
+      }
+    },
+    {
+      "product": {
+        "barcode": "8908006217717",
+        "name": "Slurrp Farm Jaggery Powder",
+        "brand": "Slurrp Farm",
+        "quantity": "300 g",
+        "category": "sweeteners",
+        "category_tags": [
+          "en:jaggery"
+        ],
+        "is_drink": false,
+        "ingredients_text": "100% artisanal jaggery powder.",
+        "nutriments": {
+          "energy_kcal": 370.0,
+          "protein_g": 0.0,
+          "sugars_g": 91.99999999999999,
+          "added_sugars_g": 0.0,
+          "fibre_g": 0.0,
+          "sodium_mg": 0.0,
+          "fat_g": 0.0,
+          "saturated_fat_g": 0.0,
+          "trans_fat_g": 0.0
+        },
+        "serving_size_g": 10,
+        "allergens": [],
+        "traces": [
+          "wheat",
+          "tree nuts"
+        ],
+        "status": "provisional",
+        "image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/1_JaggeryPowder_Front_1500x1500_e3ec458f-9f4a-4b0f-992d-020d8c07ad41.jpg?v=1714050819"
+      },
+      "evidence": {
+        "declared_barcode": "8908006217717",
+        "retrieved_at": "2026-10-21T13:52:24.032720+00:00",
+        "sources": [
+          {
+            "url": "https://slurrpfarm.com/products/natural-jaggery-powder",
+            "kind": "manufacturer_label_images_and_public_product_json"
+          },
+          {
+            "url": "https://slurrpfarm.com/products/natural-jaggery-powder.js",
+            "kind": "barcode_source_url"
+          },
+          {
+            "url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/5_JaggeryPowder_Nutri_1500x1500_a57ff70d-c099-403f-91ce-16e2a0d864c8.jpg?v=1714050814",
+            "kind": "nutrition_image_url"
+          },
+          {
+            "url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/4_JaggeryPowder_Ingre_1500x1500_5404da5c-68e3-4944-ba0b-42f271097651.jpg?v=1714050809",
+            "kind": "ingredients_image_url"
+          }
+        ],
+        "declared_nutrition_basis": "per 10 g",
+        "declared_nutrition": {
+          "energy_kcal": 37,
+          "protein_g": 0,
+          "sugars_g": 9.2,
+          "added_sugars_g": 0,
+          "fibre_g": 0,
+          "sodium_mg": 0,
+          "fat_g": 0,
+          "saturated_fat_g": 0,
+          "trans_fat_g": 0
+        },
+        "stored_nutrition_basis": "per_100g",
+        "conversion_factor": 10.0,
+        "review_notes": "Manufacturer table is per 10 g; all values multiplied by 10. Total natural sugar becomes 92 g/100 g. Added-sugar zero is the label declaration for the single ingredient and is not a free-sugar or health claim. Pack contains 30 servings of 10 g. All four core nutrients are declared. No Open Food Facts data used. Uncaptured optional nutrients remain null; empty allergen/traces arrays are not an absence claim.",
+        "barcode_source_url": "https://slurrpfarm.com/products/natural-jaggery-powder.js",
+        "nutrition_image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/5_JaggeryPowder_Nutri_1500x1500_a57ff70d-c099-403f-91ce-16e2a0d864c8.jpg?v=1714050814",
+        "ingredients_image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/4_JaggeryPowder_Ingre_1500x1500_5404da5c-68e3-4944-ba0b-42f271097651.jpg?v=1714050809"
+      }
+    },
+    {
+      "product": {
+        "barcode": "8908006217090",
+        "name": "Slurrp Farm Chocolate Millet Pancake Mix",
+        "brand": "Slurrp Farm",
+        "quantity": "150 g",
+        "category": "breakfast-cereals",
+        "category_tags": [
+          "en:breakfast-cereals"
+        ],
+        "is_drink": false,
+        "ingredients_text": "Supergrain blend (69%) (jowar flour, oat flour, foxtail millet flour, ragi flour), jaggery (12.5%), raw unrefined sugar (12.5%), cocoa powder, baking powder, raising agent (baking soda) (INS 500(ii)), natural flavour, iodised salt, cinnamon powder.",
+        "nutriments": {
+          "energy_kcal": 383.2,
+          "protein_g": 8.1,
+          "sugars_g": 24.7,
+          "added_sugars_g": 24.0,
+          "fibre_g": 6.0,
+          "sodium_mg": 297.4,
+          "fat_g": 3.6,
+          "saturated_fat_g": 0.8,
+          "trans_fat_g": 0.0
+        },
+        "serving_size_g": 40,
+        "allergens": [
+          "oats"
+        ],
+        "traces": [
+          "wheat",
+          "tree nuts"
+        ],
+        "status": "provisional",
+        "image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/625fbc69-a1db-4333-94ba-3dd374adfe95.png?v=1710835833"
+      },
+      "evidence": {
+        "declared_barcode": "8908006217090",
+        "retrieved_at": "2026-10-21T13:52:24.032720+00:00",
+        "sources": [
+          {
+            "url": "https://slurrpfarm.com/products/chocolate-millet-pancake-copy",
+            "kind": "manufacturer_label_images_and_public_product_json"
+          },
+          {
+            "url": "https://slurrpfarm.com/products/chocolate-millet-pancake-copy.js",
+            "kind": "barcode_source_url"
+          },
+          {
+            "url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/6_ChocolatePancake_Nutri_1500x1500_f67f1114-715a-4de4-bff3-8e062b29dcff.jpg?v=1710835833",
+            "kind": "nutrition_image_url"
+          },
+          {
+            "url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/5_ChocolatePancake_Ingre_1500x1500_90729c53-a6b8-4de9-9c3a-0e8dd838744d.jpg?v=1710835833",
+            "kind": "ingredients_image_url"
+          }
+        ],
+        "declared_nutrition_basis": "per 100 g",
+        "declared_nutrition": {
+          "energy_kcal": 383.2,
+          "protein_g": 8.1,
+          "sugars_g": 24.7,
+          "added_sugars_g": 24,
+          "fibre_g": 6,
+          "sodium_mg": 297.4,
+          "fat_g": 3.6,
+          "saturated_fat_g": 0.8,
+          "trans_fat_g": 0
+        },
+        "stored_nutrition_basis": "per_100g",
+        "conversion_factor": 1.0,
+        "review_notes": "Instamart and Zepto used for discovery only. Instamart generic figures differ and omit sodium/barcode; stored panel comes entirely from the manufacturer images and single-pack barcode JSON. Dry mix, excluding added milk/oil. All four core nutrients are declared. No Open Food Facts data used. Uncaptured optional nutrients remain null; empty allergen/traces arrays are not an absence claim.",
+        "barcode_source_url": "https://slurrpfarm.com/products/chocolate-millet-pancake-copy.js",
+        "nutrition_image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/6_ChocolatePancake_Nutri_1500x1500_f67f1114-715a-4de4-bff3-8e062b29dcff.jpg?v=1710835833",
+        "ingredients_image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/5_ChocolatePancake_Ingre_1500x1500_90729c53-a6b8-4de9-9c3a-0e8dd838744d.jpg?v=1710835833"
+      }
+    },
+    {
+      "product": {
+        "barcode": "8906131684930",
+        "name": "Slurrp Farm Mild Masala Millet Hakka Noodles",
+        "brand": "Slurrp Farm",
+        "quantity": "96 g",
+        "category": "instant-noodles",
+        "category_tags": [
+          "en:instant-noodles"
+        ],
+        "is_drink": false,
+        "ingredients_text": "Noodles (94%): multigrain flour blend (93%) (whole wheat, foxtail millet), thickener (6.7%) (guar gum), salt, antioxidant (natural rosemary). Spice mix (6%): mixed spices (coriander, chilli, black pepper, amchur, turmeric, nutmeg, fennel, cumin, ginger, fenugreek, star anise, allspice, garam masala, clove, cinnamon), maltodextrin, salt, jaggery powder, dehydrated vegetables (onion, garlic), natural flavouring substances, edible vegetable oil (sunflower oil), dehydrated curry leaves, natural colours (paprika extract, turmeric extract), acidity regulator (citric acid).",
+        "nutriments": {
+          "energy_kcal": 344.0,
+          "protein_g": 9.3,
+          "sugars_g": 3.0,
+          "added_sugars_g": 0.8,
+          "fibre_g": 13.9,
+          "sodium_mg": 316.1,
+          "fat_g": 2.5,
+          "saturated_fat_g": 0.3,
+          "trans_fat_g": 0.0
+        },
+        "serving_size_g": 50,
+        "allergens": [
+          "wheat"
+        ],
+        "traces": [
+          "milk",
+          "soy",
+          "tree nuts"
+        ],
+        "status": "provisional",
+        "image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/1_Noodle_Mild-Masala_96g_D2C_1500x1500_cb8d8113-c095-413b-a16d-1b86a20c0a07.jpg?v=1777795033"
+      },
+      "evidence": {
+        "declared_barcode": "8906131684930",
+        "retrieved_at": "2026-10-21T13:52:24.032720+00:00",
+        "sources": [
+          {
+            "url": "https://slurrpfarm.com/products/millet-noodles-mild-masala-serves-2",
+            "kind": "manufacturer_label_images_and_public_product_json"
+          },
+          {
+            "url": "https://slurrpfarm.com/products/millet-noodles-mild-masala-serves-2.js",
+            "kind": "barcode_source_url"
+          },
+          {
+            "url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/10_Noodle_Mild-Masala_96g_D2C_1500x1500_4534b610-04e1-450a-a4d2-e3245b31c4c5.jpg?v=1777795100",
+            "kind": "nutrition_image_url"
+          },
+          {
+            "url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/11_Noodle_Mild-Masala_96g_D2C_1500x1500_48f58420-9010-4613-89af-59742c1216a9.jpg?v=1777795108",
+            "kind": "ingredients_image_url"
+          }
+        ],
+        "declared_nutrition_basis": "per 100 g",
+        "declared_nutrition": {
+          "energy_kcal": 344,
+          "protein_g": 9.3,
+          "sugars_g": 3,
+          "added_sugars_g": 0.8,
+          "fibre_g": 13.9,
+          "sodium_mg": 316.1,
+          "fat_g": 2.5,
+          "saturated_fat_g": 0.3,
+          "trans_fat_g": 0
+        },
+        "stored_nutrition_basis": "per_100g",
+        "conversion_factor": 1.0,
+        "review_notes": "Both manufacturer ingredient images read separately; same listed ingredients, different flavour/nutrition. Used per-100-g column, not per-50-g column. These 96-g variants have their own barcodes and differ from 192-g labels; never copied values across pack sizes. All four core nutrients are declared. No Open Food Facts data used. Uncaptured optional nutrients remain null; empty allergen/traces arrays are not an absence claim.",
+        "barcode_source_url": "https://slurrpfarm.com/products/millet-noodles-mild-masala-serves-2.js",
+        "nutrition_image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/10_Noodle_Mild-Masala_96g_D2C_1500x1500_4534b610-04e1-450a-a4d2-e3245b31c4c5.jpg?v=1777795100",
+        "ingredients_image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/11_Noodle_Mild-Masala_96g_D2C_1500x1500_48f58420-9010-4613-89af-59742c1216a9.jpg?v=1777795108"
+      }
+    },
+    {
+      "product": {
+        "barcode": "8906131684923",
+        "name": "Slurrp Farm Classic Masala Millet Hakka Noodles",
+        "brand": "Slurrp Farm",
+        "quantity": "96 g",
+        "category": "instant-noodles",
+        "category_tags": [
+          "en:instant-noodles"
+        ],
+        "is_drink": false,
+        "ingredients_text": "Noodles (94%): multigrain flour blend (93%) (whole wheat, foxtail millet), thickener (6.7%) (guar gum), salt, antioxidant (natural rosemary). Spice mix (6%): mixed spices (coriander, chilli, black pepper, amchur, turmeric, nutmeg, fennel, cumin, ginger, fenugreek, star anise, allspice, garam masala, clove, cinnamon), maltodextrin, salt, jaggery powder, dehydrated vegetables (onion, garlic), natural flavouring substances, edible vegetable oil (sunflower oil), dehydrated curry leaves, natural colours (paprika extract, turmeric extract), acidity regulator (citric acid).",
+        "nutriments": {
+          "energy_kcal": 342.0,
+          "protein_g": 9.3,
+          "sugars_g": 3.0,
+          "added_sugars_g": 0.8,
+          "fibre_g": 14.0,
+          "sodium_mg": 531.2,
+          "fat_g": 2.6,
+          "saturated_fat_g": 0.3,
+          "trans_fat_g": 0.0
+        },
+        "serving_size_g": 50,
+        "allergens": [
+          "wheat"
+        ],
+        "traces": [
+          "milk",
+          "soy",
+          "tree nuts"
+        ],
+        "status": "provisional",
+        "image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/1_Noodle_Classic-Masala_96g_D2C_1500x1500_cf04d976-2db4-41d8-84c2-27b896df75a4.jpg?v=1777795142"
+      },
+      "evidence": {
+        "declared_barcode": "8906131684923",
+        "retrieved_at": "2026-10-21T13:52:24.032720+00:00",
+        "sources": [
+          {
+            "url": "https://slurrpfarm.com/products/classic-masala-serves-2-96-gms",
+            "kind": "manufacturer_label_images_and_public_product_json"
+          },
+          {
+            "url": "https://slurrpfarm.com/products/classic-masala-serves-2-96-gms.js",
+            "kind": "barcode_source_url"
+          },
+          {
+            "url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/10_Noodle_Classic-Masala_96g_D2C_1500x1500_22a8ecb8-c17a-4b33-91b0-260ee801934f.jpg?v=1777795227",
+            "kind": "nutrition_image_url"
+          },
+          {
+            "url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/11_Noodle_Classic-Masala_96g_D2C_1500x1500_562d22ff-0557-4ae0-80f7-c57867969d59.jpg?v=1777795242",
+            "kind": "ingredients_image_url"
+          }
+        ],
+        "declared_nutrition_basis": "per 100 g",
+        "declared_nutrition": {
+          "energy_kcal": 342,
+          "protein_g": 9.3,
+          "sugars_g": 3,
+          "added_sugars_g": 0.8,
+          "fibre_g": 14,
+          "sodium_mg": 531.2,
+          "fat_g": 2.6,
+          "saturated_fat_g": 0.3,
+          "trans_fat_g": 0
+        },
+        "stored_nutrition_basis": "per_100g",
+        "conversion_factor": 1.0,
+        "review_notes": "Both manufacturer ingredient images read separately; same listed ingredients, different flavour/nutrition. Used per-100-g column, not per-50-g column. These 96-g variants have their own barcodes and differ from 192-g labels; never copied values across pack sizes. All four core nutrients are declared. No Open Food Facts data used. Uncaptured optional nutrients remain null; empty allergen/traces arrays are not an absence claim.",
+        "barcode_source_url": "https://slurrpfarm.com/products/classic-masala-serves-2-96-gms.js",
+        "nutrition_image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/10_Noodle_Classic-Masala_96g_D2C_1500x1500_22a8ecb8-c17a-4b33-91b0-260ee801934f.jpg?v=1777795227",
+        "ingredients_image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/11_Noodle_Classic-Masala_96g_D2C_1500x1500_562d22ff-0557-4ae0-80f7-c57867969d59.jpg?v=1777795242"
+      }
+    },
+    {
+      "product": {
+        "barcode": "8906082570467",
+        "name": "Cornitos Taco Shells 15 cm",
+        "brand": "Cornitos",
+        "quantity": "12 pcs",
+        "category": "snacks",
+        "category_tags": [
+          "en:snacks"
+        ],
+        "is_drink": false,
+        "ingredients_text": "Corn masa flour, edible vegetable oil (corn oil), salt.",
+        "nutriments": {
+          "energy_kcal": 453.0,
+          "fat_g": 15.0,
+          "saturated_fat_g": 3.0,
+          "trans_fat_g": 0.0,
+          "sodium_mg": 58.0,
+          "fibre_g": 7.0,
+          "sugars_g": 0.0,
+          "protein_g": 8.0
+        },
+        "serving_size_g": null,
+        "allergens": [],
+        "traces": [],
+        "status": "provisional"
+      },
+      "evidence": {
+        "declared_barcode": "8906082570467",
+        "retrieved_at": "2026-10-21T13:52:24.032720+00:00",
+        "sources": [
+          {
+            "url": "https://www.bigbasket.com/pd/40166032/cornitos-taco-shells-6-inches-12-pcs/",
+            "kind": "retailer_indexed_listing"
+          }
+        ],
+        "declared_nutrition_basis": "per 100 g",
+        "declared_nutrition": {
+          "energy_kcal": 453,
+          "fat_g": 15,
+          "saturated_fat_g": 3,
+          "trans_fat_g": 0,
+          "sodium_mg": 58,
+          "fibre_g": 7,
+          "sugars_g": 0,
+          "protein_g": 8
+        },
+        "stored_nutrition_basis": "per_100g",
+        "conversion_factor": 1.0,
+        "review_notes": "Indexed retailer exact EAN, ingredients and per-100-g panel. Pack quantity explicitly 12 pieces; gram weight not inferred from price. Added sugar not declared. All four core nutrients are declared. No Open Food Facts data used. Uncaptured optional nutrients remain null; empty allergen/traces arrays are not an absence claim."
+      }
+    },
+    {
+      "product": {
+        "barcode": "8909081013089",
+        "name": "Sunfeast Farmlite Sugar Free Hazelnut & Oats Cookies",
+        "brand": "Sunfeast",
+        "quantity": "100 g",
+        "category": "biscuits",
+        "category_tags": [
+          "en:biscuits"
+        ],
+        "is_drink": false,
+        "ingredients_text": "Refined wheat flour (maida) (37.1%), sweeteners (INS 965(i), INS 965(ii), INS 955), rolled oats (13.3%), hydrogenated vegetable oil, refined palm oil, hazelnut bits (4%), raising agents (INS 500(ii), INS 503(ii), INS 450(i)), colour (INS 150a), emulsifier (mono- and diglycerides of fatty acids from palm oil), iodised salt, artificial vanilla flavour, nature-identical flavours.",
+        "nutriments": {
+          "energy_kcal": 480.0,
+          "sugars_g": 0.5,
+          "added_sugars_g": 0.0,
+          "fat_g": 27.9,
+          "saturated_fat_g": 12.2,
+          "trans_fat_g": 0.08,
+          "sodium_mg": 227.9,
+          "protein_g": 7.9
+        },
+        "serving_size_g": null,
+        "allergens": [
+          "wheat",
+          "oats",
+          "tree nuts"
+        ],
+        "traces": [
+          "milk",
+          "soy",
+          "sulphites"
+        ],
+        "status": "provisional"
+      },
+      "evidence": {
+        "declared_barcode": "8909081013089",
+        "retrieved_at": "2026-10-21T13:52:24.032720+00:00",
+        "sources": [
+          {
+            "url": "https://www.bigbasket.com/pd/40371634/sunfeast-farmlite-hazelnut-oat-cookies-100-g/",
+            "kind": "retailer_indexed_listing"
+          }
+        ],
+        "declared_nutrition_basis": "per 100 g",
+        "declared_nutrition": {
+          "energy_kcal": 480,
+          "sugars_g": 0.5,
+          "added_sugars_g": 0,
+          "fat_g": 27.9,
+          "saturated_fat_g": 12.2,
+          "trans_fat_g": 0.08,
+          "sodium_mg": 227.9,
+          "protein_g": 7.9
+        },
+        "stored_nutrition_basis": "per_100g",
+        "conversion_factor": 1.0,
+        "review_notes": "Indexed retailer exact EAN and per-100-g panel. Sugar-free is part of the listed product name; scoring uses 0.5 g total sugar and the stated sweeteners/hydrogenated oil, not the marketing claim. Fibre undeclared. All four core nutrients are declared. No Open Food Facts data used. Uncaptured optional nutrients remain null; empty allergen/traces arrays are not an absence claim."
+      }
+    },
+    {
+      "product": {
+        "barcode": "8901242513841",
+        "name": "Bambino Roasted Dalia",
+        "brand": "Bambino",
+        "quantity": "500 g",
+        "category": "breakfast-cereals",
+        "category_tags": [
+          "en:breakfast-cereals"
+        ],
+        "is_drink": false,
+        "ingredients_text": "Wheat grits.",
+        "nutriments": {
+          "energy_kcal": 387.9,
+          "protein_g": 10.0,
+          "fibre_g": 5.0,
+          "sugars_g": 0.0,
+          "added_sugars_g": 0.0,
+          "fat_g": 1.5,
+          "saturated_fat_g": 0.3,
+          "trans_fat_g": 0.0,
+          "sodium_mg": 0.0
+        },
+        "serving_size_g": null,
+        "allergens": [
+          "wheat",
+          "gluten"
+        ],
+        "traces": [],
+        "status": "provisional"
+      },
+      "evidence": {
+        "declared_barcode": "8901242513841",
+        "retrieved_at": "2026-10-21T13:52:24.032720+00:00",
+        "sources": [
+          {
+            "url": "https://www.bigbasket.com/pd/40362416/bambino-roasted-dalia-500-g/",
+            "kind": "retailer_indexed_listing"
+          }
+        ],
+        "declared_nutrition_basis": "per 100 g",
+        "declared_nutrition": {
+          "energy_kcal": 387.9,
+          "protein_g": 10,
+          "fibre_g": 5,
+          "sugars_g": 0,
+          "added_sugars_g": 0,
+          "fat_g": 1.5,
+          "saturated_fat_g": 0.3,
+          "trans_fat_g": 0,
+          "sodium_mg": 0
+        },
+        "stored_nutrition_basis": "per_100g",
+        "conversion_factor": 1.0,
+        "review_notes": "Indexed retailer exact EAN and per-100-g panel; zero fields are explicitly printed, not imputed. Dry product. All four core nutrients are declared. No Open Food Facts data used. Uncaptured optional nutrients remain null; empty allergen/traces arrays are not an absence claim."
+      }
+    },
+    {
+      "product": {
+        "barcode": "8901242112303",
+        "name": "Bambino Daily Spirali Pasta",
+        "brand": "Bambino",
+        "quantity": "500 g",
+        "category": "pasta",
+        "category_tags": [
+          "en:pastas"
+        ],
+        "is_drink": false,
+        "ingredients_text": "Durum wheat semolina (suji).",
+        "nutriments": {
+          "energy_kcal": 381.0,
+          "protein_g": 10.5,
+          "fibre_g": 2.5,
+          "sugars_g": 0.0,
+          "added_sugars_g": 0.0,
+          "fat_g": 1.0,
+          "saturated_fat_g": 0.2,
+          "trans_fat_g": 0.0,
+          "sodium_mg": 0.0
+        },
+        "serving_size_g": 55,
+        "allergens": [
+          "wheat",
+          "gluten"
+        ],
+        "traces": [],
+        "status": "provisional"
+      },
+      "evidence": {
+        "declared_barcode": "8901242112303",
+        "retrieved_at": "2026-10-21T13:52:24.032720+00:00",
+        "sources": [
+          {
+            "url": "https://www.bigbasket.com/pd/40224915/bambino-daily-pasta-made-from-durum-wheat-spirali-500-g/",
+            "kind": "retailer_indexed_listing"
+          }
+        ],
+        "declared_nutrition_basis": "per 100 g",
+        "declared_nutrition": {
+          "energy_kcal": 381,
+          "protein_g": 10.5,
+          "fibre_g": 2.5,
+          "sugars_g": 0,
+          "added_sugars_g": 0,
+          "fat_g": 1,
+          "saturated_fat_g": 0.2,
+          "trans_fat_g": 0,
+          "sodium_mg": 0
+        },
+        "stored_nutrition_basis": "per_100g",
+        "conversion_factor": 1.0,
+        "review_notes": "Indexed retailer exact EAN and per-100-g dry pasta panel. Zero fields explicitly declared. All four core nutrients are declared. No Open Food Facts data used. Uncaptured optional nutrients remain null; empty allergen/traces arrays are not an absence claim."
+      }
+    },
+    {
+      "product": {
+        "barcode": "8901042971773",
+        "name": "MTR Besan Ladoo",
+        "brand": "MTR",
+        "quantity": "200 g",
+        "category": "snacks",
+        "category_tags": [
+          "en:snacks"
+        ],
+        "is_drink": false,
+        "ingredients_text": "Bengal gram flour (besan), sugar, refined palmolein oil, interesterified vegetable fat, ghee, cardamom powder.",
+        "nutriments": {
+          "energy_kcal": 457.0,
+          "protein_g": 8.2,
+          "sugars_g": 47.5,
+          "added_sugars_g": 47.2,
+          "fat_g": 17.1,
+          "saturated_fat_g": 9.0,
+          "trans_fat_g": 0.0,
+          "sodium_mg": 8.5
+        },
+        "serving_size_g": null,
+        "allergens": [
+          "milk",
+          "tree nuts"
+        ],
+        "traces": [
+          "wheat",
+          "gluten"
+        ],
+        "status": "provisional"
+      },
+      "evidence": {
+        "declared_barcode": "8901042971773",
+        "retrieved_at": "2026-10-21T13:52:24.032720+00:00",
+        "sources": [
+          {
+            "url": "https://www.bigbasket.com/pd/40313108/mtr-besan-undeladoo-made-with-100-pure-ghee-200-g/",
+            "kind": "retailer_indexed_listing"
+          }
+        ],
+        "declared_nutrition_basis": "per 100 g",
+        "declared_nutrition": {
+          "energy_kcal": 457,
+          "protein_g": 8.2,
+          "sugars_g": 47.5,
+          "added_sugars_g": 47.2,
+          "fat_g": 17.1,
+          "saturated_fat_g": 9,
+          "trans_fat_g": 0,
+          "sodium_mg": 8.5
+        },
+        "stored_nutrition_basis": "per_100g",
+        "conversion_factor": 1.0,
+        "review_notes": "Indexed retailer exact EAN and per-100-g panel. Marketing mentions pure ghee but ingredient declaration also names palmolein/interesterified fat; retained ingredient declaration, without a pure-ghee-only claim. Fibre undeclared. All four core nutrients are declared. No Open Food Facts data used. Uncaptured optional nutrients remain null; empty allergen/traces arrays are not an absence claim."
+      }
+    },
+    {
+      "product": {
+        "barcode": "8901512948700",
+        "name": "ACT II Caramel Bliss Coffee Caramel Popcorn",
+        "brand": "ACT II",
+        "quantity": "70 g",
+        "category": "snacks",
+        "category_tags": [
+          "en:snacks"
+        ],
+        "is_drink": false,
+        "ingredients_text": "Sugar, popped corn (21.4%), liquid glucose, table butter, rock salt, caramel (0.7%), iodised salt, raising agent (sodium bicarbonate), refined edible palmolein oil, antioxidant (TBHQ), emulsifier (lecithin), nature-identical flavours (caramel coffee, vanilla), coffee powder (0.18%).",
+        "nutriments": {
+          "energy_kcal": 389.9,
+          "protein_g": 5.1,
+          "sugars_g": 36.2,
+          "added_sugars_g": 32.5,
+          "fibre_g": 6.1,
+          "fat_g": 5.2,
+          "saturated_fat_g": 2.4,
+          "trans_fat_g": 0.1,
+          "sodium_mg": 205.1
+        },
+        "serving_size_g": null,
+        "allergens": [
+          "milk",
+          "soy"
+        ],
+        "traces": [],
+        "status": "provisional"
+      },
+      "evidence": {
+        "declared_barcode": "8901512948700",
+        "retrieved_at": "2026-10-21T13:52:24.032720+00:00",
+        "sources": [
+          {
+            "url": "https://bbnow.bigbasket.com/pd/40368280/act-ii-caramel-bliss-coffee-caramel-flavour-popcorn-70-g-pouch/",
+            "kind": "retailer_indexed_listing"
+          }
+        ],
+        "declared_nutrition_basis": "per 100 g",
+        "declared_nutrition": {
+          "energy_kcal": 389.9,
+          "protein_g": 5.1,
+          "sugars_g": 36.2,
+          "added_sugars_g": 32.5,
+          "fibre_g": 6.1,
+          "fat_g": 5.2,
+          "saturated_fat_g": 2.4,
+          "trans_fat_g": 0.1,
+          "sodium_mg": 205.1
+        },
+        "stored_nutrition_basis": "per_100g",
+        "conversion_factor": 1.0,
+        "review_notes": "Indexed retailer exact single-pack EAN and per-100-g panel; contains-milk-and-soy declaration retained. All four core nutrients are declared. No Open Food Facts data used. Uncaptured optional nutrients remain null; empty allergen/traces arrays are not an absence claim."
+      }
+    },
+    {
+      "product": {
+        "barcode": "8901042972961",
+        "name": "MTR 3 Minute Protein Khatta Meetha Poha",
+        "brand": "MTR",
+        "quantity": "80 g",
+        "category": "breakfast-cereals",
+        "category_tags": [
+          "en:breakfast-cereals"
+        ],
+        "is_drink": false,
+        "ingredients_text": "Rice flakes (57%), sugar (9.3%), isolated soy protein, refined sunflower oil, raisins (4.6%), peanuts, low sodium iodised salt, dehydrated onion flakes, green chilli, curry leaves, dry mango powder (0.8%), mustard, maltodextrin (corn), cumin, acidity regulators (INS 330, INS 334), turmeric powder, natural flavouring substance.",
+        "nutriments": {
+          "energy_kcal": 412.5,
+          "protein_g": 12.749999999999998,
+          "sugars_g": 16.25,
+          "added_sugars_g": 9.25,
+          "fibre_g": 4.25,
+          "fat_g": 11.000000000000002,
+          "saturated_fat_g": 1.5,
+          "trans_fat_g": 0.0,
+          "sodium_mg": 920.0
+        },
+        "serving_size_g": 80,
+        "allergens": [
+          "soy",
+          "peanuts",
+          "mustard"
+        ],
+        "traces": [
+          "milk",
+          "wheat",
+          "gluten"
+        ],
+        "status": "provisional"
+      },
+      "evidence": {
+        "declared_barcode": "8901042972961",
+        "retrieved_at": "2026-10-21T13:52:24.032720+00:00",
+        "sources": [
+          {
+            "url": "https://www.bigbasket.com/pd/40372593/mtr-khatta-meetha-poha-3-minute-breakfast-80-g/",
+            "kind": "retailer_indexed_listing"
+          }
+        ],
+        "declared_nutrition_basis": "per 80 g",
+        "declared_nutrition": {
+          "energy_kcal": 330,
+          "protein_g": 10.2,
+          "sugars_g": 13,
+          "added_sugars_g": 7.4,
+          "fibre_g": 3.4,
+          "fat_g": 8.8,
+          "saturated_fat_g": 1.2,
+          "trans_fat_g": 0,
+          "sodium_mg": 736
+        },
+        "stored_nutrition_basis": "per_100g",
+        "conversion_factor": 1.25,
+        "review_notes": "Retailer panel explicitly per 80-g pack; all values multiplied by 1.25, including sodium 736 -> 920 mg/100 g. Dry/as-sold product, not reconstituted food. All four core nutrients are declared. No Open Food Facts data used. Uncaptured optional nutrients remain null; empty allergen/traces arrays are not an absence claim."
+      }
+    }
+  ]
+}

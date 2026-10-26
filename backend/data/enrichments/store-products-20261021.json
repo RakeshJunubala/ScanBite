@@ -1,0 +1,584 @@
+{
+  "batch_id": "non-off-store-expansion-20261021",
+  "entries": [
+    {
+      "product": {
+        "barcode": "8908006217076",
+        "name": "Slurrp Farm Millet Spinach Dosa Mix",
+        "brand": "Slurrp Farm",
+        "quantity": "150 g",
+        "category": "breakfast-cereals",
+        "category_tags": [
+          "en:breakfast-cereals"
+        ],
+        "is_drink": false,
+        "ingredients_text": "Supergrain blend (64%) (foxtail millet flour, rice flour), moong dal (green gram) (16%), urad dal (black gram) (14%), iodised salt, spinach powder, spices (asafoetida, curry leaves and cumin), onion flakes, raising agent (baking soda) (INS 500(ii)).",
+        "nutriments": {
+          "energy_kcal": 386.8,
+          "protein_g": 13.0,
+          "sugars_g": 1.3,
+          "added_sugars_g": 0.0,
+          "fibre_g": 6.7,
+          "sodium_mg": 569.9,
+          "fat_g": 3.8,
+          "saturated_fat_g": 0.9,
+          "trans_fat_g": 0.0
+        },
+        "serving_size_g": 50,
+        "allergens": [],
+        "traces": [],
+        "status": "provisional"
+      },
+      "evidence": {
+        "declared_barcode": "8908006217076",
+        "retrieved_at": "2026-10-21T09:45:00.655299+00:00",
+        "sources": [
+          {
+            "url": "https://www.bigbasket.com/pd/40125757/slurrp-farm-millet-dosa-mix-supergrains-spinach-150-g/",
+            "kind": "retailer_indexed_listing"
+          }
+        ],
+        "declared_nutrition_basis": "per 100 g",
+        "declared_nutrition": {
+          "energy_kcal": 386.8,
+          "protein_g": 13,
+          "sugars_g": 1.3,
+          "added_sugars_g": 0,
+          "fibre_g": 6.7,
+          "sodium_mg": 569.9,
+          "fat_g": 3.8,
+          "saturated_fat_g": 0.9,
+          "trans_fat_g": 0
+        },
+        "stored_nutrition_basis": "per_100g",
+        "conversion_factor": 1.0,
+        "review_notes": "EAN, single 150 g pack, ingredients and per-100-g dry mix panel from indexed supermarket listing. Category is the existing breakfast bucket; dry mix values exclude cooking oil and toppings. All four core nutrients and ingredients present. No Open Food Facts data used. Empty allergen/traces arrays mean no statement captured, not certified allergen absence."
+      }
+    },
+    {
+      "product": {
+        "barcode": "8906143891081",
+        "name": "The Whole Truth Orange Dark Cocoa Bar - Sweetened With Dates",
+        "brand": "The Whole Truth",
+        "quantity": "80 g",
+        "category": "chocolates",
+        "category_tags": [
+          "en:chocolates"
+        ],
+        "is_drink": false,
+        "ingredients_text": "Cocoa (cocoa nibs 51%, cocoa butter 20%) (71%), date powder (28.7%), orange oil (0.3%).",
+        "nutriments": {
+          "energy_kcal": 597.9,
+          "protein_g": 8.1,
+          "sugars_g": 21.5,
+          "added_sugars_g": 0.0,
+          "fibre_g": 9.7,
+          "fat_g": 45.0,
+          "saturated_fat_g": 31.4,
+          "sodium_mg": 18.8
+        },
+        "serving_size_g": null,
+        "allergens": [],
+        "traces": [],
+        "status": "provisional"
+      },
+      "evidence": {
+        "declared_barcode": "8906143891081",
+        "retrieved_at": "2026-10-21T09:45:00.655299+00:00",
+        "sources": [
+          {
+            "url": "https://www.bigbasket.com/pd/40290578/the-whole-truth-orange-dark-chocolate-no-added-sugar-80-g/",
+            "kind": "retailer_indexed_listing"
+          }
+        ],
+        "declared_nutrition_basis": "per 100 g",
+        "declared_nutrition": {
+          "energy_kcal": 597.9,
+          "protein_g": 8.1,
+          "sugars_g": 21.5,
+          "added_sugars_g": 0,
+          "fibre_g": 9.7,
+          "fat_g": 45,
+          "saturated_fat_g": 31.4,
+          "sodium_mg": 18.8
+        },
+        "stored_nutrition_basis": "per_100g",
+        "conversion_factor": 1.0,
+        "review_notes": "EAN and full per-100-g panel from indexed supermarket listing. Trans fat is less than 0.5 g; kept null because scalar model cannot preserve the bound. No inferred fruit/nut percentage credit. All four core nutrients and ingredients present. No Open Food Facts data used. Empty allergen/traces arrays mean no statement captured, not certified allergen absence."
+      }
+    },
+    {
+      "product": {
+        "barcode": "8906143891470",
+        "name": "The Whole Truth Creamy & Crunchy Ragi Chocolate - Sweetened With Dates",
+        "brand": "The Whole Truth",
+        "quantity": "50 g",
+        "category": "chocolates",
+        "category_tags": [
+          "en:chocolates"
+        ],
+        "is_drink": false,
+        "ingredients_text": "Cocoa, date powder, whole milk powder, ragi.",
+        "nutriments": {
+          "energy_kcal": 487.6,
+          "protein_g": 10.6,
+          "sugars_g": 23.4,
+          "added_sugars_g": 0.0,
+          "fibre_g": 7.3,
+          "fat_g": 21.8,
+          "saturated_fat_g": 12.4,
+          "trans_fat_g": 0.0,
+          "sodium_mg": 189.3
+        },
+        "serving_size_g": 10,
+        "allergens": [
+          "milk"
+        ],
+        "traces": [],
+        "status": "provisional"
+      },
+      "evidence": {
+        "declared_barcode": "8906143891470",
+        "retrieved_at": "2026-10-21T09:45:00.655299+00:00",
+        "sources": [
+          {
+            "url": "https://www.bigbasket.com/pd/40316242/the-whole-truth-creamy-crunchy-ragi-chocolate-50-g/",
+            "kind": "retailer_indexed_listing"
+          }
+        ],
+        "declared_nutrition_basis": "per 100 g",
+        "declared_nutrition": {
+          "energy_kcal": 487.6,
+          "protein_g": 10.6,
+          "sugars_g": 23.4,
+          "added_sugars_g": 0,
+          "fibre_g": 7.3,
+          "fat_g": 21.8,
+          "saturated_fat_g": 12.4,
+          "trans_fat_g": 0,
+          "sodium_mg": 189.3
+        },
+        "stored_nutrition_basis": "per_100g",
+        "conversion_factor": 1.0,
+        "review_notes": "EAN and per-100-g panel from indexed supermarket listing. Milk allergen identified from explicit whole milk powder ingredient. All four core nutrients and ingredients present. No Open Food Facts data used. Empty allergen/traces arrays mean no statement captured, not certified allergen absence."
+      }
+    },
+    {
+      "product": {
+        "barcode": "8901042973296",
+        "name": "MTR Dry Jamun",
+        "brand": "MTR",
+        "quantity": "200 g",
+        "category": "snacks",
+        "category_tags": [
+          "en:snacks"
+        ],
+        "is_drink": false,
+        "ingredients_text": "Sugar, khoa (24%), RO water, refined wheat flour (maida), refined sunflower oil, desiccated coconut powder (1%), raising agent (INS 500(ii)), cardamom powder.",
+        "nutriments": {
+          "energy_kcal": 410.0,
+          "protein_g": 6.5,
+          "sugars_g": 49.0,
+          "added_sugars_g": 45.0,
+          "fat_g": 20.0,
+          "saturated_fat_g": 5.7,
+          "trans_fat_g": 0.0,
+          "sodium_mg": 93.0
+        },
+        "serving_size_g": null,
+        "allergens": [
+          "milk",
+          "wheat",
+          "gluten"
+        ],
+        "traces": [
+          "tree nuts",
+          "oats",
+          "gluten"
+        ],
+        "status": "provisional"
+      },
+      "evidence": {
+        "declared_barcode": "8901042973296",
+        "retrieved_at": "2026-10-21T09:45:00.655299+00:00",
+        "sources": [
+          {
+            "url": "https://www.bigbasket.com/pd/40376053/mtr-foods-dry-jamun-200-g/",
+            "kind": "retailer_indexed_listing"
+          }
+        ],
+        "declared_nutrition_basis": "per 100 g",
+        "declared_nutrition": {
+          "energy_kcal": 410,
+          "protein_g": 6.5,
+          "sugars_g": 49,
+          "added_sugars_g": 45,
+          "fat_g": 20,
+          "saturated_fat_g": 5.7,
+          "trans_fat_g": 0,
+          "sodium_mg": 93
+        },
+        "stored_nutrition_basis": "per_100g",
+        "conversion_factor": 1.0,
+        "review_notes": "Exact single-pack EAN and per-100-g panel captured from indexed retailer listing; allergen and may-contain statements provided on that listing. Fibre not declared and remains null. All four core nutrients and ingredients present. No Open Food Facts data used. Empty allergen/traces arrays mean no statement captured, not certified allergen absence."
+      }
+    },
+    {
+      "product": {
+        "barcode": "8906069400022",
+        "name": "Veeba Thousand Island Dressing",
+        "brand": "Veeba",
+        "quantity": "300 g",
+        "category": "sauces",
+        "category_tags": [
+          "en:sauces"
+        ],
+        "is_drink": false,
+        "ingredients_text": "Water, refined soyabean oil, synthetic vinegar (water, acetic acid (INS 260)), sugar, cucumber (10%), milk solids, tomato paste (5%), emulsifiers and stabilizers (INS 1442, INS 1450, INS 415), iodised salt, spices and condiments, acidity regulators (INS 260, INS 330), preservatives (INS 211, INS 202), antioxidant (INS 319), sequestrant (INS 385).",
+        "nutriments": {
+          "energy_kcal": 264.59,
+          "protein_g": 2.72,
+          "sugars_g": 14.26,
+          "added_sugars_g": 13.2,
+          "fat_g": 18.15,
+          "trans_fat_g": 0.0,
+          "saturated_fat_g": 2.9,
+          "sodium_mg": 1060.0
+        },
+        "serving_size_g": 15,
+        "allergens": [
+          "milk",
+          "soy"
+        ],
+        "traces": [],
+        "status": "provisional"
+      },
+      "evidence": {
+        "declared_barcode": "8906069400022",
+        "retrieved_at": "2026-10-21T09:45:00.655299+00:00",
+        "sources": [
+          {
+            "url": "https://www.bigbasket.com/pd/40049007/veeba-thousand-island-dressing-300-g-bottle/",
+            "kind": "retailer_indexed_listing"
+          }
+        ],
+        "declared_nutrition_basis": "per 100 g",
+        "declared_nutrition": {
+          "energy_kcal": 264.59,
+          "protein_g": 2.72,
+          "sugars_g": 14.26,
+          "added_sugars_g": 13.2,
+          "fat_g": 18.15,
+          "trans_fat_g": 0,
+          "saturated_fat_g": 2.9,
+          "sodium_mg": 1060
+        },
+        "stored_nutrition_basis": "per_100g",
+        "conversion_factor": 1.0,
+        "review_notes": "Retailer lists product EAN 8906069400022, distinct from its internal SKU 40049007. Per-100-g panel retained; milk and soy from explicit ingredients. Fibre not declared. All four core nutrients and ingredients present. No Open Food Facts data used. Empty allergen/traces arrays mean no statement captured, not certified allergen absence."
+      }
+    },
+    {
+      "product": {
+        "barcode": "8904424805512",
+        "name": "Happilo Prasadam Makhana",
+        "brand": "Happilo",
+        "quantity": "200 g",
+        "category": "snacks",
+        "category_tags": [
+          "en:snacks"
+        ],
+        "is_drink": false,
+        "ingredients_text": "Makhana (fox nuts/lotus seeds).",
+        "nutriments": {
+          "energy_kcal": 347.0,
+          "protein_g": 10.1,
+          "fibre_g": 14.5,
+          "sugars_g": 0.0,
+          "added_sugars_g": 0.0,
+          "fat_g": 0.6,
+          "saturated_fat_g": 0.1,
+          "trans_fat_g": 0.0,
+          "sodium_mg": 1.0
+        },
+        "serving_size_g": null,
+        "allergens": [],
+        "traces": [],
+        "status": "provisional"
+      },
+      "evidence": {
+        "declared_barcode": "8904424805512",
+        "retrieved_at": "2026-10-21T09:45:00.655299+00:00",
+        "sources": [
+          {
+            "url": "https://www.bigbasket.com/pd/40362552/happilo-prasadam-makhana-200-g/",
+            "kind": "retailer_indexed_listing"
+          }
+        ],
+        "declared_nutrition_basis": "per 100 g",
+        "declared_nutrition": {
+          "energy_kcal": 347,
+          "protein_g": 10.1,
+          "fibre_g": 14.5,
+          "sugars_g": 0,
+          "added_sugars_g": 0,
+          "fat_g": 0.6,
+          "saturated_fat_g": 0.1,
+          "trans_fat_g": 0,
+          "sodium_mg": 1
+        },
+        "stored_nutrition_basis": "per_100g",
+        "conversion_factor": 1.0,
+        "review_notes": "Single ingredient, EAN and explicit per-100-g retailer panel. Fox nuts are not automatically classified as a tree-nut allergen; no unprinted allergen absence claim made. All four core nutrients and ingredients present. No Open Food Facts data used. Empty allergen/traces arrays mean no statement captured, not certified allergen absence."
+      }
+    },
+    {
+      "product": {
+        "barcode": "8906081122773",
+        "name": "Happilo Himalayan Pink Salt & Pepper Makhana",
+        "brand": "Happilo",
+        "quantity": "20 g",
+        "category": "snacks",
+        "category_tags": [
+          "en:snacks"
+        ],
+        "is_drink": false,
+        "ingredients_text": "Makhana, olive oil, seasoning (maltodextrin, sugar, Himalayan salt, black salt), spices and condiments (black pepper, yellow chili, cinnamon), lemon juice powder, hydrolyzed vegetable protein, yeast extract, anti-caking agent (INS 551), sunflower oil, flavor enhancers (INS 627, INS 631), added flavours (natural and nature-identical flavouring substances).",
+        "nutriments": {
+          "energy_kcal": 485.8333333333333,
+          "fat_g": 25.0,
+          "saturated_fat_g": 4.166666666666667,
+          "trans_fat_g": 0.0,
+          "sodium_mg": 985.8333333333334,
+          "fibre_g": 2.5,
+          "sugars_g": 4.166666666666667,
+          "added_sugars_g": null,
+          "protein_g": 7.5
+        },
+        "serving_size_g": 12,
+        "allergens": [],
+        "traces": [],
+        "status": "provisional"
+      },
+      "evidence": {
+        "declared_barcode": "8906081122773",
+        "retrieved_at": "2026-10-21T09:45:00.655299+00:00",
+        "sources": [
+          {
+            "url": "https://bbnow.bigbasket.com/pd/40362555/happilo-himalayan-pink-salt-pepper-makhana-20-g/",
+            "kind": "retailer_indexed_listing"
+          }
+        ],
+        "declared_nutrition_basis": "per 12 g",
+        "declared_nutrition": {
+          "energy_kcal": 58.3,
+          "fat_g": 3,
+          "saturated_fat_g": 0.5,
+          "trans_fat_g": 0,
+          "sodium_mg": 118.3,
+          "fibre_g": 0.3,
+          "sugars_g": 0.5,
+          "added_sugars_g": 0,
+          "protein_g": 0.9
+        },
+        "stored_nutrition_basis": "per_100g",
+        "conversion_factor": 8.333333333333334,
+        "review_notes": "Retailer declares per-12-g serving; all nutrition scaled by 100/12. Retailer added sugar is 0 g despite sugar in seasoning; conflicting added-sugar scalar is left unknown, with raw declaration retained in evidence. Not interpreted as sugar-free. All four core nutrients and ingredients present. No Open Food Facts data used. Empty allergen/traces arrays mean no statement captured, not certified allergen absence."
+      }
+    },
+    {
+      "product": {
+        "barcode": "8908006217915",
+        "name": "Slurrp Farm Classic Millet Pancake Mix",
+        "brand": "Slurrp Farm",
+        "quantity": "150 g",
+        "category": "breakfast-cereals",
+        "category_tags": [
+          "en:breakfast-cereals"
+        ],
+        "is_drink": false,
+        "ingredients_text": "Supergrain blend (76%) (jowar flour, foxtail millet flour, oat flour), raw unrefined sugar (15%), banana powder (5%), natural flavour, baking powder, flaxseed powder, raising agent (baking soda) (INS 500(ii)), iodised salt.",
+        "nutriments": {
+          "energy_kcal": 402.0,
+          "protein_g": 7.8,
+          "sugars_g": 18.2,
+          "added_sugars_g": 15.0,
+          "fibre_g": 7.9,
+          "sodium_mg": 284.9,
+          "fat_g": 6.8,
+          "saturated_fat_g": 1.2,
+          "trans_fat_g": 0.0
+        },
+        "serving_size_g": 40,
+        "allergens": [
+          "oats"
+        ],
+        "traces": [
+          "wheat",
+          "tree nuts"
+        ],
+        "status": "provisional",
+        "image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/a4acbfb5-aae1-4517-934b-3e2fb3694864.png?v=1710843064"
+      },
+      "evidence": {
+        "declared_barcode": "8908006217915",
+        "retrieved_at": "2026-10-21T09:45:00.656139+00:00",
+        "sources": [
+          {
+            "url": "https://slurrpfarm.com/products/classic-millet-pancake-no-maida",
+            "kind": "manufacturer_label_images_and_public_product_json"
+          }
+        ],
+        "declared_nutrition_basis": "per 100 g",
+        "declared_nutrition": {
+          "energy_kcal": 402,
+          "protein_g": 7.8,
+          "sugars_g": 18.2,
+          "added_sugars_g": 15,
+          "fibre_g": 7.9,
+          "sodium_mg": 284.9,
+          "fat_g": 6.8,
+          "saturated_fat_g": 1.2,
+          "trans_fat_g": 0
+        },
+        "stored_nutrition_basis": "per_100g",
+        "conversion_factor": 1.0,
+        "review_notes": "Manufacturer single-pack variant barcode checked in public product JSON. Ingredient and nutrition images read visually, using dry/as-sold mix panel; no added milk or oil included. Bundle codes ending /3 are not valid GTINs and were excluded. Nutrition table gives saturated fat 1.2 g/100 g while footer says not more than 1%; used the explicit table value and retained this source discrepancy for review.  All four core nutrients and ingredients present. No Open Food Facts data used. Empty allergen/traces arrays mean no statement captured, not certified allergen absence.",
+        "nutrition_image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/6_ClassicPancake_Nutri_1500x1500_964ab73a-5fd3-4ed4-90d5-511d563ba6b6.jpg?v=1710843064",
+        "ingredients_image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/5_ClassicPancake_Ingre_1500x1500_ab9ed84e-bf77-479a-b003-285f7e396de7.jpg?v=1710843064",
+        "barcode_source_url": "https://slurrpfarm.com/products/classic-millet-pancake-no-maida.js",
+        "barcode_variant": "pack of 1"
+      }
+    },
+    {
+      "product": {
+        "barcode": "8908006217892",
+        "name": "Slurrp Farm Blueberry Millet Pancake Mix",
+        "brand": "Slurrp Farm",
+        "quantity": "150 g",
+        "category": "breakfast-cereals",
+        "category_tags": [
+          "en:breakfast-cereals"
+        ],
+        "is_drink": false,
+        "ingredients_text": "Multigrain flour blend (jowar, oat, foxtail millet) (65%), raw unrefined sugar (20%), banana fruit powder (5%), blueberries and cranberries (dried), raising agents (baking soda, baking powder), nature-identical flavouring substances, iodised salt.",
+        "nutriments": {
+          "energy_kcal": 386.25,
+          "protein_g": 7.0,
+          "sugars_g": 25.25,
+          "added_sugars_g": 20.0,
+          "fibre_g": 7.0,
+          "sodium_mg": 235.5,
+          "fat_g": 5.749999999999999,
+          "saturated_fat_g": 1.0,
+          "trans_fat_g": 0.0
+        },
+        "serving_size_g": 40,
+        "allergens": [
+          "oats"
+        ],
+        "traces": [
+          "wheat",
+          "tree nuts"
+        ],
+        "status": "provisional",
+        "image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/1_Blueberry-Pancake_D2C_1500x1500_bc9d3974-b5b9-4d47-87b8-60b3780242d9.jpg?v=1774594183"
+      },
+      "evidence": {
+        "declared_barcode": "8908006217892",
+        "retrieved_at": "2026-10-21T09:45:00.656139+00:00",
+        "sources": [
+          {
+            "url": "https://slurrpfarm.com/products/millet-and-blueberry-pancake",
+            "kind": "manufacturer_label_images_and_public_product_json"
+          }
+        ],
+        "declared_nutrition_basis": "per 40 g",
+        "declared_nutrition": {
+          "energy_kcal": 154.5,
+          "protein_g": 2.8,
+          "sugars_g": 10.1,
+          "added_sugars_g": 8,
+          "fibre_g": 2.8,
+          "sodium_mg": 94.2,
+          "fat_g": 2.3,
+          "saturated_fat_g": 0.4,
+          "trans_fat_g": 0
+        },
+        "stored_nutrition_basis": "per_100g",
+        "conversion_factor": 2.5,
+        "review_notes": "Manufacturer single-pack variant barcode checked in public product JSON. Ingredient and nutrition images read visually, using dry/as-sold mix panel; no added milk or oil included. Bundle codes ending /3 are not valid GTINs and were excluded.  All four core nutrients and ingredients present. No Open Food Facts data used. Empty allergen/traces arrays mean no statement captured, not certified allergen absence.",
+        "nutrition_image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/10_Blueberry-Pancake_D2C_1500x1500_b0d6dce6-44b2-4d4c-ae7f-0e1a52579099.jpg?v=1774594093",
+        "ingredients_image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/9_Blueberry-Pancake_D2C_1500x1500_8deedde4-4cee-4dbe-990b-5c3d02c66089.jpg?v=1774594106",
+        "barcode_source_url": "https://slurrpfarm.com/products/millet-and-blueberry-pancake.js",
+        "barcode_variant": "pack of 1"
+      }
+    },
+    {
+      "product": {
+        "barcode": "8908006217083",
+        "name": "Slurrp Farm Banana Choco-Chip Millet Pancake Mix",
+        "brand": "Slurrp Farm",
+        "quantity": "150 g",
+        "category": "breakfast-cereals",
+        "category_tags": [
+          "en:breakfast-cereals"
+        ],
+        "is_drink": false,
+        "ingredients_text": "Multigrain flour blend (oats, foxtail millet, amaranth, jowar) (55%), jaggery (12.5%), raw unrefined sugar (12.5%), banana fruit powder (8%), milk chocolate chips (5%), rolled oats, barley malt, iodised salt, cinnamon powder, raising agents (baking soda, baking powder), nature-identical flavouring substances.",
+        "nutriments": {
+          "energy_kcal": 400.25,
+          "protein_g": 7.0,
+          "sugars_g": 29.25,
+          "added_sugars_g": 24.0,
+          "fibre_g": 6.0,
+          "sodium_mg": 264.0,
+          "fat_g": 6.75,
+          "saturated_fat_g": 2.0,
+          "trans_fat_g": 0.0
+        },
+        "serving_size_g": 40,
+        "allergens": [
+          "milk",
+          "barley",
+          "gluten"
+        ],
+        "traces": [
+          "wheat",
+          "tree nuts"
+        ],
+        "status": "provisional",
+        "image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/1_Banana-Choco-chip-Pancake_D2C_1500x1500_db1cbc2a-23fa-42e0-be64-40288966083b.jpg?v=1774596555"
+      },
+      "evidence": {
+        "declared_barcode": "8908006217083",
+        "retrieved_at": "2026-10-21T09:45:00.656139+00:00",
+        "sources": [
+          {
+            "url": "https://slurrpfarm.com/products/millet-pancake-banana-choco-chip-and-supergrains",
+            "kind": "manufacturer_label_images_and_public_product_json"
+          }
+        ],
+        "declared_nutrition_basis": "per 40 g",
+        "declared_nutrition": {
+          "energy_kcal": 160.1,
+          "protein_g": 2.8,
+          "sugars_g": 11.7,
+          "added_sugars_g": 9.6,
+          "fibre_g": 2.4,
+          "sodium_mg": 105.6,
+          "fat_g": 2.7,
+          "saturated_fat_g": 0.8,
+          "trans_fat_g": 0
+        },
+        "stored_nutrition_basis": "per_100g",
+        "conversion_factor": 2.5,
+        "review_notes": "Manufacturer single-pack variant barcode checked in public product JSON. Ingredient and nutrition images read visually, using dry/as-sold mix panel; no added milk or oil included. Bundle codes ending /3 are not valid GTINs and were excluded.  All four core nutrients and ingredients present. No Open Food Facts data used. Empty allergen/traces arrays mean no statement captured, not certified allergen absence.",
+        "nutrition_image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/10_Banana-Choco-chip-Pancake_D2C_1500x1500_2d7ae28c-2b84-4de3-9add-4c428ba11906.jpg?v=1774596241",
+        "ingredients_image_url": "https://cdn.shopify.com/s/files/1/0178/3798/1796/files/9_Banana-Choco-chip-Pancake_D2C_1500x1500_693147b8-4bb9-446d-b679-43af0e6e3022.jpg?v=1774596252",
+        "barcode_source_url": "https://slurrpfarm.com/products/millet-pancake-banana-choco-chip-and-supergrains.js",
+        "barcode_variant": "Pack of 1"
+      }
+    }
+  ]
+}

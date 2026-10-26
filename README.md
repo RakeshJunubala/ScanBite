@@ -67,6 +67,35 @@ docker build -t scanbite-api backend
 docker run -p 8000:8000 -e OFF_USER_AGENT="ScanBite/0.1 (you@example.com)" -v scanbite-data:/data scanbite-api
 ```
 
+### Continue on another computer with the full product catalogue
+
+The Git-tracked snapshot `backend/data/catalogue.json` contains all catalogue products,
+including their nutrition, ingredients, scores, source versions and review statuses.
+SQLite databases, backups and research downloads stay local.
+
+After cloning and installing the backend dependencies, restore the catalogue **before
+starting the API for the first time**:
+
+```bash
+cd backend
+python scripts/catalogue_snapshot.py restore
+```
+
+This creates `backend/data/products.db`. Restore refuses an existing database and validates
+each score against the matching code version. It does not contact external websites.
+
+After adding or updating products on your working computer, refresh the snapshot:
+
+```bash
+cd backend
+python scripts/catalogue_snapshot.py export
+```
+
+Commit and push `backend/data/catalogue.json` together with any related code, manifests and
+documentation. Clone or pull that commit on the other computer. **The snapshot is updated
+by the export command, not automatically when the database changes.** See
+[catalogue transfer details](docs/catalogue-portability.md) for Windows setup and limitations.
+
 ### API
 
 | Method | Path | What it does |

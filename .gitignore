@@ -23,3 +23,6 @@ mobile/.env
 
 # Scaffold archives (contents are checked in as real files)
 *.zip
+
+# Local research downloads, exports and generated reports
+/outputs/
